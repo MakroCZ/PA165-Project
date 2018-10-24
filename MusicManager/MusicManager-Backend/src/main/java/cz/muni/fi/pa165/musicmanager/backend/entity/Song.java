@@ -25,6 +25,12 @@ public class Song {
     @Column(nullable=false)
     private LocalDate date;
 
+    @ManyToOne(optional = false)
+    private Album album;
+
+    @ManyToOne(optional = false)
+    private Genre genre;
+
 
     public Long getId() {
         return id;

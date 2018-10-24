@@ -14,19 +14,30 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class songServiceImpl {
+public class SongServiceImpl{
     @Autowired
     private SongDao songDao;
 
+
     public void create(Song song){
+        validateSong(song);
         songDao.create(song);
     }
 
     public void delete(Song song){
+
+        validateSong(song);
+        if(song.getId()== null){
+            throw new IllegalArgumentException("Song id can't be null");
+        }
         songDao.delete(song);
     }
 
     public void update(Song song){
+        validateSong(song);
+        if(song.getId()== null){
+            throw new IllegalArgumentException("Song id can't be null");
+        }
         songDao.update(song);
     }
 
@@ -34,7 +45,11 @@ public class songServiceImpl {
         return songDao.findAll();
     }
 
+
     public Song findById(Long id){
+        if(id == null){
+            throw new IllegalArgumentException("Id is null");
+        }
         return songDao.findById(id);
     }
 
