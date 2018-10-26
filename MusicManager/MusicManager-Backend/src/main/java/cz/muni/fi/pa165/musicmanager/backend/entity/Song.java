@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.musicmanager.backend.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collections;
 import java.util.Set;
 
@@ -21,7 +22,7 @@ public class Song {
 
     @NotNull
     @Column(nullable=false)
-    private Integer length;
+    private LocalTime length;
 
     @NotNull
     @Column(nullable=false)
@@ -32,6 +33,11 @@ public class Song {
 
     @ManyToOne(optional = false)
     private Set<Genre> genres;
+
+    public Song(String name, LocalTime length, LocalDate date){
+        this.setName(name);
+        this.setDate(date);
+    }
 
 
     public Long getId() {
@@ -50,12 +56,12 @@ public class Song {
         this.name = name;
     }
 
-    public Integer getLength() {
+    public LocalTime getLength() {
         return length;
     }
 
-    public void setLength(Integer lenght) {
-        this.length = lenght;
+    public void setLength(LocalTime length) {
+        this.length = length;
     }
 
     public LocalDate getDate() {
