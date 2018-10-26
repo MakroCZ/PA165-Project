@@ -39,6 +39,8 @@ public class Song {
         this.setDate(date);
     }
 
+    public Song(){}
+
 
     public Long getId() {
         return id;
