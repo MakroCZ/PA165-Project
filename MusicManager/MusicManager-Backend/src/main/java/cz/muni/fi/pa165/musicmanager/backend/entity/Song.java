@@ -115,4 +115,15 @@ public class Song {
         result = 31 * result + date.hashCode();
         return result;
     }
+
+    @ManyToOne(optional = false)
+    private Album albums;
+
+    public Album getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(Album albums) {
+        this.albums = albums;
+    }
 }

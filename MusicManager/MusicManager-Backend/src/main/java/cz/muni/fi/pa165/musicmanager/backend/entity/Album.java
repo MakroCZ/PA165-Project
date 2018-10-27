@@ -21,7 +21,7 @@ public class Album {
     @Column(nullable = false)
     private LocalDate date;
 
-    @OneToMany(mappedBy = "song")
+    @OneToMany(mappedBy = "albums")
     private Set<Song> songs = new HashSet<>();
 
     public Album(@NotNull String name, @NotNull LocalDate date, Set<Song> songs) {
