@@ -67,7 +67,7 @@ public class Performer {
         this.country = country;
     }
 
-    public List<Album> getAlbumList() {
+    public Set<Album> getAlbums() {
         return Collections.unmodifiableSet(albums);
     }
 
