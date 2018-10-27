@@ -63,9 +63,6 @@ public class SongServiceImpl{
         if(song.getLength() == null){
             throw new IllegalArgumentException("length is null");
         }
-        if(song.getLength()<=0){
-            throw new IllegalArgumentException("length can't be 0 or less");
-        }
         if(song.getDate() == null){
             throw new IllegalArgumentException("date is null");
         }

@@ -31,7 +31,7 @@ public class Song {
     @ManyToOne(optional = false)
     private Album album;
 
-    @ManyToOne(optional = false)
+    @ManyToMany(mappedBy="songs")
     private Set<Genre> genres;
 
     public Song(String name, LocalTime length, LocalDate date){
