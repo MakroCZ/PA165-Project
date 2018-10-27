@@ -21,6 +21,9 @@ public class Album {
     @Column(nullable = false)
     private LocalDate date;
 
+    @ManyToOne
+    private Performer performer;
+
     @OneToMany(mappedBy = "albums")
     private Set<Song> songs = new HashSet<>();
 
@@ -69,6 +72,14 @@ public class Album {
         this.songs.add(item);
     }
 
+    public Performer getPerformer() {
+        return performer;
+    }
+
+    public void setPerformer(Performer performer) {
+        this.performer = performer;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,11 +88,12 @@ public class Album {
         return Objects.equals(getId(), album.getId()) &&
                 Objects.equals(getName(), album.getName()) &&
                 Objects.equals(getDate(), album.getDate()) &&
+                Objects.equals(getPerformer(), album.getPerformer()) &&
                 Objects.equals(getSongs(), album.getSongs());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getDate(), getSongs());
+        return Objects.hash(getId(), getName(), getDate(), getPerformer(), getSongs());
     }
 }
