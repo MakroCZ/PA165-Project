@@ -22,7 +22,7 @@ public class Genre {
 
     public  Genre(){}
 
-    public Genre(String name, String description) {
+    public Genre(@NotNull String name, @NotNull String description) {
         this.name = name;
         this.description = description;
     }
