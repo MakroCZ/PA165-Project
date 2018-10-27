@@ -18,14 +18,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 
-
 @Configuration
 public class InMemoryDatabaseSpringc {
 
-	@Bean
-	public DataSource db(){
-		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-		EmbeddedDatabase db = builder.setType(EmbeddedDatabaseType.DERBY).build();
-		return db;
-	}
+    @Bean
+    public DataSource db(){
+        EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
+        EmbeddedDatabase db = builder.setType(EmbeddedDatabaseType.DERBY).build();
+        return db;
+    }
 }
