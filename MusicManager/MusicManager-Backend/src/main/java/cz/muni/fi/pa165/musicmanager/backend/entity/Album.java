@@ -24,7 +24,7 @@ public class Album {
     @ManyToOne
     private Performer performer;
 
-    @OneToMany(mappedBy = "albums")
+    @OneToMany(mappedBy = "album")
     private Set<Song> songs = new HashSet<>();
 
     public Album(@NotNull String name, @NotNull LocalDate date, Set<Song> songs) {
