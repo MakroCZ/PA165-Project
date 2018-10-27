@@ -55,20 +55,15 @@ public class Genre {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null)
-            return false;
-        if (getClass()!=obj.getClass())
+        if (!(obj instanceof Genre))
             return false;
         Genre genre = (Genre) obj;
-        if(id != genre.id)
+        if(id != genre.getId())
             return false;
-        if(!name.equals(genre.name))
+        if(!name.equals(genre.getName()))
             return false;
-        if (description == null) {
-            if (genre.description != null)
+        if (!description.equals(genre.getDescription()))
                 return false;
-        } else if (!description.equals(genre.description))
-            return false;
         return true;
     }
 
