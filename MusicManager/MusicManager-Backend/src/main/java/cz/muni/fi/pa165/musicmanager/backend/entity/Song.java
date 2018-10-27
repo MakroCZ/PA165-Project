@@ -31,8 +31,8 @@ public class Song {
     @ManyToOne(optional = false)
     private Album album;
 
-    @ManyToMany(mappedBy="songs")
-    private Set<Genre> genres;
+    @ManyToOne(optional = false)
+    private Genre genre;
 
     public Song(String name, LocalTime length, LocalDate date){
         this.setName(name);
@@ -82,12 +82,12 @@ public class Song {
         this.album = album;
     }
 
-    public Set<Genre> getGenres() {
-        return Collections.unmodifiableSet(genres);
+    public Genre getGenre() {
+        return genre;
     }
 
-    public void setGenres(Set<Genre> genres) {
-        this.genres = genres;
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 
     public String toString(){
