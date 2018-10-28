@@ -82,18 +82,25 @@ public class Album {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Album album = (Album) o;
-        return Objects.equals(getId(), album.getId()) &&
-                Objects.equals(getName(), album.getName()) &&
-                Objects.equals(getDate(), album.getDate()) &&
-                Objects.equals(getPerformer(), album.getPerformer()) &&
-                Objects.equals(getSongs(), album.getSongs());
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return true;
+        }
+        if (!(o instanceof Album)) {
+            return false;
+        }
+
+        Album a = (Album) o;
+        return this.getId().equals(a.id) && this.getName().equals(a.name) && this.getDate().equals(a.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getDate(), getPerformer(), getSongs());
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + ((name == null) ? 0 : name.hashCode());
+        result = 31 * result + ((date == null) ? 0 : date.hashCode());
+        return result;
     }
 }
