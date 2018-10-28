@@ -34,6 +34,6 @@ public class AlbumDaoImpl implements AlbumDao {
 
     @Override
     public void delete(Album album) {
-        em.remove(album);
+        em.remove(em.merge(album));
     }
 }
