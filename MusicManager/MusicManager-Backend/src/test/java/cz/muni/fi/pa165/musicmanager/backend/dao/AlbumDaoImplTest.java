@@ -20,6 +20,7 @@ import javax.validation.ConstraintViolationException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
+import java.util.List;
 
 /**
  * @author Lukáš Suchánek; 433564
@@ -56,7 +57,7 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
         album.setDate(LocalDate.now());
         album.setPerformer(performer);
         updateAlbum = new Album();
-        updateAlbum.setName("Album");
+        updateAlbum.setName("Album update");
         updateAlbum.setDate(LocalDate.now());
         updateAlbum.setPerformer(performer);
         genre = new Genre();
@@ -83,34 +84,14 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
         a.setName("Test album");
         a.setDate(LocalDate.now());
         a.setPerformer(performer);
-        performer.addAlbum(a);
-        em.merge(performer);
         albumDao.create(a);
+        performer.addAlbum(a);
 
         Album a2 = albumDao.retrieve(a.getId());
         em.getTransaction().commit();
         em.close();
         Assert.assertEquals(a, a2);
     }
-
-    @Test
-    public void updateTest(){
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-
-        Album a2 = albumDao.retrieve(album.getId());
-        a2.setDate(LocalDate.of(2017, Month.AUGUST,15));
-        a2.setName("Update album");
-        albumDao.update(a2);
-        Album a3 = albumDao.retrieve(album.getId());
-
-        em.getTransaction().commit();
-        em.close();
-
-        Assert.assertEquals(a2, a3);
-    }
-
-
 
     @Test(expectedExceptions=IllegalArgumentException.class)
     public void createNullTest(){
@@ -126,7 +107,6 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
         a.setDate(LocalDate.now());
         a.setPerformer(performer);
         performer.addAlbum(a);
-        em.merge(performer);
         albumDao.create(a);
 
         em.getTransaction().commit();
@@ -143,11 +123,21 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
         a.setDate(null);
         a.setPerformer(performer);
         performer.addAlbum(a);
-        em.merge(performer);
         albumDao.create(a);
 
         em.getTransaction().commit();
         em.close();
+    }
+
+    @Test
+    public void updateTest(){
+
+        Album a2 = albumDao.retrieve(updateAlbum.getId());
+        a2.setDate(LocalDate.of(2017, Month.AUGUST,15));
+        a2.setName("Update test album");
+        albumDao.update(a2);
+        Album a3 = albumDao.retrieve(updateAlbum.getId());
+        Assert.assertEquals(a2, a3);
     }
 
     @Test(expectedExceptions=IllegalArgumentException.class)
@@ -161,11 +151,10 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         Album a = new Album();
-        a.setName("Test album");
+        a.setName("Test Delete album");
         a.setDate(LocalDate.now());
         a.setPerformer(performer);
         performer.addAlbum(a);
-        em.merge(performer);
         albumDao.create(a);
 
         Assert.assertEquals(a, albumDao.retrieve(a.getId()));
@@ -177,6 +166,12 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
     @Test(expectedExceptions=IllegalArgumentException.class)
     public void deleteNullTest(){
         albumDao.delete(null);
+    }
+
+    @Test
+    public void retrieveAllTest(){
+        List<Album> albumList = albumDao.retrieveAll();
+        Assert.assertEquals(albumList.size(),3);
     }
 
 
