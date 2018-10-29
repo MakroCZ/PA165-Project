@@ -47,7 +47,7 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
         performer = new Performer();
         performer.setCountry("CZ");
         performer.setName("Performer");
-        performer.setDate(LocalDate.of(1990, Month.APRIL, 15));
+        performer.setStartDate(LocalDate.of(1990, Month.APRIL, 15));
         song = new Song();
         song.setName("Song");
         song.setDate(LocalDate.now());
