@@ -2,12 +2,14 @@ package cz.muni.fi.pa165.musicmanager.backend.dao;
 
 import cz.muni.fi.pa165.musicmanager.backend.entity.Album;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
+@Transactional
 public class AlbumDaoImpl implements AlbumDao {
     @PersistenceContext
     private EntityManager em;
@@ -19,7 +21,7 @@ public class AlbumDaoImpl implements AlbumDao {
 
     @Override
     public Album retrieve(long id) {
-        return  em.find(Album.class, id);
+        return em.find(Album.class, id);
     }
 
     @Override
