@@ -5,17 +5,19 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Marek Barinka; 456295
  */
 @Repository
+@Transactional
 public class PerformerDaoImpl implements PerformerDao {
 
     @PersistenceContext
     private EntityManager em;
-    
+
     @Override
     public void create(Performer p) {
         em.persist(p);
@@ -40,5 +42,5 @@ public class PerformerDaoImpl implements PerformerDao {
     public void remove(Performer p) {
         em.remove(em.merge(p));
     }
-    
+
 }
