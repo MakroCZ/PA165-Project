@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
 import java.util.List;
+import org.testng.annotations.AfterClass;
 
 /**
  * @author Lukáš Suchánek; 433564
@@ -47,7 +48,7 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
         performer = new Performer();
         performer.setCountry("CZ");
         performer.setName("Performer");
-        performer.setDate(LocalDate.of(1990, Month.APRIL, 15));
+        performer.setStartDate(LocalDate.of(1990, Month.APRIL, 15));
         song = new Song();
         song.setName("Song");
         song.setDate(LocalDate.now());
@@ -72,6 +73,31 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
         em.persist(genre);
         em.persist(song);
 
+        em.getTransaction().commit();
+        em.close();
+    }
+    
+    @AfterClass
+    public void resetDB() {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        List<Song> ss = em.createQuery("SELECT s FROM Song s", Song.class).getResultList();
+        for (Song s : ss) {
+            em.remove(s);
+        }
+        List<Album> as = em.createQuery("SELECT a FROM Album a", Album.class).getResultList();
+        for (Album a : as) {
+            em.remove(a);
+        }
+        List<Performer> ps = em.createQuery("SELECT p FROM Performer p", Performer.class).getResultList();
+        for (Performer p : ps) {
+            em.remove(p);
+        }
+        
+        List<Genre> gs = em.createQuery("SELECT g FROM Genre g", Genre.class).getResultList();
+        for (Genre g : gs) {
+            em.remove(g);
+        }
         em.getTransaction().commit();
         em.close();
     }

@@ -25,9 +25,7 @@ public class Performer {
     @NotNull
     private String name;
     
-    
-    private LocalDate date;
-    
+    private LocalDate startDate;
     
     private String country;
     
@@ -50,12 +48,12 @@ public class Performer {
         this.name = name;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
     
     public String getCountry() {
