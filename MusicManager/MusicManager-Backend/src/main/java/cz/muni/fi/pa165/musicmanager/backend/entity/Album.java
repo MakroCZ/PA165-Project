@@ -92,7 +92,7 @@ public class Album {
         }
 
         Album a = (Album) o;
-        return this.getId().equals(a.id) && this.getName().equals(a.name) && this.getDate().equals(a.date);
+        return this.getId().equals(a.getId()) && this.getName().equals(a.getName()) && this.getDate().equals(a.getDate());
     }
 
     @Override
