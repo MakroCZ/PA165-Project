@@ -23,11 +23,13 @@ public class GenreServiceImpl {
     }
 
     public void delete(Genre genre){
+        if (genre.getId()== null) throw new IllegalArgumentException("Genre id is null");
         isValid(genre);
         genreDao.delete(genre);
     }
 
     public void update(Genre genre){
+        if (genre.getId()== null) throw new IllegalArgumentException("Genre id is null");
         isValid(genre);
         genreDao.update(genre);
     }
@@ -49,7 +51,6 @@ public class GenreServiceImpl {
 
 
     private static void isValid(Genre genre){
-        if (genre.getId()== null) throw new IllegalArgumentException("Genre id is null");
         if (genre == null) throw new IllegalArgumentException("Genre is null");
         if (genre.getName() == null) throw new IllegalArgumentException("Genre name is null");
         if (genre.getDescription() == null) throw new IllegalArgumentException("Genre description is null");
