@@ -58,7 +58,7 @@ public class Genre {
         if (!(obj instanceof Genre))
             return false;
         Genre genre = (Genre) obj;
-        if(id != genre.getId())
+        if(!id.equals(genre.getId()))
             return false;
         if(!name.equals(genre.getName()))
             return false;

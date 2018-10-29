@@ -4,7 +4,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -21,7 +20,10 @@ public class Album {
     @Column(nullable = false)
     private LocalDate date;
 
-    @OneToMany(mappedBy = "song")
+    @ManyToOne
+    private Performer performer;
+
+    @OneToMany(mappedBy = "album")
     private Set<Song> songs = new HashSet<>();
 
     public Album(@NotNull String name, @NotNull LocalDate date, Set<Song> songs) {
@@ -69,19 +71,35 @@ public class Album {
         this.songs.add(item);
     }
 
+    public Performer getPerformer() {
+        return performer;
+    }
+
+    public void setPerformer(Performer performer) {
+        this.performer = performer;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Album album = (Album) o;
-        return Objects.equals(getId(), album.getId()) &&
-                Objects.equals(getName(), album.getName()) &&
-                Objects.equals(getDate(), album.getDate()) &&
-                Objects.equals(getSongs(), album.getSongs());
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return true;
+        }
+        if (!(o instanceof Album)) {
+            return false;
+        }
+
+        Album a = (Album) o;
+        return this.getId().equals(a.getId()) && this.getName().equals(a.getName()) && this.getDate().equals(a.getDate());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getDate(), getSongs());
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + ((name == null) ? 0 : name.hashCode());
+        result = 31 * result + ((date == null) ? 0 : date.hashCode());
+        return result;
     }
 }

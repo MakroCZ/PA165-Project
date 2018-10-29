@@ -19,7 +19,7 @@ import javax.validation.constraints.NotNull;
 public class Performer {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @NotNull
