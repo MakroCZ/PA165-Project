@@ -169,6 +169,12 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
+    public void retrieveNonExistingId(){
+        Album a = albumDao.retrieve(1000L);
+        Assert.assertEquals(a, null);
+    }
+
+    @Test
     public void retrieveAllTest(){
         List<Album> albumList = albumDao.retrieveAll();
         Assert.assertEquals(albumList.size(),3);
