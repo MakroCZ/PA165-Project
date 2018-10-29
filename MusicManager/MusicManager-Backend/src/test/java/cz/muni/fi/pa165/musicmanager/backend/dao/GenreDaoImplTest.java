@@ -40,7 +40,6 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
         g.setName("Test");
         genreDao.create(g);
         gs = genreDao.getAllGenres();
-        
         Assert.assertEquals(gs.size(), 1);
         Assert.assertEquals(gs.get(0), g);
     }
