@@ -1,7 +1,7 @@
 package cz.muni.fi.pa165.musicmanager.backend.service;
 
-import cz.muni.fi.pa165.musicmanager.backend.dao.GenreDao;
-import cz.muni.fi.pa165.musicmanager.backend.entity.Genre;
+import cz.muni.fi.pa165.mm.daolayer.dao.GenreDao;
+import cz.muni.fi.pa165.mm.daolayer.entity.Genre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

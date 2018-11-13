@@ -6,9 +6,9 @@
         <artifactId>MusicManager</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>MusicManager-Backend</artifactId>
+    <artifactId>MusicManager-DAO</artifactId>
     <packaging>jar</packaging>
-    <name>Music Manager - Backend</name>
+    <name>Music Manager - DAO</name>
 
     <properties>
         <kotlin.version>1.2.71</kotlin.version>
