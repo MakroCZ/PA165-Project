@@ -1,7 +1,8 @@
-package cz.muni.fi.pa165.musicmanager.backend.dao;
+package cz.muni.fi.pa165.mm.daolayer.dao;
 
-import cz.muni.fi.pa165.musicmanager.backend.MMBackendApplicationContext;
-import cz.muni.fi.pa165.musicmanager.backend.entity.Performer;
+import cz.muni.fi.pa165.mm.daolayer.dao.PerformerDao;
+import cz.muni.fi.pa165.mm.daolayer.MMBackendApplicationContext;
+import cz.muni.fi.pa165.mm.daolayer.entity.Performer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;

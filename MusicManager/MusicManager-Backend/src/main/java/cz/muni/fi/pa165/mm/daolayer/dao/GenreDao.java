@@ -1,5 +1,5 @@
-package cz.muni.fi.pa165.musicmanager.backend.dao;
-import cz.muni.fi.pa165.musicmanager.backend.entity.Genre;
+package cz.muni.fi.pa165.mm.daolayer.dao;
+import cz.muni.fi.pa165.mm.daolayer.entity.Genre;
 import java.util.List;
 
 /**

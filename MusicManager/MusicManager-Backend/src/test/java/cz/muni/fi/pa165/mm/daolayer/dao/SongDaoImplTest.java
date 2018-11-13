@@ -1,9 +1,9 @@
-package cz.muni.fi.pa165.musicmanager.backend.dao;
+package cz.muni.fi.pa165.mm.daolayer.dao;
 
-import cz.muni.fi.pa165.musicmanager.backend.MMBackendApplicationContext;
-import cz.muni.fi.pa165.musicmanager.backend.entity.Album;
-import cz.muni.fi.pa165.musicmanager.backend.entity.Genre;
-import cz.muni.fi.pa165.musicmanager.backend.entity.Song;
+import cz.muni.fi.pa165.mm.daolayer.MMBackendApplicationContext;
+import cz.muni.fi.pa165.mm.daolayer.entity.Album;
+import cz.muni.fi.pa165.mm.daolayer.entity.Genre;
+import cz.muni.fi.pa165.mm.daolayer.entity.Song;
 import cz.muni.fi.pa165.musicmanager.backend.service.GenreServiceImpl;
 import cz.muni.fi.pa165.musicmanager.backend.service.SongServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

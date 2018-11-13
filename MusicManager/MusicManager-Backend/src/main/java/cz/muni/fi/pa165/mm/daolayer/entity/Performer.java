@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.musicmanager.backend.entity;
+package cz.muni.fi.pa165.mm.daolayer.entity;
 
 import java.time.LocalDate;
 import java.util.Collections;

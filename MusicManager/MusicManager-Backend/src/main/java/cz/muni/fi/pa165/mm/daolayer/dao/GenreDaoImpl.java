@@ -1,6 +1,6 @@
-package cz.muni.fi.pa165.musicmanager.backend.dao;
+package cz.muni.fi.pa165.mm.daolayer.dao;
 
-import cz.muni.fi.pa165.musicmanager.backend.entity.Genre;
+import cz.muni.fi.pa165.mm.daolayer.entity.Genre;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

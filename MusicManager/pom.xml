@@ -29,7 +29,9 @@
     </build>
     
     <modules>
-        <module>MusicManager-Backend</module>
+        <module>MusicManager-DAO</module>
+        <module>MusicManager-SF</module>
+        <module>MusicManager-API</module>
     </modules>
     
     <properties>

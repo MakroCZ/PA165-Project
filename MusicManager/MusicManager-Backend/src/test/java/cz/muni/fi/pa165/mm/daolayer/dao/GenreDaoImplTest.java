@@ -1,10 +1,11 @@
-package cz.muni.fi.pa165.musicmanager.backend.dao;
+package cz.muni.fi.pa165.mm.daolayer.dao;
 
+import cz.muni.fi.pa165.mm.daolayer.dao.GenreDao;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 
-import cz.muni.fi.pa165.musicmanager.backend.MMBackendApplicationContext;
-import cz.muni.fi.pa165.musicmanager.backend.entity.Genre;
+import cz.muni.fi.pa165.mm.daolayer.MMBackendApplicationContext;
+import cz.muni.fi.pa165.mm.daolayer.entity.Genre;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

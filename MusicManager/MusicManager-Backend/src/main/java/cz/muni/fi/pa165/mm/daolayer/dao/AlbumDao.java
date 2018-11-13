@@ -1,6 +1,6 @@
-package cz.muni.fi.pa165.musicmanager.backend.dao;
+package cz.muni.fi.pa165.mm.daolayer.dao;
 
-import cz.muni.fi.pa165.musicmanager.backend.entity.Album;
+import cz.muni.fi.pa165.mm.daolayer.entity.Album;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.musicmanager.backend;
+package cz.muni.fi.pa165.mm.daolayer;
 
 import javax.sql.DataSource;
 

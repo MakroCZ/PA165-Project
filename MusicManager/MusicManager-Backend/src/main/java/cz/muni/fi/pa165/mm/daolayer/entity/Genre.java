@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.musicmanager.backend.entity;
+package cz.muni.fi.pa165.mm.daolayer.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
