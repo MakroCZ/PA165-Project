@@ -2,3 +2,5 @@
 /MusicManager/MusicManager-Backend/target/
 .idea
 *.iml
+/MusicManager/MusicManager-DAO/nbproject/
+/MusicManager/MusicManager-DAO/target/
