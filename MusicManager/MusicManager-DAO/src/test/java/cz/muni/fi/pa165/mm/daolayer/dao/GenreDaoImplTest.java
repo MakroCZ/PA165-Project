@@ -4,7 +4,7 @@ import cz.muni.fi.pa165.mm.daolayer.dao.GenreDao;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 
-import cz.muni.fi.pa165.mm.daolayer.MMBackendApplicationContext;
+import cz.muni.fi.pa165.mm.daolayer.DAOLayerApplicationContext;
 import cz.muni.fi.pa165.mm.daolayer.entity.Genre;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -23,7 +23,7 @@ import org.testng.annotations.Test;
  */
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
-@ContextConfiguration(classes = MMBackendApplicationContext.class)
+@ContextConfiguration(classes = DAOLayerApplicationContext.class)
 public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
     
     @PersistenceContext

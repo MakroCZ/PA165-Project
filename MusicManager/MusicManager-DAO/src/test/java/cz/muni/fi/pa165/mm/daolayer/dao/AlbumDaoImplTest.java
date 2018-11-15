@@ -1,7 +1,7 @@
 package cz.muni.fi.pa165.mm.daolayer.dao;
 
 import cz.muni.fi.pa165.mm.daolayer.dao.AlbumDao;
-import cz.muni.fi.pa165.mm.daolayer.MMBackendApplicationContext;
+import cz.muni.fi.pa165.mm.daolayer.DAOLayerApplicationContext;
 import cz.muni.fi.pa165.mm.daolayer.entity.Album;
 import cz.muni.fi.pa165.mm.daolayer.entity.Genre;
 import cz.muni.fi.pa165.mm.daolayer.entity.Performer;
@@ -27,7 +27,7 @@ import org.testng.annotations.AfterClass;
 /**
  * @author Lukáš Suchánek; 433564
  */
-@ContextConfiguration(classes = MMBackendApplicationContext.class)
+@ContextConfiguration(classes = DAOLayerApplicationContext.class)
 public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
