@@ -9,4 +9,17 @@
     <artifactId>MusicManager-API</artifactId>
     <packaging>jar</packaging>
     <name>Music Manager - API</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
+
+        <!-- to support jackson json filtering -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
+    </dependencies>
 </project>

@@ -26,8 +26,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 @EnableJpaRepositories
 @ComponentScan(basePackages = "cz.muni.fi.pa165.mm.daolayer")
 public class DAOLayerApplicationContext {
-	
-    @Bean 
+    @Bean
     public JpaTransactionManager transactionManager(){
         return  new JpaTransactionManager(entityManagerFactory().getObject());
     }
@@ -45,7 +44,7 @@ public class DAOLayerApplicationContext {
         return jpaFactoryBean;
     }
 
-    @Bean 
+    @Bean
     public LocalValidatorFactoryBean localValidatorFactoryBean(){
         return new LocalValidatorFactoryBean();
     }
