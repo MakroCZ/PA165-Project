@@ -13,8 +13,8 @@ public class SongDTO {
     private String name;
     private LocalTime length;
     private LocalDate date;
-//    private AlbumDTO album;
-//    private GenreDTO genre;
+    private AlbumDTO album;
+    private GenreDTO genre;
 
     public String getName() {
         return name;
@@ -40,21 +40,21 @@ public class SongDTO {
         this.date = date;
     }
 
-//    public AlbumDTO getAlbum() {
-//        return album;
-//    }
-//
-//    public void setAlbum(AlbumDTO album) {
-//        this.album = album;
-//    }
-//
-//    public GenreDTO getGenre() {
-//        return genre;
-//    }
-//
-//    public void setGenre(GenreDTO genre) {
-//        this.genre = genre;
-//    }
+    public AlbumDTO getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(AlbumDTO album) {
+        this.album = album;
+    }
+
+    public GenreDTO getGenre() {
+        return genre;
+    }
+
+    public void setGenre(GenreDTO genre) {
+        this.genre = genre;
+    }
 
     @Override
     public boolean equals(Object o) {

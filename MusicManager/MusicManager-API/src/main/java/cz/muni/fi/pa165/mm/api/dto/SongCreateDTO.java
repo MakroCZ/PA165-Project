@@ -19,6 +19,11 @@ public class SongCreateDTO {
     private LocalTime length;
     @NotNull
     private LocalDate date;
+    @NotNull
+    private Long albumId;
+    @NotNull
+    private Long genreId;
+
 
     public String getName() {
         return name;
@@ -44,6 +49,21 @@ public class SongCreateDTO {
         this.date = date;
     }
 
+    public Long getAlbumId() {
+        return albumId;
+    }
+
+    public void setAlbumId(Long albumId) {
+        this.albumId = albumId;
+    }
+
+    public Long getGenreId() {
+        return genreId;
+    }
+
+    public void setGenreId(Long genreId) {
+        this.genreId = genreId;
+    }
 
     @Override
     public boolean equals(Object o) {
