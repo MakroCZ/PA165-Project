@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.mm.daolayer.dao;
 
-import cz.muni.fi.pa165.mm.daolayer.MMBackendApplicationContext;
+import cz.muni.fi.pa165.mm.daolayer.DAOLayerApplicationContext;
 import cz.muni.fi.pa165.mm.daolayer.entity.Album;
 import cz.muni.fi.pa165.mm.daolayer.entity.Genre;
 import cz.muni.fi.pa165.mm.daolayer.entity.Song;
@@ -28,7 +28,7 @@ import java.util.List;
 
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
-@ContextConfiguration(classes = MMBackendApplicationContext.class)
+@ContextConfiguration(classes = DAOLayerApplicationContext.class)
 public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 
     @PersistenceUnit

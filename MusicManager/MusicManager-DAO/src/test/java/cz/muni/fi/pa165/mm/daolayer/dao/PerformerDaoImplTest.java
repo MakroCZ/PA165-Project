@@ -1,7 +1,7 @@
 package cz.muni.fi.pa165.mm.daolayer.dao;
 
 import cz.muni.fi.pa165.mm.daolayer.dao.PerformerDao;
-import cz.muni.fi.pa165.mm.daolayer.MMBackendApplicationContext;
+import cz.muni.fi.pa165.mm.daolayer.DAOLayerApplicationContext;
 import cz.muni.fi.pa165.mm.daolayer.entity.Performer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -15,7 +15,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 
-@ContextConfiguration(classes = MMBackendApplicationContext.class)
+@ContextConfiguration(classes = DAOLayerApplicationContext.class)
 public class PerformerDaoImplTest extends AbstractTestNGSpringContextTests {
     @Autowired
     private PerformerDao performerDao;
