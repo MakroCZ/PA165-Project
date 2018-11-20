@@ -1,0 +1,59 @@
+package cz.muni.fi.pa165.mm.sf.facade;
+
+import cz.muni.fi.pa165.mm.api.dto.SongCreateDTO;
+import cz.muni.fi.pa165.mm.api.dto.SongDTO;
+import cz.muni.fi.pa165.mm.api.facade.SongFacade;
+import cz.muni.fi.pa165.mm.daolayer.entity.Song;
+import cz.muni.fi.pa165.mm.sf.service.BeanMappingService;
+import cz.muni.fi.pa165.mm.sf.service.SongService;
+import cz.muni.fi.pa165.musicmanager.backend.service.GenreServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.inject.Inject;
+import java.util.List;
+
+/**
+ * Created by lsuchanek on 18.11.2018.
+ */
+@Service
+@Transactional
+public class SongFacadeImpl implements SongFacade {
+    final static Logger log = LoggerFactory.getLogger(SongFacadeImpl.class);
+    @Inject
+    SongService songService;
+
+    @Inject
+    GenreServiceImpl genreService;
+
+    @Autowired
+    BeanMappingService beanMappingService;
+
+    @Override
+    public Long createSong(SongCreateDTO s) {
+        Song mappedSong = beanMappingService.mapTo(s, Song.class);
+        Song newSong = songService.create(mappedSong);
+        return newSong.getId();
+    }
+
+    @Override
+    public void deleteSong(Long id) {
+        Song song = new Song();
+        song.setId(id);
+        songService.delete(song);
+    }
+
+    @Override
+    public List<SongDTO> getAllSongs() {
+       return beanMappingService.mapTo(songService.findAll(), SongDTO.class);
+    }
+
+    @Override
+    public SongDTO getSongWithID(Long id) {
+       return beanMappingService.mapTo(songService.findById(id), SongDTO.class);
+    }
+
+}
