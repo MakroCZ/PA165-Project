@@ -24,9 +24,11 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories
+
 @ComponentScan(basePackages = "cz.muni.fi.pa165.mm.daolayer")
 public class DAOLayerApplicationContext {
     @Bean
+
     public JpaTransactionManager transactionManager(){
         return  new JpaTransactionManager(entityManagerFactory().getObject());
     }

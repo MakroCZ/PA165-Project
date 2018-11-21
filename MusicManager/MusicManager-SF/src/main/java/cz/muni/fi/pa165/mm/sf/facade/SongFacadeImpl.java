@@ -8,7 +8,6 @@ import cz.muni.fi.pa165.mm.daolayer.entity.Genre;
 import cz.muni.fi.pa165.mm.daolayer.entity.Song;
 import cz.muni.fi.pa165.mm.sf.service.BeanMappingService;
 import cz.muni.fi.pa165.mm.sf.service.SongService;
-import cz.muni.fi.pa165.musicmanager.backend.service.GenreServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
