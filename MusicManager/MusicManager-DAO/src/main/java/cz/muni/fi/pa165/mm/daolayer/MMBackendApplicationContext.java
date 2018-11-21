@@ -24,7 +24,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories
-@ComponentScan(basePackages = "cz.muni.fi.pa165.musicmanager.backend")
+@ComponentScan(basePackages = "cz.muni.fi.pa165")
 public class MMBackendApplicationContext {
 	
     @Bean 

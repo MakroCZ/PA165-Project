@@ -1,31 +1,20 @@
-package cz.muni.fi.pa165.mm.daolayer.entity;
+package cz.muni.fi.pa165.mm.api.dto;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
- * This java class represents the Genre entity
  * @author Yehor Safonov; 487596
  */
-
-@Entity
-public class Genre {
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+public class GenreCreateDTO {
 
     @NotNull
-    @Column(nullable=false)
+    @Size(min = 3, max = 50)
     private String name;
 
+    @NotNull
+    @Size(min = 3, max = 500)
     private String description;
-
-    public  Genre(){}
-
-    public Genre(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
 
     public void setName(String name) {
         this.name = name;
@@ -33,14 +22,6 @@ public class Genre {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getName() {
@@ -52,22 +33,23 @@ public class Genre {
     }
 
     public String toString(){
-        return "ID: " + this.getId() + " Name: " + this.getName() + " Description: " + this.getDescription();
+        return "GenreDTO{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (!(obj instanceof Genre))
+        if (!(obj instanceof GenreCreateDTO))
             return false;
-        Genre genre = (Genre) obj;
-        if(!id.equals(genre.getId()))
-            return false;
-        if(!name.equals(genre.getName()))
+        GenreCreateDTO genre = (GenreCreateDTO) obj;
+        if (!name.equals(genre.getName()))
             return false;
         if (!description.equals(genre.getDescription()))
-                return false;
+            return false;
         return true;
     }
 
