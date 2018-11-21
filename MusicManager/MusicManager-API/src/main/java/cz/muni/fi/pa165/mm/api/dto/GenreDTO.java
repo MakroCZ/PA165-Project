@@ -1,42 +1,26 @@
-package cz.muni.fi.pa165.mm.daolayer.entity;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+package cz.muni.fi.pa165.mm.api.dto;
 
 /**
- * This java class represents the Genre entity
  * @author Yehor Safonov; 487596
  */
+public class GenreDTO {
 
-@Entity
-public class Genre {
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Column(nullable=false)
     private String name;
 
     private String description;
-
-    public  Genre(){}
-
-    public Genre(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Long getId() {
@@ -46,28 +30,31 @@ public class Genre {
     public String getName() {
         return name;
     }
-
     public String getDescription() {
         return description;
     }
 
     public String toString(){
-        return "ID: " + this.getId() + " Name: " + this.getName() + " Description: " + this.getDescription();
+        return "GenreDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (!(obj instanceof Genre))
+        if (!(obj instanceof GenreDTO))
             return false;
-        Genre genre = (Genre) obj;
-        if(!id.equals(genre.getId()))
+        GenreDTO genre = (GenreDTO) obj;
+        if  (!id.equals(genre.getId()))
             return false;
-        if(!name.equals(genre.getName()))
+        if (!name.equals(genre.getName()))
             return false;
         if (!description.equals(genre.getDescription()))
-                return false;
+            return false;
         return true;
     }
 
