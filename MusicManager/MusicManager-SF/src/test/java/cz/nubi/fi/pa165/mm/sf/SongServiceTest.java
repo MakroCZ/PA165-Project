@@ -15,6 +15,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
+ * This java class represents unit tests for the SongService layer
  * @author Yehor Safonov; 487596
  */
 
