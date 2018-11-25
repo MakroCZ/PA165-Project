@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.mm.sf.service;
 
+import cz.muni.fi.pa165.mm.daolayer.entity.Album;
 import cz.muni.fi.pa165.mm.daolayer.entity.Performer;
 import java.util.List;
 
@@ -42,4 +43,17 @@ public interface PerformerService {
      */
     void remove(Performer p);
     
+    /**
+     * Adds album to performer
+     * @param p Performer to update album list
+     * @param a Album to add
+     */
+    void addAlbum(Performer p, Album a);
+    
+    /**
+     * Removes album from performer
+     * @param p Performer to update album list
+     * @param a Album to remove
+     */
+    void removeAlbum(Performer p, Album a);
 }

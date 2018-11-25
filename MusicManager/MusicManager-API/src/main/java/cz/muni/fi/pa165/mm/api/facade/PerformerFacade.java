@@ -13,8 +13,9 @@ public interface PerformerFacade {
     /**
      * Add performer to database
      * @param p Performer to add
+     * @return id of created performer
      */
-    void create(PerformerCreateDTO p);
+    Long create(PerformerCreateDTO p);
     
     /**
      * Finds all stored performers
@@ -42,4 +43,18 @@ public interface PerformerFacade {
      * @param id Id of performer to remove
      */
     void remove(Long id);
+    
+    /**
+     * Adds album to performer
+     * @param performerId Id of performer to update
+     * @param AlbumId Id of album to update
+     */
+    void addAlbum(Long performerId, Long AlbumId);
+    
+    /**
+     * Removes album from performer
+     * @param performerId Id of performer to update
+     * @param AlbumId Id of album to update
+     */
+    void removeAlbum(Long performerId, Long AlbumId);
 }
