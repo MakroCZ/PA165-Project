@@ -5,7 +5,10 @@ import cz.muni.fi.pa165.mm.daolayer.DAOLayerApplicationContext;
 import cz.muni.fi.pa165.mm.daolayer.entity.Performer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
+import org.springframework.transaction.annotation.Transactional;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -15,6 +18,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 
+/**
+ * @author Václav Stehlík; 487580
+ */
+@TestExecutionListeners(TransactionalTestExecutionListener.class)
+@Transactional
 @ContextConfiguration(classes = DAOLayerApplicationContext.class)
 public class PerformerDaoImplTest extends AbstractTestNGSpringContextTests {
     @Autowired

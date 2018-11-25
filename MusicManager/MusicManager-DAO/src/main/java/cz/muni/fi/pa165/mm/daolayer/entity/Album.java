@@ -20,6 +20,7 @@ public class Album {
     @Column(nullable = false)
     private LocalDate date;
 
+    @NotNull
     @ManyToOne
     private Performer performer;
 
@@ -85,21 +86,23 @@ public class Album {
             return true;
         }
         if (o == null) {
-            return true;
+            return false;
         }
         if (!(o instanceof Album)) {
             return false;
         }
 
         Album a = (Album) o;
-        return this.getId().equals(a.getId()) && this.getName().equals(a.getName()) && this.getDate().equals(a.getDate());
+        return this.getName().equals(a.getName()) && this.getDate().equals(a.getDate()) && this.getPerformer().equals(a.getPerformer());
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + ((name == null) ? 0 : name.hashCode());
-        result = 31 * result + ((date == null) ? 0 : date.hashCode());
+        int result = 1;
+        int prime = 31;
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((date == null) ? 0 : date.hashCode());
+        result = prime * result + ((performer == null) ? 0 : performer.hashCode());
         return result;
     }
 }

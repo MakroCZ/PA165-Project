@@ -4,6 +4,9 @@ import cz.muni.fi.pa165.mm.daolayer.entity.Album;
 
 import java.util.List;
 
+/**
+ * @author Václav Stehlík; 487580
+ */
 public interface AlbumDao {
     /**
      * Creates instance of Album entity and saves it to database.
