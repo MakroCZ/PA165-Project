@@ -7,6 +7,7 @@ import cz.muni.fi.pa165.mm.daolayer.entity.Album;
 import cz.muni.fi.pa165.mm.daolayer.entity.Genre;
 import cz.muni.fi.pa165.mm.daolayer.entity.Song;
 import cz.muni.fi.pa165.mm.sf.service.BeanMappingService;
+import cz.muni.fi.pa165.mm.sf.service.GenreService;
 import cz.muni.fi.pa165.mm.sf.service.SongService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +19,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 /**
- * Created by lsuchanek on 18.11.2018.
+ * @author Lukas Suchanek; 433654
  */
 @Service
 @Transactional
