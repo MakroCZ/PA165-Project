@@ -9,7 +9,7 @@ import java.time.LocalTime;
 
 
 /**
- * Created by lsuchanek on 18.11.2018.
+ * @author Lukas Suchanek; 433654
  */
 public class SongCreateDTO {
     @NotNull

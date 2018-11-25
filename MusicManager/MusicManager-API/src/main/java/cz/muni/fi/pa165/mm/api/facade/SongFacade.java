@@ -6,11 +6,33 @@ import cz.muni.fi.pa165.mm.api.dto.SongDTO;
 import java.util.List;
 
 /**
- * Created by lsuchanek on 18.11.2018.
+ * @author Lukas Suchanek; 433654
  */
 public interface SongFacade {
+
+    /**
+     * Add song to database
+     * @param s Song to add
+     * @return Id of created song
+     */
     Long createSong(SongCreateDTO s);
+
+    /**
+     * Remove song from database
+     * @param id of song to be deleted
+     */
     void deleteSong(Long id);
+
+    /**
+     * List all songs
+     * @return list of all songs
+     */
     List<SongDTO> getAllSongs();
+
+    /**
+     * Find song with id
+     * @param id of song to be found
+     * @return song
+     */
     SongDTO getSongWithID(Long id);
 }
