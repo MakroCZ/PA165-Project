@@ -8,7 +8,7 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 
 /**
- * This java class represents unit tests for the SongFacate class
+ * This java class represents unit tests for the SongFacate layer
  * @author Yehor Safonov; 487596
  */
 
