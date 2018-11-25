@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Marek Barinka; 456295
  */
 @Repository
-@Transactional
 public class PerformerDaoImpl implements PerformerDao {
 
     @PersistenceContext

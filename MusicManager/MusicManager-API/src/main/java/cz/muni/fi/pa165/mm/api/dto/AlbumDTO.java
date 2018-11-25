@@ -1,40 +1,18 @@
-package cz.muni.fi.pa165.mm.daolayer.entity;
+package cz.muni.fi.pa165.mm.api.dto;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
-@Entity
-public class Album {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+/**
+ * @author Václav Stehlík; 487580
+ */
+public class AlbumDTO {
     private Long id;
 
-    @NotNull
-    @Column(nullable = false)
     private String name;
 
-    @NotNull
-    @Column(nullable = false)
     private LocalDate date;
 
-    @NotNull
-    @ManyToOne
-    private Performer performer;
-
-    @OneToMany(mappedBy = "album")
-    private Set<Song> songs = new HashSet<>();
-
-    public Album(@NotNull String name, @NotNull LocalDate date, Set<Song> songs) {
-        this.name = name;
-        this.date = date;
-        this.songs = songs;
-    }
-
-    public Album() {
-    }
+    private PerformerDTO performer;
 
     public Long getId() {
         return id;
@@ -60,23 +38,11 @@ public class Album {
         this.date = date;
     }
 
-    public Set<Song> getSongs() {
-        return songs;
-    }
-
-    public void setSongs(Set<Song> songs) {
-        this.songs = songs;
-    }
-
-    public void addSong(Song item) {
-        this.songs.add(item);
-    }
-
-    public Performer getPerformer() {
+    public PerformerDTO getPerformer() {
         return performer;
     }
 
-    public void setPerformer(Performer performer) {
+    public void setPerformer(PerformerDTO performer) {
         this.performer = performer;
     }
 
@@ -88,11 +54,11 @@ public class Album {
         if (o == null) {
             return false;
         }
-        if (!(o instanceof Album)) {
+        if (!(o instanceof AlbumDTO)) {
             return false;
         }
 
-        Album a = (Album) o;
+        AlbumDTO a = (AlbumDTO) o;
         return this.getName().equals(a.getName()) && this.getDate().equals(a.getDate()) && this.getPerformer().equals(a.getPerformer());
     }
 

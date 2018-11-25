@@ -8,6 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
+/**
+ * @author Václav Stehlík; 487580
+ */
 @Repository
 @Transactional
 public class AlbumDaoImpl implements AlbumDao {
