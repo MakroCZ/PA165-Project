@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,8 +24,12 @@ public class Performer {
     private Long id;
     
     @NotNull
+    @Column(nullable = false)
     private String name;
     
+    /**
+     * Date when performer start creating songs
+     */
     private LocalDate startDate;
     
     private String country;
@@ -69,7 +74,15 @@ public class Performer {
     }
 
     public void addAlbum(Album a) {
+        a.setPerformer(this);
         this.albums.add(a);
+    }
+    
+    public void removeAlbum(Album a) {
+        boolean removed = this.albums.remove(a); 
+        if (removed) {
+            a.setPerformer(null);
+        }
     }
     
     @Override

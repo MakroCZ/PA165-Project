@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.mm.sf.service;
 
 import cz.muni.fi.pa165.mm.daolayer.dao.PerformerDao;
+import cz.muni.fi.pa165.mm.daolayer.entity.Album;
 import cz.muni.fi.pa165.mm.daolayer.entity.Performer;
 import java.util.List;
 
@@ -36,5 +37,14 @@ public class PerformerServiceImpl implements PerformerService {
     public void remove(Performer p) {
         performerDao.remove(p);
     }
+
+    @Override
+    public void addAlbum(Performer p, Album a) {
+        p.addAlbum(a);
+    }
     
+    @Override
+    public void removeAlbum(Performer p, Album a) {
+        p.removeAlbum(a);
+    }
 }
