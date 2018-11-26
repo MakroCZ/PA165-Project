@@ -27,17 +27,10 @@ public class SongServiceImpl implements SongService{
     }
     @Override
     public void delete(Song song){
-
-        if(song.getId()== null){
-            throw new IllegalArgumentException("Song id can't be null");
-        }
         songDao.delete(song);
     }
     @Override
     public void update(Song song){
-        if(song.getId()== null){
-            throw new IllegalArgumentException("Song id can't be null");
-        }
         songDao.update(song);
     }
     @Override
@@ -47,9 +40,6 @@ public class SongServiceImpl implements SongService{
 
     @Override
     public Song findById(Long id){
-        if(id == null){
-            throw new IllegalArgumentException("Id is null");
-        }
         return songDao.findById(id);
     }
 
