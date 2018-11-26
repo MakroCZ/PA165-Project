@@ -35,8 +35,8 @@ import java.util.List;
  * @author Lukas Suchanek; 433654
  */
 
-//@ContextConfiguration(classes = ServiceConfiguration.class)
-public class AlbumFacadeTest /*extends AbstractTransactionalTestNGSpringContextTests*/ {
+@ContextConfiguration(classes = ServiceConfiguration.class)
+public class AlbumFacadeTest extends AbstractTransactionalTestNGSpringContextTests {
 
     @Mock
     private AlbumService albumService;

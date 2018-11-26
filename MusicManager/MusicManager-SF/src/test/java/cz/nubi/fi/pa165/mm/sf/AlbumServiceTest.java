@@ -35,8 +35,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-//@ContextConfiguration(classes = ServiceConfiguration.class)
-public class AlbumServiceTest /*extends AbstractTransactionalTestNGSpringContextTests*/ {
+@ContextConfiguration(classes = ServiceConfiguration.class)
+public class AlbumServiceTest extends AbstractTransactionalTestNGSpringContextTests {
     @Mock
     private AlbumDao albumDao;
 
