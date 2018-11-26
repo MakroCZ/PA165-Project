@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
 import java.util.List;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 
 /**
  * This java class represents unit tests for the SongDaoImpl class
@@ -209,7 +210,7 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
         Assert.assertEquals(testSong.getGenre().getId(),genreRock.getId());
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = InvalidDataAccessApiUsageException.class)
     public void deleteNullSongTest() {
         /*
              Try to delete null song

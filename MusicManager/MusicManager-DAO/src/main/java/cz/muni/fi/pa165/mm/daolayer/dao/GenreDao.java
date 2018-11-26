@@ -16,32 +16,28 @@ public interface GenreDao {
 
     /**
      * This method is used for creating a new genre
-     * @throws IllegalArgumentException in the case of an illegal or inappropriate argument
      * @param genre
      */
-    void create(Genre genre) throws IllegalArgumentException;
+    void create(Genre genre);
 
     /**
      * This method is used for updating the Ganre with the same id to the new one
-     * @throws IllegalArgumentException in the case of an illegal or inappropriate argument
      * @param genre
      */
-    void update(Genre genre) throws IllegalArgumentException;
+    void update(Genre genre);
 
     /**
      * This method is used for deleting existing Genre
-     * @throws IllegalArgumentException in the case of an illegal or inappropriate argument
      * @param genre
      */
-    void delete(Genre genre) throws IllegalArgumentException;
+    void delete(Genre genre);
 
     /**
      * This method returns the Genre with required id
-     * @throws IllegalArgumentException in the case of an illegal argument
      * @param id of genre
      * @return genre with specific id
      */
-    Genre findById(Long id) throws IllegalArgumentException;
+    Genre findById(Long id);
 
     /**
      * This method returns list of Genres witch is equal to the specific name

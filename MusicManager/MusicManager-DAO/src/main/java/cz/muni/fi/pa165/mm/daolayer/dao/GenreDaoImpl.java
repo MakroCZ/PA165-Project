@@ -19,22 +19,22 @@ public class GenreDaoImpl implements GenreDao {
     private EntityManager em;
 
     @Override
-    public void create(Genre genre) throws IllegalArgumentException {
+    public void create(Genre genre) {
         em.persist(genre);
     }
 
     @Override
-    public void update(Genre genre) throws IllegalArgumentException {
+    public void update(Genre genre) {
         em.merge(genre);
     }
 
     @Override
-    public void delete(Genre genre) throws IllegalArgumentException {
+    public void delete(Genre genre) {
         em.remove(em.merge(genre));
     }
 
     @Override
-    public Genre findById(Long id) throws IllegalArgumentException {
+    public Genre findById(Long id) {
         return em.find(Genre.class,id);
     }
 

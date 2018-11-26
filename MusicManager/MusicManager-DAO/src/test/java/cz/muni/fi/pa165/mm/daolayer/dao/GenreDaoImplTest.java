@@ -1,6 +1,5 @@
 package cz.muni.fi.pa165.mm.daolayer.dao;
 
-import cz.muni.fi.pa165.mm.daolayer.dao.GenreDao;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 
@@ -11,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,7 +52,7 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
         genreDao.create(g);
     }
     
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = InvalidDataAccessApiUsageException.class)
     public void createNullTest() {
         genreDao.create(null);
     }
@@ -128,11 +128,11 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
         Genre test = genreDao.findById(g.getId()); //Just for debugging.
         System.out.println(); //Just for debugging.
     }
-    
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    */
+    @Test(expectedExceptions = InvalidDataAccessApiUsageException.class)
     public void updateNullTest() {
         genreDao.update(null);
-    }*/
+    }
     
     
     @Test
@@ -145,7 +145,7 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
         Assert.assertNull(genreDao.findById(g.getId()));
     }
     
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = InvalidDataAccessApiUsageException.class)
     public void deleteNullTest() {
         genreDao.delete(null);
     }

@@ -22,6 +22,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
 import java.util.List;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.testng.annotations.AfterClass;
 
 /**
@@ -120,7 +121,7 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
         Assert.assertEquals(a, a2);
     }
 
-    @Test(expectedExceptions=IllegalArgumentException.class)
+    @Test(expectedExceptions=InvalidDataAccessApiUsageException.class)
     public void createNullTest(){
         albumDao.create(null);
     }
@@ -167,7 +168,7 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
         Assert.assertEquals(a2, a3);
     }
 
-    @Test(expectedExceptions=IllegalArgumentException.class)
+    @Test(expectedExceptions=InvalidDataAccessApiUsageException.class)
     public void updateNullTest(){
         albumDao.update(null);
     }
@@ -190,7 +191,7 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
         Assert.assertEquals(null, a2);
     }
 
-    @Test(expectedExceptions=IllegalArgumentException.class)
+    @Test(expectedExceptions=InvalidDataAccessApiUsageException.class)
     public void deleteNullTest(){
         albumDao.delete(null);
     }
