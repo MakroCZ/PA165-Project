@@ -1,7 +1,7 @@
 package cz.muni.fi.pa165.mm.sf.service.config;
 
 import cz.muni.fi.pa165.mm.api.dto.SongDTO;
-import cz.muni.fi.pa165.mm.daolayer.MMBackendApplicationContext;
+import cz.muni.fi.pa165.mm.daolayer.DAOLayerApplicationContext;
 import cz.muni.fi.pa165.mm.daolayer.entity.Song;
 import cz.muni.fi.pa165.mm.sf.facade.SongFacadeImpl;
 import cz.muni.fi.pa165.mm.sf.service.SongServiceImpl;
@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@Import(MMBackendApplicationContext.class)
+@Import(DAOLayerApplicationContext.class)
 @ComponentScan(basePackageClasses={SongServiceImpl.class, SongFacadeImpl.class})
 public class ServiceConfiguration {
 

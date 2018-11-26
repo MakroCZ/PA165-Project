@@ -6,7 +6,8 @@ import cz.muni.fi.pa165.mm.daolayer.entity.Album;
 import cz.muni.fi.pa165.mm.daolayer.entity.Genre;
 import cz.muni.fi.pa165.mm.daolayer.entity.Performer;
 import cz.muni.fi.pa165.mm.daolayer.entity.Song;
-
+import cz.muni.fi.pa165.mm.sf.service.AlbumService;
+import cz.muni.fi.pa165.mm.sf.service.GenreService;
 import cz.muni.fi.pa165.mm.sf.service.SongService;
 import cz.muni.fi.pa165.mm.sf.service.SongServiceImpl;
 import org.hibernate.service.spi.ServiceException;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This java class represents all tests for the SongService layer
+ * This java class represents unit tests for the SongService layer
  * @author Yehor Safonov; 487596
  */
 

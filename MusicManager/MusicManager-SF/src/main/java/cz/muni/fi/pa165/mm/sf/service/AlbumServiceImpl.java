@@ -2,25 +2,22 @@ package cz.muni.fi.pa165.mm.sf.service;
 
 import cz.muni.fi.pa165.mm.daolayer.dao.AlbumDao;
 import cz.muni.fi.pa165.mm.daolayer.entity.Album;
-import cz.muni.fi.pa165.mm.sf.service.AlbumService;
-import org.springframework.beans.factory.annotation.Autowired;
+import cz.muni.fi.pa165.mm.daolayer.entity.Performer;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Václav Stehlík; 487580
  */
 @Service
-@Transactional
 public class AlbumServiceImpl implements AlbumService {
-    private final AlbumDao albumDao;
-
-    @Autowired
-    public AlbumServiceImpl(AlbumDao albumDao) {
-        this.albumDao = albumDao;
-    }
+    @Inject
+    private AlbumDao albumDao;
+    @Inject
+    private PerformerService performerService;
 
     @Override
     public Album create(Album album) {
@@ -46,5 +43,17 @@ public class AlbumServiceImpl implements AlbumService {
     @Override
     public void delete(Album album) {
         albumDao.delete(album);
+    }
+
+    @Override
+    public List<Album> retrieveAlbumsFromCountry(String country) {
+        List<Performer> performers = performerService.findAll();
+        List<Album> result = new ArrayList<>();
+        for (Performer performer : performers) {
+            if (performer.getCountry().equals(country)) {
+                result.addAll(performer.getAlbums());
+            }
+        }
+        return result;
     }
 }

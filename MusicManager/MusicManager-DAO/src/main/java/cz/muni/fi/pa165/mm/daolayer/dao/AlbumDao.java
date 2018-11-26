@@ -32,6 +32,7 @@ public interface AlbumDao {
      * Overwrites data of Album instance with data from given instance.
      * IDs of both instances must match.
      * @param album represents album of songs from specific performer.
+     * @throws IllegalArgumentException if the instance is not an entity or is a detached entity.
      */
     void update(Album album);
 

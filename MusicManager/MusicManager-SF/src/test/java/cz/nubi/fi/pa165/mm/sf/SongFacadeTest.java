@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This java class represents unit tests for the SongFacate class
+ * This java class represents unit tests for the SongFacate layer
  * @author Yehor Safonov; 487596
  */
 
