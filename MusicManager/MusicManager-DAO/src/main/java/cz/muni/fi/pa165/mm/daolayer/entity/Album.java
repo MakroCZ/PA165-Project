@@ -20,7 +20,6 @@ public class Album {
     @Column(nullable = false)
     private LocalDate date;
 
-    @NotNull
     @ManyToOne
     private Performer performer;
 
