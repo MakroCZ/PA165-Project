@@ -3,12 +3,15 @@ package cz.muni.fi.pa165.mm.sf.service;
 import cz.muni.fi.pa165.mm.daolayer.dao.PerformerDao;
 import cz.muni.fi.pa165.mm.daolayer.entity.Album;
 import cz.muni.fi.pa165.mm.daolayer.entity.Performer;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 /**
  *
  * @author Marek Barinka; 456295
  */
+@Service
 public class PerformerServiceImpl implements PerformerService {
 
     private PerformerDao performerDao;
