@@ -135,6 +135,7 @@ public class PerformerFacadeTest extends AbstractTransactionalTestNGSpringContex
 
     @Test
     public void testUpdate() {
+        when(bms.mapTo(performerDTO1, Performer.class)).thenReturn(performer1);
         doNothing().when(performerService).update(any(Performer.class));
         performerFacade.update(performerDTO1);
         verify(performerService, times(1)).update(performer1);
