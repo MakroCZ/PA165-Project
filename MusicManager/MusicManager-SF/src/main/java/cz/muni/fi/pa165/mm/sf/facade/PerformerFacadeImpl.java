@@ -10,22 +10,26 @@ import cz.muni.fi.pa165.mm.sf.service.PerformerService;
 import java.util.List;
 import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Marek Barinka; 456295
  */
+@Service
+@Transactional
 public class PerformerFacadeImpl implements PerformerFacade {
 
     @Inject
     private PerformerService performerService;
-    
+
     @Inject
     private AlbumService albumService;
-    
+
     @Autowired
     private BeanMappingService beanMappingService;
-    
+
     @Override
     public Long create(PerformerCreateDTO p) {
         Performer mappedPerformer = beanMappingService.mapTo(p, Performer.class);
@@ -62,7 +66,7 @@ public class PerformerFacadeImpl implements PerformerFacade {
 
     @Override
     public void addAlbum(Long performerId, Long AlbumId) {
-        performerService.addAlbum(performerService.findById(performerId), 
+        performerService.addAlbum(performerService.findById(performerId),
                 albumService.retrieve(AlbumId));
     }
 }

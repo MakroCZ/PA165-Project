@@ -16,6 +16,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 /**
+ * This class represents a GenereFacade implementation.
  * @author Yehor Safonov; 487596
  */
 
@@ -32,8 +33,8 @@ public class GenreFacadeImpl implements GenreFacade {
     private BeanMappingService beanMappingService;
 
     @Override
-    public Long createGenre(GenreCreateDTO g) {
-        Genre mappedGenre = beanMappingService.mapTo(g, Genre.class);
+    public Long createGenre(GenreCreateDTO genre) {
+        Genre mappedGenre = beanMappingService.mapTo(genre, Genre.class);
         Genre newGenre = genreService.create(mappedGenre);
         return newGenre.getId();
     }

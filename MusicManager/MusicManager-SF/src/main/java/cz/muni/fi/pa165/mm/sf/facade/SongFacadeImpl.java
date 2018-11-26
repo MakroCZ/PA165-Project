@@ -6,6 +6,7 @@ import cz.muni.fi.pa165.mm.api.facade.SongFacade;
 import cz.muni.fi.pa165.mm.daolayer.entity.Album;
 import cz.muni.fi.pa165.mm.daolayer.entity.Genre;
 import cz.muni.fi.pa165.mm.daolayer.entity.Song;
+import cz.muni.fi.pa165.mm.sf.service.AlbumService;
 import cz.muni.fi.pa165.mm.sf.service.BeanMappingService;
 import cz.muni.fi.pa165.mm.sf.service.GenreService;
 import cz.muni.fi.pa165.mm.sf.service.SongService;
@@ -40,7 +41,7 @@ public class SongFacadeImpl implements SongFacade {
     @Override
     public Long createSong(SongCreateDTO s) {
         Song mappedSong = beanMappingService.mapTo(s, Song.class);
-        Album album = albumService.findById(s.getAlbumId());
+        Album album = albumService.retrieve(s.getAlbumId());
         Genre genre = genreService.findById(s.getGenreId());
         mappedSong.setAlbum(album);
         mappedSong.setGenre(genre);
