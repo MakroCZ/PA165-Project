@@ -4,6 +4,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
+ * This class represents a GenereCreateDTO object.
  * @author Yehor Safonov; 487596
  */
 public class GenreCreateDTO {

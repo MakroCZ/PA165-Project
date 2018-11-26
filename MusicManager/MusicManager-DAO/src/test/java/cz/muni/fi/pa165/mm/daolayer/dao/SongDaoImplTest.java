@@ -235,24 +235,4 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
         s.setName(null);
         songDao.create(s);
     }
-
-//    @Test(expectedExceptions= DataAccessException.class)
-//    public void idIsUnique(){
-//        Song testSong = new Song();
-//        testSong.setName("TestSong");
-//        testSong.setDate(LocalDate.of(2017, Month.MAY, 10));
-//        testSong.setAlbum(albumLinkinkPark);
-//        testSong.setGenre(genreRock);
-//        testSong.setLength(LocalTime.of(0,2,45));
-//        songDao.create(testSong);
-//
-//        testSong = new Song();
-//        testSong.setName("TestSong");
-//        testSong.setDate(LocalDate.of(2018, Month.MAY, 1));
-//        testSong.setAlbum(albumLinkinkPark);
-//        testSong.setGenre(genreRock);
-//        testSong.setLength(LocalTime.of(0,2,45));
-//        songDao.create(testSong);
-//    }
-
 }

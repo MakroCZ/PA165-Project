@@ -1,7 +1,5 @@
 package cz.muni.fi.pa165.mm.api.dto;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -10,6 +8,7 @@ import java.time.LocalTime;
  */
 public class SongDTO {
 
+    private Long id;
     private String name;
     private LocalTime length;
     private LocalDate date;
@@ -54,6 +53,14 @@ public class SongDTO {
 
     public void setGenre(GenreDTO genre) {
         this.genre = genre;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override

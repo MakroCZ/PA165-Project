@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.mm.api.dto;
 
 /**
+ * This class represents a GenereDTO object.
  * @author Yehor Safonov; 487596
  */
 public class GenreDTO {
