@@ -183,6 +183,7 @@ public class AlbumServiceTest /*extends AbstractTransactionalTestNGSpringContext
         Assert.assertEquals(albums.size(), 0);
     }
 
+
     @Test
     void deleteTest(){
         doNothing().when(albumDao).delete(album);
@@ -195,5 +196,4 @@ public class AlbumServiceTest /*extends AbstractTransactionalTestNGSpringContext
         Mockito.doThrow(InvalidDataAccessApiUsageException.class).when(albumDao).delete(null);
         albumService.delete(null);
     }
-
 }
