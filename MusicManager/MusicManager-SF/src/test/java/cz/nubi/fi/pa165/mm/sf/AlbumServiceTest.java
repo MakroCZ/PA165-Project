@@ -192,12 +192,13 @@ public class AlbumServiceTest /*extends AbstractTransactionalTestNGSpringContext
     }
 
     @Test
-    void testDelete(){
+    void deleteTest(){
         doNothing().when(albumDao).delete(album);
         albumService.delete(album);
         verify(albumDao).delete(album);
     }
 
+    @Test(expectedExceptions = DataAccessException.class)
     void testDeleteNull(){
         Mockito.doThrow(InvalidDataAccessApiUsageException.class).when(albumDao).delete(null);
         albumService.delete(null);
