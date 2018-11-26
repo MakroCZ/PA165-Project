@@ -3,9 +3,9 @@ package cz.muni.fi.pa165.mm.sf.service;
 import cz.muni.fi.pa165.mm.daolayer.dao.AlbumDao;
 import cz.muni.fi.pa165.mm.daolayer.entity.Album;
 import cz.muni.fi.pa165.mm.daolayer.entity.Performer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,25 +14,19 @@ import java.util.List;
  */
 @Service
 public class AlbumServiceImpl implements AlbumService {
-    private final AlbumDao albumDao;
-    private final PerformerService performerService;
-
-    @Autowired
-    public AlbumServiceImpl(AlbumDao albumDao, PerformerService performerService) {
-        this.albumDao = albumDao;
-        this.performerService = performerService;
-    }
+    @Inject
+    private AlbumDao albumDao;
+    @Inject
+    private PerformerService performerService;
 
     @Override
     public Album create(Album album) {
-        validateAlbumEntity(album);
         albumDao.create(album);
         return album;
     }
 
     @Override
     public Album retrieve(long id) {
-        validateId(id);
         return albumDao.retrieve(id);
     }
 
@@ -43,15 +37,11 @@ public class AlbumServiceImpl implements AlbumService {
 
     @Override
     public void update(Album album) {
-        validateId(album.getId());
-        validateAlbumEntity(album);
         albumDao.update(album);
     }
 
     @Override
     public void delete(Album album) {
-        validateId(album.getId());
-        validateAlbumEntity(album);
         albumDao.delete(album);
     }
 
@@ -65,15 +55,5 @@ public class AlbumServiceImpl implements AlbumService {
             }
         }
         return result;
-    }
-
-    private static void validateAlbumEntity(Album album) {
-        if (album == null) throw new IllegalArgumentException("Album is null.");
-        if (album.getName() == null) throw new IllegalArgumentException("Album name is null.");
-        if (album.getDate() == null) throw new IllegalArgumentException("Album date is null.");
-    }
-
-    private static void validateId(Long id) {
-        if (id == null) throw new IllegalArgumentException("Id is null.");
     }
 }
