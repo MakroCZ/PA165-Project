@@ -101,17 +101,10 @@ public class PerformerFacadeTest extends AbstractTransactionalTestNGSpringContex
     @Test
     public void testCreate() {
         PerformerCreateDTO performerCreateDTO = new PerformerCreateDTO();
-        Performer performer = new Performer();
-
-        when(bms.mapTo(performerCreateDTO, Performer.class)).thenReturn(performer);
-        doAnswer(invocationOnMock ->
-        {
-            performer.setId(42L);
-            return 42L;
-        }).when(performerService).create(performer);
-
-        performerFacade.create(performerCreateDTO);
-        Assert.assertEquals(performer.getId(), Long.valueOf(42));
+        performer1.setId(420L);
+        when(bms.mapTo(performerCreateDTO, Performer.class)).thenReturn(performer1);
+        long result = performerFacade.create(performerCreateDTO);
+        Assert.assertEquals(Long.valueOf(result), Long.valueOf(420));
     }
 
     @Test
@@ -157,7 +150,15 @@ public class PerformerFacadeTest extends AbstractTransactionalTestNGSpringContex
     @Test
     public void testAddAlbum() {
         Assert.assertEquals(performer1.getAlbums().size(), 1);
-        performerFacade.addAlbum(performer1.getId(), 2L);
+
+        doAnswer(invocationOnMock ->
+        {
+            performer1.addAlbum(album2);
+            return null;
+        }).when(performerService).addAlbum(any(), any());
+
+        performerFacade.addAlbum(performer1.getId(), album2.getId());
         Assert.assertEquals(performer1.getAlbums().size(), 2);
+        Assert.assertEquals(performer1.getAlbums().toArray()[0], album2);
     }
 }
