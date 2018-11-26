@@ -123,14 +123,6 @@ public class AlbumServiceTest /*extends AbstractTransactionalTestNGSpringContext
         albumService.create(null);
     }
 
-//    @Test(expectedExceptions = DataAccessException.class)
-//    void testCreateNonValid(){
-//        album.setName(null);
-//        album.setDate(null);
-//        doThrow(InvalidDataAccessApiUsageException.class).when(albumService).create(album);
-//        albumService.create(album);
-//    }
-
     @Test
     void testUpdate(){
         album.setId(1L);
@@ -191,4 +183,17 @@ public class AlbumServiceTest /*extends AbstractTransactionalTestNGSpringContext
         Assert.assertEquals(albums.size(), 0);
     }
 
+
+    @Test
+    void deleteTest(){
+        doNothing().when(albumDao).delete(album);
+        albumService.delete(album);
+        verify(albumDao).delete(album);
+    }
+
+    @Test(expectedExceptions = DataAccessException.class)
+    void testDeleteNull(){
+        Mockito.doThrow(InvalidDataAccessApiUsageException.class).when(albumDao).delete(null);
+        albumService.delete(null);
+    }
 }
