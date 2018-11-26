@@ -23,13 +23,13 @@ public class PerformerFacadeImpl implements PerformerFacade {
 
     @Inject
     private PerformerService performerService;
-    
+
     @Inject
     private AlbumService albumService;
-    
+
     @Autowired
     private BeanMappingService beanMappingService;
-    
+
     @Override
     public Long create(PerformerCreateDTO p) {
         Performer mappedPerformer = beanMappingService.mapTo(p, Performer.class);
@@ -66,7 +66,7 @@ public class PerformerFacadeImpl implements PerformerFacade {
 
     @Override
     public void addAlbum(Long performerId, Long AlbumId) {
-        performerService.addAlbum(performerService.findById(performerId), 
+        performerService.addAlbum(performerService.findById(performerId),
                 albumService.retrieve(AlbumId));
     }
 }

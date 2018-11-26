@@ -19,7 +19,7 @@ public class PerformerServiceImpl implements PerformerService {
 
     @Inject
     private PerformerDao performerDao;
-    
+
     @Override
     public void create(Performer p) {
         performerDao.create(p);
