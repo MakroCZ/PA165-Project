@@ -16,7 +16,9 @@ import org.testng.annotations.Test;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnit;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 
 /**
  * @author Václav Stehlík; 487580
@@ -28,17 +30,14 @@ public class PerformerDaoImplTest extends AbstractTestNGSpringContextTests {
     @Autowired
     private PerformerDao performerDao;
 
-    @PersistenceUnit
-    private EntityManagerFactory emf;
+    @PersistenceContext
+    private EntityManager em;
 
     private Performer performer1;
     private Performer performer2;
 
     @BeforeMethod
     public void init() {
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-
         performer1 = new Performer();
         performer1.setName("TestName1");
         em.persist(performer1);
@@ -46,19 +45,6 @@ public class PerformerDaoImplTest extends AbstractTestNGSpringContextTests {
         performer2 = new Performer();
         performer2.setName("TestName2");
         em.persist(performer2);
-
-        em.getTransaction().commit();
-        em.close();
-    }
-
-    @AfterMethod
-    public void dispose() {
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        em.remove(em.merge(performer1));
-        em.remove(em.merge(performer2));
-        em.getTransaction().commit();
-        em.close();
     }
 
     @Test
@@ -71,7 +57,7 @@ public class PerformerDaoImplTest extends AbstractTestNGSpringContextTests {
         performerDao.remove(performer);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = InvalidDataAccessApiUsageException.class)
     public void testCreateNullPerformer() {
         performerDao.create(null);
     }
@@ -112,7 +98,7 @@ public class PerformerDaoImplTest extends AbstractTestNGSpringContextTests {
         Assert.assertNull(performerDao.findById(performer2.getId()));
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = InvalidDataAccessApiUsageException.class)
     public void testDeleteNullPerformer() {
         performerDao.remove(null);
     }
@@ -125,7 +111,7 @@ public class PerformerDaoImplTest extends AbstractTestNGSpringContextTests {
         Assert.assertEquals(performerDao.findById(performerUpdate.getId()).getName(), "TestNameUpdated");
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = InvalidDataAccessApiUsageException.class)
     public void testUpdateNullPerformer() {
         performerDao.update(null);
     }

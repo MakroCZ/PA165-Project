@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.List;
+import javax.inject.Inject;
+import org.springframework.stereotype.Service;
 
 /**
  *
@@ -46,10 +48,5 @@ public class PerformerServiceImpl implements PerformerService {
     @Override
     public void addAlbum(Performer p, Album a) {
         p.addAlbum(a);
-    }
-    
-    @Override
-    public void removeAlbum(Performer p, Album a) {
-        p.removeAlbum(a);
     }
 }

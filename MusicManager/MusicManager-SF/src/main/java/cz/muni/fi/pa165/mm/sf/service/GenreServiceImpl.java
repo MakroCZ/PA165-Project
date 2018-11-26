@@ -24,22 +24,17 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public Genre create(Genre genre) {
-        validateGenre(genre);
         genreDao.create(genre);
         return genre;
     }
 
     @Override
     public void delete(Genre genre) {
-        validateGenre(genre);
-        validateId(genre.getId());
         genreDao.delete(genre);
     }
 
     @Override
     public void update(Genre genre) {
-        validateGenre(genre);
-        validateId(genre.getId());
         genreDao.update(genre);
     }
 
@@ -50,7 +45,6 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public Genre findById(Long id) {
-        validateId(id);
         return genreDao.findById(id);
     }
 
@@ -61,8 +55,6 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public List<Song> getAllSongsWithSameGenre(Genre genre) {
-        validateGenre(genre);
-        validateId(genre.getId());
         List<Song> allSongs = songService.findAll();
         List<Song> foundSongs = new ArrayList<>();
         for(Song song:allSongs){
@@ -71,15 +63,5 @@ public class GenreServiceImpl implements GenreService {
             }
         }
         return foundSongs;
-    }
-
-    private static void validateGenre(Genre genre){
-        if (genre == null) throw new IllegalArgumentException("Genre is null");
-        if (genre.getName() == null) throw new IllegalArgumentException("Genre name is null");
-        if (genre.getDescription() == null) throw new IllegalArgumentException("Genre description is null");
-    }
-    
-    private static void validateId(Long id){
-        if (id == null) throw new IllegalArgumentException("Id is null");
     }
 }
