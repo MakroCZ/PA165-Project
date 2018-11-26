@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.mm.api.dto.PerformerCreateDTO;
 import cz.muni.fi.pa165.mm.api.dto.PerformerDTO;
 import cz.muni.fi.pa165.mm.api.facade.PerformerFacade;
 import cz.muni.fi.pa165.mm.daolayer.entity.Performer;
+import cz.muni.fi.pa165.mm.sf.service.AlbumService;
 import cz.muni.fi.pa165.mm.sf.service.BeanMappingService;
 import cz.muni.fi.pa165.mm.sf.service.PerformerService;
 import java.util.List;
@@ -48,7 +49,8 @@ public class PerformerFacadeImpl implements PerformerFacade {
 
     @Override
     public void update(PerformerDTO p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Performer mappedPerformer = beanMappingService.mapTo(p, Performer.class);
+        performerService.update(mappedPerformer);
     }
 
     @Override
@@ -61,12 +63,6 @@ public class PerformerFacadeImpl implements PerformerFacade {
     @Override
     public void addAlbum(Long performerId, Long AlbumId) {
         performerService.addAlbum(performerService.findById(performerId), 
-                albumService.findById(AlbumId));
-    }
-
-    @Override
-    public void removeAlbum(Long performerId, Long AlbumId) {
-        performerService.removeAlbum(performerService.findById(performerId), 
-                albumService.findById(AlbumId));
+                albumService.retrieve(AlbumId));
     }
 }
