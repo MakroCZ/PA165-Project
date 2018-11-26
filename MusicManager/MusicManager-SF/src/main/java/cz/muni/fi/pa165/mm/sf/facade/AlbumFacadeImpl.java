@@ -9,10 +9,17 @@ import cz.muni.fi.pa165.mm.sf.service.AlbumService;
 import cz.muni.fi.pa165.mm.sf.service.BeanMappingService;
 import cz.muni.fi.pa165.mm.sf.service.PerformerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.List;
 
+/**
+ * @author Václav Stehlík; 487580
+ */
+@Service
+@Transactional
 public class AlbumFacadeImpl implements AlbumFacade {
     @Inject
     AlbumService albumService;
@@ -40,12 +47,13 @@ public class AlbumFacadeImpl implements AlbumFacade {
     }
 
     @Override
-    public List<AlbumDTO> getAllAlbums() {
+    public List<AlbumDTO> findAll() {
         return beanMappingService.mapTo(albumService.retrieveAll(), AlbumDTO.class);
     }
 
     @Override
-    public AlbumDTO getAlbumWithID(Long id) {
-        return beanMappingService.mapTo(albumService.retrieve(id), AlbumDTO.class);
+    public AlbumDTO findById(Long id) {
+        Album album = albumService.retrieve(id);
+        return (album == null) ? null : beanMappingService.mapTo(album, AlbumDTO.class);
     }
 }

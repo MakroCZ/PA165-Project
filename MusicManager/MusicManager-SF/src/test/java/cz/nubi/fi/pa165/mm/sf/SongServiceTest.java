@@ -1,5 +1,6 @@
 package cz.nubi.fi.pa165.mm.sf;
 import cz.muni.fi.pa165.mm.daolayer.dao.SongDao;
+import cz.muni.fi.pa165.mm.sf.service.AlbumService;
 import cz.muni.fi.pa165.mm.sf.service.GenreService;
 import cz.muni.fi.pa165.mm.sf.service.SongService;
 import cz.muni.fi.pa165.mm.sf.service.config.ServiceConfiguration;

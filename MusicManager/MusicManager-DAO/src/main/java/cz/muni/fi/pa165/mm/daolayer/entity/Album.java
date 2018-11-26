@@ -71,6 +71,10 @@ public class Album {
     public void addSong(Song item) {
         this.songs.add(item);
     }
+    // TODO: TBFixed.
+//    public void removeSong(Song item) {
+//        this.songs.remove(item);
+//    }
 
     public Performer getPerformer() {
         return performer;
