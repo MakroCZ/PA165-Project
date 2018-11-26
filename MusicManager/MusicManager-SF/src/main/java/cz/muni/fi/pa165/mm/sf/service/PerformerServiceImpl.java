@@ -5,6 +5,7 @@ import cz.muni.fi.pa165.mm.daolayer.entity.Album;
 import cz.muni.fi.pa165.mm.daolayer.entity.Performer;
 import org.springframework.stereotype.Service;
 
+import javax.inject.Inject;
 import java.util.List;
 
 /**
@@ -14,6 +15,7 @@ import java.util.List;
 @Service
 public class PerformerServiceImpl implements PerformerService {
 
+    @Inject
     private PerformerDao performerDao;
     
     @Override
