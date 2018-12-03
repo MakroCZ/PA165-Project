@@ -17,7 +17,7 @@ public class MainController {
     public final Map<String, String> getResources() {
         Map<String, String> resourcesMap = new HashMap<>();
         resourcesMap.put("products_uri", ApiUris.ROOT_URI_PERFORMERS);
-        resourcesMap.put("orders_uri", ApiUris.ROOT_URI_ALBBUMS);
+        resourcesMap.put("orders_uri", ApiUris.ROOT_URI_ALBUMS);
         resourcesMap.put("users_uri", ApiUris.ROOT_URI_SONGS);
         resourcesMap.put("categories_uri", ApiUris.ROOT_URI_GENRES);
         return Collections.unmodifiableMap(resourcesMap);
