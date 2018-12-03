@@ -145,6 +145,14 @@ public class SongFacadeTest  {
     }
 
     @Test
+    public void testUpdateSong() {
+        Mockito.doReturn(song).when(beanMappingService).mapTo(songDTO, Song.class);
+        doNothing().when(songService).update(any(Song.class));
+        songFacade.updateSong(songDTO);
+        verify(songService, times(1)).update(song);
+    }
+
+    @Test
     public  void  testDeleteSong(){
         song = new Song();
         song.setId(songDTO.getId());

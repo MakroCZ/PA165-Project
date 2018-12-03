@@ -17,6 +17,12 @@ public interface AlbumFacade {
     Long createAlbum(AlbumCreateDTO albumCreateDTO);
 
     /**
+     * Updates album.
+     * @param albumDTO Album to update.
+     */
+    void updateAlbum(AlbumDTO albumDTO);
+
+    /**
      * Deletes album from the database.
      * @param id Identifier of the album to be deleted.
      */

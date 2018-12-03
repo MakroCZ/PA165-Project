@@ -50,6 +50,12 @@ public class SongFacadeImpl implements SongFacade {
     }
 
     @Override
+    public void updateSong(SongDTO song) {
+        Song mappedSong = beanMappingService.mapTo(song, Song.class);
+        songService.update(mappedSong);
+    }
+
+    @Override
     public void deleteSong(Long id) {
         Song song = new Song();
         song.setId(id);

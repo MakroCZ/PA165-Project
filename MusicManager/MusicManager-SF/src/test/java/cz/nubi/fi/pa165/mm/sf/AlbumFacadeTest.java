@@ -138,6 +138,16 @@ public class AlbumFacadeTest extends AbstractTransactionalTestNGSpringContextTes
     }
 
     @Test
+    public void testUpdate() {
+        when(beanMappingService.mapTo(albumDTO, Album.class)).thenReturn(album);
+        doNothing().when(albumService).update(any(Album.class));
+        albumFacade.updateAlbum(albumDTO);
+        verify(albumService, times(1)).update(album);
+        Mockito.reset(albumService);
+        Mockito.reset(beanMappingService);
+    }
+
+    @Test
     void testDelete(){
         album.setId(1L);
         album.setName("name");
