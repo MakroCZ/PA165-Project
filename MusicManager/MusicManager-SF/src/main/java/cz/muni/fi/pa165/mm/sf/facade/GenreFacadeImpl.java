@@ -40,6 +40,12 @@ public class GenreFacadeImpl implements GenreFacade {
     }
 
     @Override
+    public void updateGenre(GenreDTO genre) {
+        Genre mappedGenre = beanMappingService.mapTo(genre, Genre.class);
+        genreService.update(mappedGenre);
+    }
+
+    @Override
     public void deleteGenre(Long id) {
         Genre genre = new Genre();
         genre.setId(id);

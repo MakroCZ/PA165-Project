@@ -25,6 +25,12 @@ public interface GenreFacade {
      */
     Long createGenre(GenreCreateDTO genre);
 
+    /**
+     * Updates genre.
+     * @param genre Genre to update.
+     */
+    void updateGenre(GenreDTO genre);
+
     /*
      * This method allows to delete an existing genre using its id identifier.
      * @param id of existing Genre

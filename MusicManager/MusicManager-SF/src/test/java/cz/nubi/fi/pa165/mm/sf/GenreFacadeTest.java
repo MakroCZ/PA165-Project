@@ -102,6 +102,13 @@ public class GenreFacadeTest {
         Long newId = genreFacade.createGenre(gc);
         Assert.assertEquals(newId, new Long(3L));
     }
+
+    @Test
+    public void update() {
+        Mockito.doNothing().when(genreService).update(any(Genre.class));
+        genreFacade.updateGenre(gDTO1);
+        Mockito.verify(genreService, Mockito.times(1)).update(g1);
+    }
     
     @Test
     public void delete() {

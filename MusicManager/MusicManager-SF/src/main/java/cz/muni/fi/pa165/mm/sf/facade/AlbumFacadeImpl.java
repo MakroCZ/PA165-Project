@@ -40,6 +40,12 @@ public class AlbumFacadeImpl implements AlbumFacade {
     }
 
     @Override
+    public void updateAlbum(AlbumDTO album) {
+        Album mappedAlbum = beanMappingService.mapTo(album, Album.class);
+        albumService.update(mappedAlbum);
+    }
+
+    @Override
     public void deleteAlbum(Long id) {
         Album album = new Album();
         album.setId(id);

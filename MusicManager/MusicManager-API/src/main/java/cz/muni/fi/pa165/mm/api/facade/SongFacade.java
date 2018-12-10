@@ -18,6 +18,12 @@ public interface SongFacade {
     Long createSong(SongCreateDTO s);
 
     /**
+     * Updates song.
+     * @param s Song to update.
+     */
+    void updateSong(SongDTO s);
+
+    /**
      * Remove song from database
      * @param id of song to be deleted
      */
