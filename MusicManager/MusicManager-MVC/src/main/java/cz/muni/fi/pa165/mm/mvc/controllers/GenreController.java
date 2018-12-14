@@ -8,7 +8,7 @@ public class GenreController {
 
     @RequestMapping(value = "/")
     public String home(){
-        return "test";
+        return "home";
     }
 
 }

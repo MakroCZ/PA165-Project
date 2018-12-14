@@ -59,17 +59,6 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
     }
 
     /**
-     * Provides localized messages.
-     */
-    @Bean
-    public MessageSource messageSource() {
-        log.debug("registering ResourceBundle 'Texts' for messages");
-        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasename(TEXTS);
-        return messageSource;
-    }
-
-    /**
      * Provides JSR-303 Validator.
      */
     @Bean
