@@ -16,19 +16,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><c:out value="${title}"/></title>
 
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon">
+    <link href="<c:url value="${pageContext.request.contextPath}/WEB-INF/resources/css/simple-sidebar.css" />" rel="stylesheet" type="text/css">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"  crossorigin="anonymous">
     <jsp:invoke fragment="head"/>
 </head>
 
 
-
 <body>
 <!-- navigation bar -->
 <nav class="navbar navbar-inverse navbar-static-top">
     <div class="container">
-        <div class="navbar-header">
+        <div id="demo" class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
@@ -120,7 +120,8 @@
 
     <!-- footer -->
     <footer class="footer">
-        <p>&copy;&nbsp;<%=java.time.Year.now().toString()%>&nbsp;Masaryk University</p>
+        <h1>AHOJJJJ POKUSNY TEXT</h1>
+        <h1>&copy;&nbsp;<%=java.time.Year.now().toString()%>&nbsp;Masaryk University</h1>
     </footer>
 </div>
 <!-- javascripts placed at the end of the document so the pages load faster -->
