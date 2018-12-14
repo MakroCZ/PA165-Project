@@ -32,6 +32,7 @@
         <module>MusicManager-DAO</module>
         <module>MusicManager-SF</module>
         <module>MusicManager-API</module>
+        <module>MusicManager-REST</module>
     </modules>
     
     <properties>
