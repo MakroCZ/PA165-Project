@@ -33,6 +33,7 @@
         <module>MusicManager-SF</module>
         <module>MusicManager-API</module>
         <module>MusicManager-REST</module>
+        <module>MusicManager-MVC</module>
     </modules>
     
     <properties>
