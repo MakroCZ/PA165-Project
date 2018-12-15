@@ -1,0 +1,20 @@
+.form-control {
+  border: 1px solid #c2cfd6 !important;
+}
+
+.container {
+  margin: auto !important;
+}
+
+body {
+  background-image: url("https://harborhonolulu.org/wp-content/uploads/2017/01/guitar-background.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  min-height: 100vh;
+  overflow-y: hidden;
+}
+
+.container {
+  padding-top: 100px !important;
+}

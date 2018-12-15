@@ -7,20 +7,19 @@
 
 <my:template>
 <jsp:attribute name="body">
-     <div class="jumbotron">
-         <h1>Welcome to SpringMVC !</h1>
-         <p class="lead">In this seminar, the mysteries of Spring MVC will be revealed to you. </p>
-         <p><a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/example/foo/1/platypus55?b=42"
-               role="button">Call ExampleController</a></p>
-         <p><a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/shopping/show"
-               role="button">Go shopping</a></p>
-     </div>
-     <div class="row">
-        <c:forEach begin="1" end="12" var="i">
-        <div class="col-xs-12 col-sm-6 col-md-2 col-lg-1">
-            <p><button class="btn btn-default">Button ${i}</button></p>
+        <div id="backgroundmain">
+            <div class="d-flex h-100 w-100" id="page-content-wrapper">
+                <div class="container-fluid">
+                    <div class="container d-flex h-100 align-items-center">
+                        <div class="mx-auto text-center hometext">
+                            <h1 class="mx-auto my-0 text-uppercase masthead">Music Manager</h1>
+                            <p  class="desription">"You have to take a deep breath. and allow the music to flow through you. Revel in it, allow yourself to awe. When you play allow the music to break your heart with its beauty"</p>
+                            <a href="#menu-toggle" class="btn btn-primary js-scroll-trigger" id="menu-toggle">Start</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
-        </c:forEach>
-     </div>
  </jsp:attribute>
 </my:template>
