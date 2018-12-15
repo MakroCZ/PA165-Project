@@ -9,6 +9,10 @@
 <!DOCTYPE html>
 <html lang="${pageContext.request.locale}">
 
+<!--
+* This class represents a template.tag object.
+* @author Yehor Safonov; 487596
+*-->
 
 <head>
     <meta charset="utf-8">
@@ -19,18 +23,16 @@
     <!-- Custom styles for this template -->
     <link href="<c:url value="/resources/css/simple-sidebar.css" />" rel="stylesheet">
 
+    <!-- Mapping bootstrap static styles -->
     <link href="<c:url value="/resources/vendor/bootstrap/css/bootstrap-grid.min.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/vendor/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
-
-
     <jsp:invoke fragment="head"/>
 </head>
 
-
+<!-- Login form body -->
 <body>
-
+<!-- Page main wrapper -->
 <div id="wrapper">
-
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
@@ -60,7 +62,7 @@
 
     <!-- Page Content -->
 
-    <!-- authenticated user info -->
+    <!-- Authenticated user info -->
     <c:if test="${not empty authenticatedUser}">
         <div class="row">
             <div class="col-xs-6 col-sm-8 col-md-9 col-lg-10"></div>
@@ -74,7 +76,7 @@
         </div>
     </c:if>
 
-    <!-- alerts -->
+    <!-- Alerts -->
     <c:if test="${not empty alert_danger}">
         <div class="alert alert-danger" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -90,7 +92,7 @@
         <div class="alert alert-warning" role="alert"><c:out value="${alert_warning}"/></div>
     </c:if>
 
-    <!-- page body -->
+    <!-- Page body -->
     <jsp:invoke fragment="body"/>
 
     <!-- /#page-content-wrapper -->
@@ -99,7 +101,8 @@
 <!-- /#wrapper -->
 
 
-<!-- javascripts placed at the end of the document so the pages load faster -->
+<!-- External scripts -->
+
 <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
 <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
 <script src="<c:url value="/resources/js/main.js" />"></script>

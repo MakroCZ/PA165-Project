@@ -1,7 +1,13 @@
-/*!
- * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/template-overviews/simple-sidebar)
+
+/**
+ * Custom application styles and Bootstrap simple sidebar;
+ * Custom styles were created by
+ * @author Yehor Safonov; 487596
+ *
+ * Bootstrap simple sidebar is available(https://startbootstrap.com/template-overviews/simple-sidebar)
  * Copyright 2013-2017 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
+ *
  */
 
 body {
@@ -40,13 +46,13 @@ body {
 }
 
 #backgroundpage{
-  min-height: 100vh;
-  background-image: url("https://i.ytimg.com/vi/bxpGnIqAyRU/maxresdefault.jpg");
+  background-image: url("https://storge.pic2.me/cm/2880x1800/202/56fa7b7459ad9.jpg");
   background-color: #cccccc !important;
-  background-size:     cover;
-    background-repeat:   no-repeat;
-    background-position: center center;
-  overflow-y: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right;
+  min-height: 100vh;
+  height: 100%;
 }
 
 #sidebar-wrapper {

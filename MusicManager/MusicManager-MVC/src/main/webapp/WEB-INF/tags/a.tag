@@ -1,3 +1,7 @@
+<!--
+* This class represents an a.tag object.
+* @author Yehor Safonov; 487596
+*-->
 <%@ tag pageEncoding="utf-8" trimDirectiveWhitespaces="true" dynamic-attributes="attr" %>
 <%@ attribute name="href" required="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

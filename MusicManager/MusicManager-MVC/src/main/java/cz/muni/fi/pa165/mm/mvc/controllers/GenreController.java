@@ -18,21 +18,33 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 
+/**
+ * This class represents the GenreController
+ * @author Yehor Safonov; 487596
+ */
 
 @Controller
 @RequestMapping("/genre")
 public class GenreController {
     final static Logger log = LoggerFactory.getLogger(GenreController.class);
 
-    @Autowired
-    private GenreFacade genreFacade;
+    // @Autowired
+    // private GenreFacade genreFacade;
 
+    /**
+     * RequestMapping which returns all genres
+     * This class directly works with the GenreFacade layer.
+     */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
-        model.addAttribute("genres", genreFacade.getAllGenres());
+   //     model.addAttribute("genres", genreFacade.getAllGenres());
         return "genre/list";
     }
 
+    /**
+     * RequestMapping which allows to create new genres.
+     * This method works with GenreCreateDTO objects
+     */
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String newSong(Model model) {
         log.debug("new()");
@@ -40,25 +52,29 @@ public class GenreController {
         return "genre/new";
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute("genreCreate") GenreCreateDTO formBean, BindingResult bindingResult,
-                         Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
-        log.debug("create(formBean={})", formBean);
-        //in case of validation error forward back to the the form
-        if (bindingResult.hasErrors()) {
-            for (ObjectError ge : bindingResult.getGlobalErrors()) {
-                log.trace("ObjectError: {}", ge);
-            }
-            for (FieldError fe : bindingResult.getFieldErrors()) {
-                model.addAttribute(fe.getField() + "_error", true);
-                log.trace("FieldError: {}", fe);
-            }
-            return "genre/new";
-        }
-        //create product
-        Long id = genreFacade.createGenre(formBean);
-        //report success
-        redirectAttributes.addFlashAttribute("alert_success", "Genre " + id + " was created");
-        return "redirect:" + uriBuilder.path("/song/list").toUriString();
-    }
+    /**
+     * RequestMapping which allows to POST created Genre.
+     * This class directly works with the GenreFacade layer.
+     */
+//    @RequestMapping(value = "/create", method = RequestMethod.POST)
+//    public String create(@Valid @ModelAttribute("genreCreate") GenreCreateDTO formBean, BindingResult bindingResult,
+//                         Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
+//        log.debug("create(formBean={})", formBean);
+//        //in case of validation error forward back to the the form
+//        if (bindingResult.hasErrors()) {
+//            for (ObjectError ge : bindingResult.getGlobalErrors()) {
+//                log.trace("ObjectError: {}", ge);
+//            }
+//            for (FieldError fe : bindingResult.getFieldErrors()) {
+//                model.addAttribute(fe.getField() + "_error", true);
+//                log.trace("FieldError: {}", fe);
+//            }
+//            return "genre/new";
+//        }
+//        //create product
+//       // Long id = genreFacade.createGenre(formBean);
+//        //report success
+//       // redirectAttributes.addFlashAttribute("alert_success", "Genre " + id + " was created");
+//        return "redirect:" + uriBuilder.path("/song/list").toUriString();
+//    }
 }

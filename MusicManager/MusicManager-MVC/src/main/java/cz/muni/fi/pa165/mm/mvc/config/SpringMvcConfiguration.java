@@ -15,9 +15,13 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.validation.Validator;
 
+/**
+ * This class represents main spring MVC configuration class.
+ * @author Yehor Safonov; 487596
+ */
+
 @EnableWebMvc
 @Configuration
-// @Import({EshopWithSampleDataConfiguration.class})
 @ComponentScan(basePackages = "cz.muni.fi.pa165.mm.mvc.controllers")
 public class SpringMvcConfiguration implements WebMvcConfigurer {
     private final static Logger log = LoggerFactory.getLogger(SpringMvcConfiguration.class);
@@ -25,7 +29,7 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
     private static final String TEXTS = "Texts";
 
     /**
-     * Maps the main page to a specific view.
+     * Maping main page to a specific view.
      */
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -56,6 +60,9 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
     }
 
 
+    /**
+     * Mapping static CSS and JS resources
+     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
@@ -64,9 +71,8 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
     }
 
 
-
     /**
-     * Provides JSR-303 Validator.
+     * JSR-303 Validator.
      */
     @Bean
     public Validator validator() {

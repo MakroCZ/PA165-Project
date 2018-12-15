@@ -1,5 +1,5 @@
 /**
- * This class represents a main.js scripts.
+ * This class represents application scripts.
  * @author Yehor Safonov; 487596
  */
 

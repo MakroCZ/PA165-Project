@@ -21,7 +21,7 @@
              <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                    <li class="nav-item active">
-                      <a class="nav-link ml-2" href="#" id="menu-toggle">Back to menu <span class="sr-only">(current)</span></a>
+                      <a class="nav-link ml-2" href="#" id="menu-toggle">Menu<span class="sr-only">(current)</span></a>
                    </li>
                 </ul>
                 <form class="form-inline">
@@ -30,7 +30,7 @@
                 </form>
              </div>
           </nav>
-          <div  class="tab navbar navbar-expand-lg navbar-light bg-light mt-4">
+          <div  class="tab navbar navbar-expand-lg navbar-light mt-4">
              <div class="d-flex h-100">
                 <div class="container-fluid">
               <form:form method="post" action="${pageContext.request.contextPath}/song/create"

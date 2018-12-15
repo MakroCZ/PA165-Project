@@ -8,11 +8,17 @@
 <my:template title="New genre">
 <jsp:attribute name="body">
 
+    <!--
+* This class represents a genre/list body
+* @author Yehor Safonov; 487596
+*-->
 
-<!-- Page Content -->
+<!-- Template definition -->
 <div id="backgroundpage">
+    <!-- First container -->
    <div class="d-flex h-100 w-100" id="page-content-wrapper">
       <div class="container-fluid">
+          <!-- Navigation bar container -->
          <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Genre</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,7 +27,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                   <li class="nav-item active">
-                     <a class="nav-link ml-2" href="#" id="menu-toggle">Back to menu <span class="sr-only">(current)</span></a>
+                     <a class="nav-link ml-2" href="#" id="menu-toggle">Menu<span class="sr-only">(current)</span></a>
                   </li>
                </ul>
                <form class="form-inline">
@@ -30,9 +36,13 @@
                </form>
             </div>
          </nav>
-         <div  class="tab navbar navbar-expand-lg navbar-light bg-light mt-4">
-            <div class="d-flex h-100">
-               <div class="container-fluid">
+          <!-- End navigation bar container -->
+          <!-- End first container -->
+
+          <!-- Second container -->
+         <div  class="tab navbar navbar-expand-lg navbar-light mt-4">
+             <div class="d-flex w-100 p-4 align-items-center">
+                 <!-- Container items -->
               <form:form method="post" action="${pageContext.request.contextPath}/genre/create"
                          modelAttribute="genreCreate" cssClass="form-horizontal">
              <div class="form-group ${name_error?'has-error':''}">
@@ -45,15 +55,16 @@
              <div class="form-group ${description_error?'has-error':''}">
                  <form:label path="description" cssClass="col-sm-2 control-label">Description</form:label>
                  <div class="col-sm-10">
-                     <form:textarea cols="80" rows="20" path="description" cssClass="form-control"/>
+                     <form:textarea cols="80" rows="10" path="description" cssClass="form-control"/>
                      <form:errors path="description" cssClass="help-block"/>
                  </div>
              </div>
 
-            <button class="btn btn-primary" type="submit">Create product</button>
+            <button class="btn btn-primary" type="submit">Create genre</button>
             </form:form>
-               </div>
+                 <!-- End container items -->
             </div>
+             <!-- End second container -->
          </div>
       </div>
    </div>
