@@ -5,7 +5,8 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:template title="Genres">
+
+<my:template title="Songs">
 <jsp:attribute name="body">
 
 
@@ -14,7 +15,7 @@
    <div class="d-flex h-100 w-100" id="page-content-wrapper">
       <div class="container-fluid">
          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Genre</a>
+            <a class="navbar-brand" href="/musicManager/song/new">New Song</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -31,38 +32,43 @@
             </div>
          </nav>
          <div  class="tab navbar navbar-expand-lg navbar-light bg-light mt-4">
-            <div class="d-flex h-100 ">
-               <div class="container-fluid">
+            <div class="d-flex w-100 p-4 align-items-center">
 
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${genres}" var="category">
-                  <tr>
-                      <td>${genre.id}</td>
-                      <td>
-                          <c:out value="${genre.name}"/>
-                      </td>
-                      <td>
-                          <c:out value="${genre.description}"/>
-                      </td>
-                  </tr>
-               </c:forEach>
-                    </tbody>
-                </table>
-               </div>
+               <table class="table">
+                  <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Length</th>
+                            <th scope="col">Album</th>
+                            <th scope="col">Genre</th>
+                        </tr>
+                        </thead>
+                  <tbody>
+
+                          <tr>
+                              <td scope="row">1</td>
+                              <td>
+                                  abc
+                              </td>
+                              <td>
+                                  5 min
+                              </td>
+                              <td>
+                                  album
+                              </td>
+                              <td>
+                                  genre
+                              </td>
+                          </tr>
+
+                  </tbody>
+            </table>
+            </div>
             </div>
          </div>
       </div>
    </div>
-</div>
-
 
 </jsp:attribute>
 </my:template>

@@ -35,24 +35,24 @@
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <li class="sidebar-brand">
-                <a href="/">
+                <a href="/musicManager/">
                     Music Manager
                 </a>
             </li>
             <li>
-                <a href="/song/list/all">Songs</a>
+                <a href="/musicManager/song/list/">Songs</a>
             </li>
             <li>
-                <a href="/albums/list/all">Albums</a>
+                <a href="/musicManager/album/list/">Albums</a>
             </li>
             <li>
-                <a href="/perormers/list/all">Performers</a>
+                <a href="/musicManager/performer/list/">Performers</a>
             </li>
             <li>
-                <a href="/genres/list/all">Genres</a>
+                <a href="/musicManager/genre/list/">Genres</a>
             </li>
             <li>
-                <a href="/about">About</a>
+                <a href="/musicManager/about">About</a>
             </li>
         </ul>
     </div>

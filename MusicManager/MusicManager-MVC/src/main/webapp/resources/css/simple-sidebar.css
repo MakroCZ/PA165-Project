@@ -31,6 +31,8 @@ body {
   font-style: italic;
 }
 
+
+
 #backgroundmain{
   min-height: 100vh;
   background-image: url("https://harborhonolulu.org/wp-content/uploads/2017/01/guitar-background.jpg");
@@ -39,8 +41,12 @@ body {
 
 #backgroundpage{
   min-height: 100vh;
-  background-image: url("https://wallpaper-house.com/data/out/5/wallpaper2you_56012.jpg");
+  background-image: url("https://i.ytimg.com/vi/bxpGnIqAyRU/maxresdefault.jpg");
   background-color: #cccccc !important;
+  background-size:     cover;
+    background-repeat:   no-repeat;
+    background-position: center center;
+  overflow-y: hidden;
 }
 
 #sidebar-wrapper {
@@ -133,9 +139,17 @@ body {
   border: 0
 }
 
+.searchbutton{
+  padding: 10px;
+}
+
+.tab {
+  background-color: rgba(199, 199, 199, 0.383) !important;
+}
+
 .btn-primary {
   background-color: #64a19d !important;
-  border-color: #64a19d !important;
+  border-color:#64a19d !important;
 }
 
 .btn-primary:hover {
@@ -148,7 +162,7 @@ body {
 }
 
 .btn-primary:active {
-  background-color: #467370 !important
+  background-color: #467370 !important;
 }
 
 body {
