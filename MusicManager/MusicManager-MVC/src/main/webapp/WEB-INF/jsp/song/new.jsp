@@ -24,10 +24,6 @@
                       <a class="nav-link ml-2" href="#" id="menu-toggle">Menu<span class="sr-only">(current)</span></a>
                    </li>
                 </ul>
-                <form class="form-inline">
-                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                   <a href="#menu-toggle" class="btn btn-primary js-scroll-trigger searchbutton" >Find</a>
-                </form>
              </div>
           </nav>
           <div  class="tab navbar navbar-expand-lg navbar-light mt-4">
@@ -35,6 +31,14 @@
                 <div class="container-fluid">
               <form:form method="post" action="${pageContext.request.contextPath}/song/create"
                              modelAttribute="songCreate" cssClass="form-horizontal">
+                     <div class="form-group ${name_error?'has-error':''}">
+                       <form:label path="name" cssClass="col-sm-2 control-label">Name</form:label>
+                         <div class="col-sm-10">
+                             <form:input path="name" cssClass="form-control"/>
+                             <form:errors path="name" cssClass="help-block"/>
+                          </div>
+                      </div>
+
                       <div class="form-group">
                           <form:label path="albumId" cssClass="col-sm-2 control-label">Album</form:label>
                           <div class="col-sm-10">
@@ -46,13 +50,7 @@
                               <p class="help-block"><form:errors path="albumId" cssClass="error"/></p>
                           </div>
                       </div>
-                      <div class="form-group ${name_error?'has-error':''}">
-                          <form:label path="name" cssClass="col-sm-2 control-label">Name</form:label>
-                          <div class="col-sm-10">
-                              <form:input path="name" cssClass="form-control"/>
-                              <form:errors path="name" cssClass="help-block"/>
-                          </div>
-                      </div>
+
                       <form:label path="genreId" cssClass="col-sm-2 control-label">Album</form:label>
                             <div class="col-sm-10">
                                 <form:select path="genreId" cssClass="form-control">
@@ -62,7 +60,12 @@
                                 </form:select>
                                 <p class="help-block"><form:errors path="genreId" cssClass="error"/></p>
                             </div>
-                      <button class="btn btn-primary" type="submit">Create song</button>
+                        <form:label path="length" cssClass="col-sm-2 control-label">Date</form:label>
+                            <div class="col-sm-10">
+                                <form:input class="inputdate" path="length" type="time" cssClass="form-control"/>
+                                <form:errors path="length" type="time" cssClass="help-block"/>
+                            </div>
+                      <button class="btn btn-primary nt-2 ml-2" type="submit">Create song</button>
                   </form:form>
             </div>
            </div>
