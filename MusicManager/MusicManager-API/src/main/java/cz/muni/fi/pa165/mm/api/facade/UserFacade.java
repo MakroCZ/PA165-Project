@@ -15,7 +15,7 @@ public interface UserFacade {
      * @param username
      * @return UserDTO with specified username, null if there is no user with specified username in database
      */
-    UserDTO findUserByEmail(String username);
+    UserDTO findUserByUsername(String username);
 
     /**
      * Finds all registered users
