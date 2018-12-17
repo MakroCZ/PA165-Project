@@ -9,20 +9,10 @@ $("#menu-toggle").click(function(e) {
 });
 
 $(document).ready(function() {
-   $("#search-button").click(function(e) {
-           e.preventDefault();
-//       alert("Search button action");
-       var data = $("#search-name").val();
-//       alert(data);
-       var href = $(this).attr('href');
-//       alert(href);
-       var name = "http://"+window.location.host+href+data;
-       window.location = href+data;
-//       window.location.reload();
-//       alert(name);
-//       window.open(name);
-
-//       window.open(name);
-//       window.close();
-   });
+     $("#search-button").click(function(e) {
+        e.preventDefault();
+        var data = $("#search-name").val();
+        var href = $(this).attr('href');
+        window.location = href+data;
+    });
 });
