@@ -1,5 +1,12 @@
 package cz.muni.fi.pa165.mm.api.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import cz.muni.fi.pa165.mm.api.LocalDateDeserializer;
+import cz.muni.fi.pa165.mm.api.LocalDateSerializer;
+import cz.muni.fi.pa165.mm.api.LocalTimeDeserializer;
+import cz.muni.fi.pa165.mm.api.LocalTimeSerializer;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -10,7 +17,11 @@ public class SongDTO {
 
     private Long id;
     private String name;
+    @JsonDeserialize(using = LocalTimeDeserializer.class)
+    @JsonSerialize(using = LocalTimeSerializer.class)
     private LocalTime length;
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate date;
     private AlbumDTO album;
     private GenreDTO genre;

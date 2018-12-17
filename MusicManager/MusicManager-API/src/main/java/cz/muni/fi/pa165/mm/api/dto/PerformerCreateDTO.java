@@ -1,5 +1,10 @@
 package cz.muni.fi.pa165.mm.api.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import cz.muni.fi.pa165.mm.api.LocalDateDeserializer;
+import cz.muni.fi.pa165.mm.api.LocalDateSerializer;
+
 import java.time.LocalDate;
 
 /**
@@ -9,7 +14,9 @@ import java.time.LocalDate;
 public class PerformerCreateDTO {
 
     private String name;
-    
+
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate startDate;
     
     private String country;
