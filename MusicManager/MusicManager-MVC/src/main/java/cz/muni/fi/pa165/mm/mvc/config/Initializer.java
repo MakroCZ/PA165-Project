@@ -9,7 +9,6 @@ import javax.servlet.Filter;
  * This class represents main initializer.
  * @author Yehor Safonov; 487596
  */
-
 public class Initializer  extends AbstractAnnotationConfigDispatcherServletInitializer {
     /**
      * Provides main root configuration classes
