@@ -5,7 +5,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<<my:template title="New genre">
+<my:template title="New album">
  <jsp:attribute name="body">
 
  <!-- Page Content -->
@@ -13,7 +13,7 @@
      <div class="d-flex h-100 w-100" id="page-content-wrapper">
          <div class="container-fluid">
              <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                 <a class="navbar-brand" href="${pageContext.request.contextPath}/album/list">Albums</a>
+                 <a class="navbar-brand" href="${pageContext.request.contextPath}/album/list">New album</a>
                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                      <span class="navbar-toggler-icon"></span>
                  </button>
