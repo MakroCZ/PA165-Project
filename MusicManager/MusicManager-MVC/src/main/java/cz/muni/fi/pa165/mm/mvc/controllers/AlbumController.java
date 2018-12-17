@@ -71,7 +71,6 @@ public class AlbumController {
     ) {
         log.debug("create(formBean={})", formBean);
 
-        formBean.setDate(LocalDate.now());
         Long id = albumFacade.createAlbum(formBean);
         redirectAttributes.addFlashAttribute("alert_success", "Album " + id + " was created");
         return "redirect:" + uriBuilder.path("/album/list").toUriString();
