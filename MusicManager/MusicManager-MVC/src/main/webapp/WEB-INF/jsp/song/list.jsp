@@ -25,12 +25,12 @@
                      <a class="nav-link ml-2" href="#" id="menu-toggle">Menu <span class="sr-only">(current)</span></a>
                   </li>
                    <li class="nav-item active">
-                       <a class="nav-link ml-2" href="/musicManager/song/new">Create song <span class="sr-only">(current)</span></a>
+                       <a class="nav-link ml-2" href="/pa165/song/new">Create song <span class="sr-only">(current)</span></a>
                    </li>
                </ul>
                <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                  <a href="#menu-toggle" class="btn btn-primary js-scroll-trigger searchbutton" >Find</a>
+                  <input id="search-name" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <a id="search-button" href="/pa165/song/list/" class="btn btn-primary searchbutton" >Find</a>
                </form>
             </div>
          </nav>
@@ -49,21 +49,23 @@
                         </thead>
                   <tbody>
 
-                          <tr>
-                              <td scope="row">1</td>
-                              <td>
-                                  abc
-                              </td>
-                              <td>
-                                  5 min
-                              </td>
-                              <td>
-                                  album
-                              </td>
-                              <td>
-                                  genre
-                              </td>
-                          </tr>
+                          <c:forEach items="${songs}" var="song">
+                                <tr>
+                                    <td scope="row">${song.id}</td>
+                                    <td>
+                                        <c:out value="${song.name}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${song.length}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${song.album.name}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${song.genre.name}"/>
+                                    </td>
+                                </tr>
+                          </c:forEach>
 
                   </tbody>
             </table>
