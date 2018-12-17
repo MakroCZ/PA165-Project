@@ -65,6 +65,7 @@ public class SongCreateDTO {
         this.genreId = genreId;
     }
 
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -80,13 +81,8 @@ public class SongCreateDTO {
     @Override
     public int hashCode() {
         int result = name.hashCode();
-        result = 31 * result + length.hashCode();
-        result = 31 * result + date.hashCode();
+        result = 31 * result + ((length == null) ? 0 : length.hashCode());
+        result = 31 * result + ((date == null) ? 0 : date.hashCode());
         return result;
-    }
-
-    public String toString(){
-        return "SongCreateDTO{" +
-                "name: " + name + "length: " + length.toString() + "date: " + date.toString() + "}";
     }
 }
