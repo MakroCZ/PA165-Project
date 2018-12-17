@@ -1,25 +1,22 @@
 package cz.muni.fi.pa165.mm.mvc.controllers;
 
-import cz.muni.fi.pa165.mm.api.dto.AlbumDTO;
-import cz.muni.fi.pa165.mm.api.dto.GenreDTO;
-import cz.muni.fi.pa165.mm.api.dto.SongCreateDTO;
-import cz.muni.fi.pa165.mm.api.dto.SongDTO;
+import cz.muni.fi.pa165.mm.api.dto.*;
 import cz.muni.fi.pa165.mm.api.facade.AlbumFacade;
 import cz.muni.fi.pa165.mm.api.facade.GenreFacade;
+import cz.muni.fi.pa165.mm.api.facade.PerformerFacade;
 import cz.muni.fi.pa165.mm.api.facade.SongFacade;
+import cz.muni.fi.pa165.mm.daolayer.entity.Song;
 import cz.muni.fi.pa165.mm.sf.facade.SongFacadeImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -28,10 +25,12 @@ import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
- * Created by lsuchanek on 14.12.2018.
+ * @author Lukáš Suchánek; 433654
  */
 @Controller
 @RequestMapping("/song")
@@ -45,22 +44,50 @@ public class SongController {
 
     @Autowired
     private GenreFacade genreFacade;
+
+    @Autowired
+    private PerformerFacade performerFacade;
     //
+
+    /**
+     * Return all songs
+     * @return
+     */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("songs", songFacade.getAllSongs());
         return "song/list";
     }
+
+    /**
+     * Find all songs which contains entered name
+     *
+     * @param name name of song
+     * @return
+     */
     @RequestMapping(value = "/list/{name}", method = RequestMethod.GET)
     public String findByName(@PathVariable String name,Model model) {
         model.addAttribute("songs", this.find(name));
         return "song/list";
     }
+
+    /**
+     * Find all songs that has same interpret as entered song
+     * @param id id of song
+     * @return
+     */
+    @RequestMapping(value = "/list/interpret/{id}", method = RequestMethod.GET)
+    public String findAllOfInterpret(@PathVariable Long id,Model model){
+        model.addAttribute("songs", findFromInterpret(id));
+        return "song/listFromInterpret";
+    }
     //
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String newSong(Model model) {
         log.debug("new()");
-        model.addAttribute("songCreate", new SongCreateDTO());
+        SongCreateDTO songCreateDTO = new SongCreateDTO();
+        songCreateDTO.setName("default");
+        model.addAttribute("songCreate", songCreateDTO);
         return "song/new";
     }
 
@@ -75,60 +102,39 @@ public class SongController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute("songCreate") SongCreateDTO formBean, BindingResult bindingResult,
+    public String create(@Valid @ModelAttribute("songCreate") SongCreateDTO formBean,
+                         BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         log.debug("create(formBean={})", formBean);
-        //in case of validation error forward back to the the form
-        if (bindingResult.hasErrors()) {
-            for (ObjectError ge : bindingResult.getGlobalErrors()) {
-                log.trace("ObjectError: {}", ge);
-            }
-            for (FieldError fe : bindingResult.getFieldErrors()) {
-                model.addAttribute(fe.getField() + "_error", true);
-                log.trace("FieldError: {}", fe);
-            }
-            return "song/new";
-        }
-        //create product
-//        Long id = songFacade.createSong(formBean);
+
+        formBean.setDate(LocalDate.now());
+
+        Long id = songFacade.createSong(formBean);
         //report success
-//        redirectAttributes.addFlashAttribute("alert_success", "Song " + id + " was created");
+        redirectAttributes.addFlashAttribute("alert_success", "Song " + id + " was created");
         return "redirect:" + uriBuilder.path("/song/list").toUriString();
-    }
-
-    private List<SongDTO> getSongs(){
-        AlbumDTO album = new AlbumDTO();
-        album.setName("album");
-        GenreDTO genre = new GenreDTO();
-        genre.setName("genre");
-        SongDTO song = new SongDTO();
-        song.setName("song1");
-        song.setDate(LocalDate.now());
-        song.setLength(LocalTime.of(0,3,0));
-        song.setAlbum(album);
-        song.setGenre(genre);
-
-        SongDTO song2 = new SongDTO();
-        song2.setName("song2");
-        song2.setDate(LocalDate.now());
-        song2.setLength(LocalTime.of(0,3,0));
-        song2.setAlbum(album);
-        song2.setGenre(genre);
-
-        List<SongDTO> songs = new ArrayList<>();
-        songs.add(song);
-        songs.add(song2);
-        return songs;
     }
 
     private List<SongDTO> find(String name){
         List<SongDTO> allSongs = songFacade.getAllSongs();
         List<SongDTO> filtered = new ArrayList<>();
         for(SongDTO song:allSongs){
-            if(song.getName().equals(name)){
+            if(song.getName().toLowerCase().contains(name.toLowerCase())){
                 filtered.add(song);
             }
         }
         return filtered;
+    }
+
+    private List<SongDTO> findFromInterpret(Long id){
+        SongDTO song = songFacade.getSongWithID(id);
+        List<SongDTO> allSongs = songFacade.getAllSongs();
+        List<SongDTO> selected = new ArrayList<>();
+        for(SongDTO s : allSongs){
+            if(s.getAlbum().getPerformer().getId() == song.getAlbum().getPerformer().getId()){
+                selected.add(s);
+            }
+        }
+        return selected;
     }
 }
