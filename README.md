@@ -34,7 +34,7 @@ mvn
 
 ## Authors
 
-* **Yehor Safonov** - *programming, wiki documentation, diagrams, frontend application*
+* **Yehor Safonov** - *programming, wiki documentation, diagrams, application frontend*
 * **Marek Bařinka** - *project structure, programming, authentication, git management*
 * **Lukáš Suchánek** - *programming, testing, controllers, Apache Tomcat development*
 * **Václav Stehlík** - *programming, REST API, documentation, testing*
