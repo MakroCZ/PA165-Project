@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.NestedExceptionUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -111,6 +112,21 @@ public class PerformerController {
         Long id = performerFacade.create(formBean);
         //report success
         redirectAttributes.addFlashAttribute("alert_success", "Performer " + id + " was created");
-        return "redirect:" + uriBuilder.path("/performer/detail/{id}").buildAndExpand(id).encode().toUriString();
+        return "redirect:" + uriBuilder.path("/performer/list").buildAndExpand(id).encode().toUriString();
+    }
+    
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+    public String delete(@PathVariable long id, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
+        PerformerDTO performer = performerFacade.findById(id);
+        log.debug("delete({})", id);
+        try {
+            performerFacade.remove(id);
+            redirectAttributes.addFlashAttribute("alert_success", "Performer \"" + performer.getName() + "\" was deleted.");
+        } catch (Exception ex) {
+            log.error("Performer "+id+" cannot be deleted (it is included in an order)");
+            log.error(NestedExceptionUtils.getMostSpecificCause(ex).getMessage());
+            redirectAttributes.addFlashAttribute("alert_danger", "Performer \"" + performer.getName() + "\" cannot be deleted.");
+        }
+        return "redirect:" + uriBuilder.path("/performer/list").toUriString();
     }
 }

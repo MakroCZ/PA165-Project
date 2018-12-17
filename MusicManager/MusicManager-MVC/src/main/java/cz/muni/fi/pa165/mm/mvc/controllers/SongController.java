@@ -107,8 +107,17 @@ public class SongController {
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         log.debug("create(formBean={})", formBean);
 
-        formBean.setDate(LocalDate.now());
-
+        if (bindingResult.hasErrors()) {
+            for (ObjectError ge : bindingResult.getGlobalErrors()) {
+                log.trace("ObjectError: {}", ge);
+            }
+            for (FieldError fe : bindingResult.getFieldErrors()) {
+                model.addAttribute(fe.getField() + "_error", true);
+                log.trace("FieldError: {}", fe);
+            }
+            return "song/new";
+        }
+        
         Long id = songFacade.createSong(formBean);
         //report success
         redirectAttributes.addFlashAttribute("alert_success", "Song " + id + " was created");
