@@ -79,7 +79,7 @@ public class SongController {
     @RequestMapping(value = "/list/interpret/{id}", method = RequestMethod.GET)
     public String findAllOfInterpret(@PathVariable Long id,Model model){
         model.addAttribute("songs", findFromInterpret(id));
-        return "song/list";
+        return "song/listFromInterpret";
     }
     //
     @RequestMapping(value = "/new", method = RequestMethod.GET)
@@ -87,10 +87,6 @@ public class SongController {
         log.debug("new()");
         SongCreateDTO songCreateDTO = new SongCreateDTO();
         songCreateDTO.setName("default");
-        songCreateDTO.setDate(LocalDate.now());
-        songCreateDTO.setLength(LocalTime.of(0,3,33));
-        songCreateDTO.setAlbumId(1L);
-        songCreateDTO.setGenreId(1L);
         model.addAttribute("songCreate", songCreateDTO);
         return "song/new";
     }
