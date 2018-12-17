@@ -54,7 +54,7 @@
                 <a href="/pa165/genre/list/">Genres</a>
             </li>
             <li>
-                <a href="/pa165/about">About</a>
+                <a href="https://github.com/MakroCZ/PA165-Project/wiki" target="_blank">About</a>
             </li>
         </ul>
     </div>
