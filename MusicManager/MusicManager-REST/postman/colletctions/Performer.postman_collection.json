@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "bd71ad33-b69e-4a56-83c4-6c6335770ea0",
+		"name": "Performer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetPerformer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/performers/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"performers",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePerformer",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/performers/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"performers",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePerformer",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": \"1\",\n    \"name\": \"test-name\",\n    \"startDate\": \"2019-01-31\",\n    \"country\": \"test-country\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/performers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"performers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPerformers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/performers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"performers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreatePerformer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"test-name\",\n    \"startDate\": \"2019-01-30\",\n    \"country\": \"test-country\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/performers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"performers"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

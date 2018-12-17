@@ -4,8 +4,7 @@ import cz.muni.fi.pa165.mm.api.dto.GenreCreateDTO;
 import cz.muni.fi.pa165.mm.api.dto.GenreDTO;
 import cz.muni.fi.pa165.mm.api.facade.GenreFacade;
 import cz.muni.fi.pa165.mm.rest.ApiUris;
-import cz.muni.fi.pa165.mm.rest.exceptions.ResourceAlreadyExistingException;
-import cz.muni.fi.pa165.mm.rest.exceptions.ResourceNotFoundException;
+import cz.muni.fi.pa165.mm.rest.exceptions.InternalException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +28,7 @@ public class GenreController {
         try {
             return genreFacade.getWithId(id);
         } catch (Exception ex) {
-            throw new ResourceNotFoundException();
+            throw new InternalException();
         }
     }
 
@@ -44,7 +43,7 @@ public class GenreController {
             long id = genreFacade.createGenre(genre);
             return getGenre(id);
         } catch (Exception ex) {
-            throw new ResourceAlreadyExistingException();
+            throw new InternalException();
         }
     }
 
@@ -54,7 +53,7 @@ public class GenreController {
             genreFacade.updateGenre(genre);
             return new ResponseEntity(HttpStatus.OK);
         } catch (Exception ex) {
-            throw new ResourceNotFoundException();
+            throw new InternalException();
         }
     }
 
@@ -64,7 +63,7 @@ public class GenreController {
             genreFacade.deleteGenre(id);
             return new ResponseEntity(HttpStatus.OK);
         } catch (Exception ex) {
-            throw new ResourceNotFoundException();
+            throw new InternalException();
         }
     }
 }

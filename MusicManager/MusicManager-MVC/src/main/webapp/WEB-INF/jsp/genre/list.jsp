@@ -23,7 +23,7 @@
 
           <!-- Navigation bar container -->
          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Genre</a>
+            <a class="navbar-brand" href="/pa165/genre/list/">Genre</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -33,12 +33,12 @@
                      <a class="nav-link ml-2" href="#" id="menu-toggle">Menu <span class="sr-only">(current)</span></a>
                   </li>
                    <li class="nav-item active">
-                       <a class="nav-link ml-2" href="/musicManager/genre/new">Create genre <span class="sr-only">(current)</span></a>
+                       <a class="nav-link ml-2" href="/pa165/genre/new">Create genre <span class="sr-only">(current)</span></a>
                    </li>
                </ul>
                <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                  <a href="#menu-toggle" class="btn btn-primary js-scroll-trigger searchbutton" >Find</a>
+                  <input  id="search-name" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <a id="search-button" href="/pa165/genre/list/" href="#menu-toggle" class="btn btn-primary js-scroll-trigger searchbutton" >Find</a>
                </form>
             </div>
          </nav>
@@ -55,10 +55,11 @@
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Description</th>
+                                        <th class="buttontd">All songs</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach items="${genres}" var="category">
+                                    <c:forEach items="${genres}" var="genre">
                                   <tr>
                                       <td>${genre.id}</td>
                                       <td>
@@ -66,6 +67,9 @@
                                       </td>
                                       <td>
                                           <c:out value="${genre.description}"/>
+                                      </td>
+                                      <td class="buttontd">
+                                          <a id="search-allsong-button" href="/pa165/genre/songlist/${genre.id}" class="btn btn-primary js-scroll-trigger searchbutton" >Find</a>
                                       </td>
                                   </tr>
                                </c:forEach>

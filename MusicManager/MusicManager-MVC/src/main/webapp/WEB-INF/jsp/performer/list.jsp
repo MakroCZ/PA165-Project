@@ -8,14 +8,7 @@
 
 <my:template title="Performers">
 <jsp:attribute name="body">
-<!--
-    <sec:authorize access="isAuthenticated()">
-        <my:a href="/performer/new" class="btn btn-primary">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-            <fmt:message key="performer.button.new"/>
-        </my:a>
-    </sec:authorize>
--->    
+
 <!-- Page Content -->
 <div id="backgroundpage">
    <div class="d-flex h-100 w-100" id="page-content-wrapper">
