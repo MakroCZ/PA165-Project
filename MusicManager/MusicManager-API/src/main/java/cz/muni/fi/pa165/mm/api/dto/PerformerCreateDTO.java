@@ -6,6 +6,8 @@ import cz.muni.fi.pa165.mm.api.LocalDateDeserializer;
 import cz.muni.fi.pa165.mm.api.LocalDateSerializer;
 
 import java.time.LocalDate;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -14,13 +16,18 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 public class PerformerCreateDTO {
 
+    @NotNull
+    @Size(min = 1)
     private String name;
 
+    @NotNull
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
     
+    @NotNull
+    @Size(min = 3)
     private String country;
 
     public String getName() {

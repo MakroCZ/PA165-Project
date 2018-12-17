@@ -43,11 +43,4 @@ public interface PerformerFacade {
      * @param id Id of performer to remove
      */
     void remove(Long id);
-    
-    /**
-     * Adds album to performer
-     * @param performerId Id of performer to update
-     * @param AlbumId Id of album to update
-     */
-    void addAlbum(Long performerId, Long AlbumId);
 }

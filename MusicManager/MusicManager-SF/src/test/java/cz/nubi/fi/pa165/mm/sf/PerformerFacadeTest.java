@@ -147,19 +147,4 @@ public class PerformerFacadeTest extends AbstractTransactionalTestNGSpringContex
         performerFacade.remove(1L);
         verify(performerService, times(1)).remove(performer1);
     }
-
-    @Test
-    public void testAddAlbum() {
-        Assert.assertEquals(performer1.getAlbums().size(), 1);
-
-        doAnswer(invocationOnMock ->
-        {
-            performer1.addAlbum(album2);
-            return null;
-        }).when(performerService).addAlbum(any(), any());
-
-        performerFacade.addAlbum(performer1.getId(), album2.getId());
-        Assert.assertEquals(performer1.getAlbums().size(), 2);
-        Assert.assertEquals(performer1.getAlbums().toArray()[0], album2);
-    }
 }

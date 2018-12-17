@@ -42,11 +42,4 @@ public interface PerformerService {
      * @param p Performer to remove
      */
     void remove(Performer p);
-    
-    /**
-     * Adds album to performer
-     * @param p Performer to update album list
-     * @param a Album to add
-     */
-    void addAlbum(Performer p, Album a);
 }

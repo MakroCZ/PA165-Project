@@ -129,11 +129,4 @@ public class PerformerServiceTest extends AbstractTransactionalTestNGSpringConte
         performerService.remove(performer1);
         verify(performerDao, times(1)).remove(performer1);
     }
-
-    @Test
-    public void testAddAlbum() {
-        Assert.assertEquals(performer1.getAlbums().size(), 1);
-        performerService.addAlbum(performer1, album2);
-        Assert.assertEquals(performer1.getAlbums().size(), 2);
-    }
 }
