@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 /**
@@ -29,6 +30,7 @@ public class SongCreateDTO {
     @NotNull
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     @NotNull
     private Long albumId;

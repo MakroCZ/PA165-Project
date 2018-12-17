@@ -8,6 +8,7 @@ import cz.muni.fi.pa165.mm.api.LocalDateSerializer;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * @author Václav Stehlík; 487580
@@ -20,6 +21,7 @@ public class AlbumCreateDTO {
     @NotNull
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
     @NotNull
