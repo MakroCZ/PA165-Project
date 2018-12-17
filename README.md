@@ -31,13 +31,18 @@ Finally, run Apache Tomcat server using command:
 ```
 mvn
 ```
+## How to sign in to the web application
+
+Just use default *username* and *password*:<br />
+**Username:** admin<br />
+**Password:** admin<br />
 
 ## Authors
 
-* **Yehor Safonov** - *programming, wiki documentation, diagrams, frontend application*
-* **Marek Bařinka** - *project structure, programming, authentication, git management*
-* **Lukáš Suchánek** - *programming, testing, controllers, Apache Tomcat development*
-* **Václav Stehlík** - *programming, REST API, documentation, testing*
+* **Yehor Safonov** - *programming, wiki documentation, diagrams, application frontend, JavaScript;*
+* **Marek Bařinka** - *project structure, programming, authentication, git management;*
+* **Lukáš Suchánek** - *programming, testing, controllers, Apache Tomcat development;*
+* **Václav Stehlík** - *programming, REST API, documentation, testing.*
 
 
 ## License
