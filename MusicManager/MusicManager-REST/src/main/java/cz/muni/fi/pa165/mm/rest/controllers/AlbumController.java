@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.util.List;
 
+/**
+ * @author Václav Stehlík; 487580
+ */
 @RequestMapping(ApiUris.ROOT_URI_ALBUMS)
 @RestController
 public class AlbumController {
