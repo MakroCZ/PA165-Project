@@ -112,7 +112,7 @@ public class SongController {
         Long id = songFacade.createSong(formBean);
         //report success
         redirectAttributes.addFlashAttribute("alert_success", "Song " + id + " was created");
-        return "redirect:" + uriBuilder.path("/song/list").toUriString();
+        return "redirect:" + uriBuilder.path("/song/list/").toUriString();
     }
 
     private List<SongDTO> find(String name){
