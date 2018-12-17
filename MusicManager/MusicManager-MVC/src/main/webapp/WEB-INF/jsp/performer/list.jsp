@@ -5,14 +5,8 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<!--
-* This class represents a template.tag object.
-* @author Lukáš Suchánek;433654
-*-->
-
-<my:template title="Songs">
+<my:template title="Performers">
 <jsp:attribute name="body">
-
 
 <!-- Page Content -->
 <div id="backgroundpage">
@@ -29,12 +23,12 @@
                      <a class="nav-link ml-2" href="#" id="menu-toggle">Menu <span class="sr-only">(current)</span></a>
                   </li>
                    <li class="nav-item active">
-                       <a class="nav-link ml-2" href="/pa165/song/new">Create song <span class="sr-only">(current)</span></a>
+                       <a class="nav-link ml-2" href="/pa165/performer/new">Create performer<span class="sr-only">(current)</span></a>
                    </li>
                </ul>
                <form class="form-inline">
                   <input id="search-name" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                  <a id="search-button" href="/pa165/song/list/" class="btn btn-primary searchbutton" >Find</a>
+                  <a id="search-button" href="/pa165/performer/list/" class="btn btn-primary searchbutton" >Find</a>
                </form>
             </div>
          </nav>
@@ -46,31 +40,23 @@
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Length</th>
-                            <th scope="col">Album</th>
-                            <th scope="col">Genre</th>
-                            <th scope="col">Songs from same interpret</th>
+                            <th scope="col">Country</th>
+                            <th scope="col">Date</th>
                         </tr>
                         </thead>
                   <tbody>
 
-                          <c:forEach items="${songs}" var="song">
+                          <c:forEach items="${performers}" var="performer">
                                 <tr>
-                                    <td scope="row">${song.id}</td>
+                                    <td scope="row">${performer.id}</td>
                                     <td>
-                                        <c:out value="${song.name}"/>
+                                        <c:out value="${performer.name}"/>
                                     </td>
                                     <td>
-                                        <c:out value="${song.length}"/>
+                                        <c:out value="${performer.country}"/>
                                     </td>
                                     <td>
-                                        <c:out value="${song.album.name}"/>
-                                    </td>
-                                    <td>
-                                        <c:out value="${song.genre.name}"/>
-                                    </td>
-                                    <td>
-                                        <a id="search-button" href="/pa165/song/list/interpret/${song.id}" class="btn btn-primary searchbutton" >Find</a>
+                                        <c:out value="${performer.startDate}"/>
                                     </td>
                                 </tr>
                           </c:forEach>

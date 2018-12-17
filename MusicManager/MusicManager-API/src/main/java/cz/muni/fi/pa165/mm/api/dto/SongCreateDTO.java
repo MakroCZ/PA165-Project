@@ -83,21 +83,13 @@ public class SongCreateDTO {
 
         SongCreateDTO that = (SongCreateDTO) o;
 
-        if (!name.equals(that.name)) return false;
-        if (!length.equals(that.length)) return false;
-        return date.equals(that.date);
+        return name.equals(that.name);
     }
 
     @Override
     public int hashCode() {
         int result = name.hashCode();
-        result = 31 * result + length.hashCode();
-        result = 31 * result + date.hashCode();
         return result;
     }
 
-    public String toString(){
-        return "SongCreateDTO{" +
-                "name: " + name + "length: " + length.toString() + "date: " + date.toString() + "}";
-    }
 }

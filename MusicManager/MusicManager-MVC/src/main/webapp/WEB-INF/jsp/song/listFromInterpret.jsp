@@ -49,7 +49,7 @@
                             <th scope="col">Length</th>
                             <th scope="col">Album</th>
                             <th scope="col">Genre</th>
-                            <th scope="col">Songs from same interpret</th>
+                            <th scope="col">Interpret</th>
                         </tr>
                         </thead>
                   <tbody>
@@ -70,7 +70,7 @@
                                         <c:out value="${song.genre.name}"/>
                                     </td>
                                     <td>
-                                        <a id="search-button" href="/pa165/song/list/interpret/${song.id}" class="btn btn-primary searchbutton" >Find</a>
+                                        <c:out value="${song.album.performer.name}"/>
                                     </td>
                                 </tr>
                           </c:forEach>
