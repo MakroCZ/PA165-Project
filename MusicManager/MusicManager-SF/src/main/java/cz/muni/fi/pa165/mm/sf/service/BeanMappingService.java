@@ -1,7 +1,6 @@
 package cz.muni.fi.pa165.mm.sf.service;
 
-import org.dozer.Mapper;
-
+import com.github.dozermapper.core.Mapper;
 import java.util.Collection;
 import java.util.List;
 

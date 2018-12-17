@@ -19,7 +19,7 @@ public class PerformerDTO {
     
     private String country;
     
-    private Set<AlbumDTO> albums = new HashSet();
+    private Set<AlbumDTO> albums = new HashSet<>();
 
     public Long getId() {
         return id;

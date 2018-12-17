@@ -2,16 +2,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>MusicManager</artifactId>
         <groupId>cz.muni.fi.pa165</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
-
     <artifactId>MusicManager-MVC</artifactId>
     <packaging>war</packaging>
+    <name>Music Manager - MVC</name>
+    
     <dependencies>
+        <dependency>
+            <groupId>cz.muni.fi.pa165</groupId>
+            <artifactId>SampleData</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
         <!-- Spring MVC -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -50,17 +56,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
-
-        </dependency>
-        <dependency>
-            <groupId>cz.muni.fi.pa165</groupId>
-            <artifactId>MusicManager-API</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>cz.muni.fi.pa165</groupId>
-            <artifactId>MusicManager-SF</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
 
     </dependencies>
@@ -68,7 +63,7 @@
         <!-- what to do when only "mvn" is run -->
         <defaultGoal>cargo:run</defaultGoal>
         <!-- name of the produced war -->
-        <finalName>musicManager</finalName>
+        <finalName>pa165</finalName>
         <plugins>
             <!--  embedded Tomcat -->
             <plugin>

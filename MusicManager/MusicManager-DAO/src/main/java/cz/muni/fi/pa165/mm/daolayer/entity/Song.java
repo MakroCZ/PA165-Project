@@ -36,6 +36,7 @@ public class Song {
 
     public Song(String name, LocalTime length, LocalDate date){
         this.setName(name);
+        this.setLength(length);
         this.setDate(date);
     }
 

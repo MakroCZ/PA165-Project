@@ -1,36 +1,30 @@
 package cz.muni.fi.pa165.mm.sf.service.config;
 
-import cz.muni.fi.pa165.mm.api.dto.SongDTO;
+import com.github.dozermapper.core.DozerBeanMapperBuilder;
+import com.github.dozermapper.core.Mapper;
 import cz.muni.fi.pa165.mm.daolayer.DAOLayerApplicationContext;
-import cz.muni.fi.pa165.mm.daolayer.entity.Song;
-import cz.muni.fi.pa165.mm.sf.facade.SongFacadeImpl;
-import cz.muni.fi.pa165.mm.sf.service.SongServiceImpl;
-import org.dozer.DozerBeanMapper;
-import org.dozer.Mapper;
-import org.dozer.loader.api.BeanMappingBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @Import(DAOLayerApplicationContext.class)
-@ComponentScan(basePackageClasses={SongServiceImpl.class, SongFacadeImpl.class})
+@ComponentScan(basePackages={"cz.muni.fi.pa165.mm.sf.facade", "cz.muni.fi.pa165.mm.sf.service"})
 public class ServiceConfiguration {
 
 
     @Bean
     public Mapper dozer(){
-        DozerBeanMapper dozer = new DozerBeanMapper();
-        dozer.addMapping(new DozerCustomConfig());
-        return dozer;
+        Mapper mapper = DozerBeanMapperBuilder.buildDefault();
+        return mapper;
     }
-
-    public class DozerCustomConfig extends BeanMappingBuilder {
-        @Override
-        protected void configure() {
-            mapping(Song.class, SongDTO.class);
-        }
+    
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
 }

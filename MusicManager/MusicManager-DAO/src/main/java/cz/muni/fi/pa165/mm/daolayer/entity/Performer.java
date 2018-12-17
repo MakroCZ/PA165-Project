@@ -35,7 +35,7 @@ public class Performer {
     private String country;
     
     @OneToMany(mappedBy = "performer")
-    private Set<Album> albums = new HashSet();
+    private Set<Album> albums = new HashSet<>();
 
     public Long getId() {
         return id;

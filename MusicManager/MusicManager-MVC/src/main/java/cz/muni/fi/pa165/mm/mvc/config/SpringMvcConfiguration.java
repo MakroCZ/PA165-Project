@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.mm.mvc.config;
 
+import cz.muni.fi.pa165.sampledata.MusicManagerWithSampleDataConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
@@ -19,9 +20,9 @@ import javax.validation.Validator;
  * This class represents main spring MVC configuration class.
  * @author Yehor Safonov; 487596
  */
-
 @EnableWebMvc
 @Configuration
+@Import(MusicManagerWithSampleDataConfiguration.class)
 @ComponentScan(basePackages = "cz.muni.fi.pa165.mm.mvc.controllers")
 public class SpringMvcConfiguration implements WebMvcConfigurer {
     private final static Logger log = LoggerFactory.getLogger(SpringMvcConfiguration.class);
@@ -70,6 +71,16 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
                 .addResourceLocations("/resources/");
     }
 
+    /**
+     * Provides localized messages.
+     */
+    @Bean
+    public MessageSource messageSource() {
+        log.debug("registering ResourceBundle 'Texts' for messages");
+        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+        messageSource.setBasename(TEXTS);
+        return messageSource;
+    }
 
     /**
      * JSR-303 Validator.

@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface UserService {
     
+    void registerUser(User u, String passwd);
+    
     /**
      * Get all users
      * @return List of all users
