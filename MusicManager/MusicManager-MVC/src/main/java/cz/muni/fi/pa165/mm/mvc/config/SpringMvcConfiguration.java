@@ -22,7 +22,7 @@ import javax.validation.Validator;
  */
 @EnableWebMvc
 @Configuration
-@Import(MusicManagerWithSampleDataConfiguration.class)
+@Import({MusicManagerWithSampleDataConfiguration.class, WebSecurityConfiguration.class})
 @ComponentScan(basePackages = "cz.muni.fi.pa165.mm.mvc.controllers")
 public class SpringMvcConfiguration implements WebMvcConfigurer {
     private final static Logger log = LoggerFactory.getLogger(SpringMvcConfiguration.class);
@@ -36,6 +36,7 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         log.debug("mapping URL / to home view");
         registry.addViewController("/").setViewName("home");
+        registry.addViewController("/login").setViewName("login");
     }
 
 

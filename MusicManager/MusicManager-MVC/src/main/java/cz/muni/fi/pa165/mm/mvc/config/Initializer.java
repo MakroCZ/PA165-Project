@@ -4,12 +4,22 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.Filter;
+import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
 /**
  * This class represents main initializer.
  * @author Yehor Safonov; 487596
  */
 public class Initializer  extends AbstractAnnotationConfigDispatcherServletInitializer {
+    
+    /**
+     * Provides servlet configuration classes
+     */
+    @Override
+    protected Class<?>[] getServletConfigClasses() {
+        return new Class<?>[]{};
+    }
+    
     /**
      * Provides main root configuration classes
      */
@@ -36,11 +46,5 @@ public class Initializer  extends AbstractAnnotationConfigDispatcherServletIniti
         return new Filter[]{encodingFilter};
     }
 
-    /**
-     * Provides servlet configuration classes
-     */
-    @Override
-    protected Class<?>[] getServletConfigClasses() {
-        return null;
-    }
+    
 }
