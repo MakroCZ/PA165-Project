@@ -69,7 +69,7 @@
                                 <form:input class="inputdate" path="length" type="time" cssClass="form-control"/>
                                 <form:errors path="length" type="time" cssClass="help-block"/>
                             </div>
-                      <button class="btn btn-primary nt-2 ml-2" type="submit">Create song</button>
+                      <button class="btn btn-primary mt-3 ml-4" type="submit">Create song</button>
                   </form:form>
             </div>
            </div>
