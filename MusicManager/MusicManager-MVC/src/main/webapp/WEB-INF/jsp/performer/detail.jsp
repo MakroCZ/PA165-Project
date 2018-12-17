@@ -45,29 +45,36 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
-                                    <c:forEach items="${performers}" var="performer">
+                                    <tr>
+                                        <td>
+                                            <c:out value="${performer.name}"/>
+                                        </td>
+                                        <td>
+                                            <c:out value="${performer.country}"/>
+                                        </td>
+                                        <td>
+                                            <c:out value="${performer.startDate}"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        Albums:
+                        <div class ="d-flex w-100 p-4 align-items-center">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"><fmt:message key="entity.album.name"/></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="${albums}" var="album">
                                         <tr>
                                             <td>
-                                                <c:out value="${performer.name}"/>
-                                            </td>
-                                            <td>
-                                                <c:out value="${performer.country}"/>
-                                            </td>
-                                            <td>
-                                                <c:out value="${performer.startDate}"/>
-                                            </td>
-                                            <td>
-                                                <my:a href="/performer/detail/${performer.id}" class="btn btn-primary">Detail</my:a>
-                                            </td>
-                                            <td>
-                                                <form method="post" action="${pageContext.request.contextPath}/performer/delete/${performer.id}">
-                                                    <button type="submit" class="btn btn-primary">Delete</button>
-                                                </form>
+                                                <c:out value="${album.name}"/>
                                             </td>
                                         </tr>
                                     </c:forEach>
-
                                 </tbody>
                             </table>
                         </div>
@@ -77,3 +84,4 @@
         </div>
     </jsp:attribute>
 </my:template>
+
