@@ -31,6 +31,11 @@ Finally, run Apache Tomcat server using command:
 ```
 mvn
 ```
+## How to sign in to the web application
+
+Just use default *username* and *password*:<br />
+**Username:** admin<br />
+**Password:** admin<br />
 
 ## Authors
 
