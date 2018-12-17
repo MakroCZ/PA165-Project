@@ -5,7 +5,11 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<<my:template title="New genre">
+<!--
+* This class represents a template.tag object.
+* @author Lukáš Suchánek;433654
+*-->
+<my:template title="New genre">
  <jsp:attribute name="body">
 
 

@@ -1,12 +1,11 @@
 package cz.muni.fi.pa165.mm.mvc.controllers;
 
-import cz.muni.fi.pa165.mm.api.dto.AlbumDTO;
-import cz.muni.fi.pa165.mm.api.dto.GenreDTO;
-import cz.muni.fi.pa165.mm.api.dto.SongCreateDTO;
-import cz.muni.fi.pa165.mm.api.dto.SongDTO;
+import cz.muni.fi.pa165.mm.api.dto.*;
 import cz.muni.fi.pa165.mm.api.facade.AlbumFacade;
 import cz.muni.fi.pa165.mm.api.facade.GenreFacade;
+import cz.muni.fi.pa165.mm.api.facade.PerformerFacade;
 import cz.muni.fi.pa165.mm.api.facade.SongFacade;
+import cz.muni.fi.pa165.mm.daolayer.entity.Song;
 import cz.muni.fi.pa165.mm.sf.facade.SongFacadeImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,9 +27,10 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
- * Created by lsuchanek on 14.12.2018.
+ * @author Lukáš Suchánek; 433654
  */
 @Controller
 @RequestMapping("/song")
@@ -44,16 +44,41 @@ public class SongController {
 
     @Autowired
     private GenreFacade genreFacade;
+
+    @Autowired
+    private PerformerFacade performerFacade;
     //
+
+    /**
+     * Return all songs
+     * @return
+     */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("songs", songFacade.getAllSongs());
         return "song/list";
     }
 
+    /**
+     * Find all songs which contains entered name
+     *
+     * @param name name of song
+     * @return
+     */
     @RequestMapping(value = "/list/{name}", method = RequestMethod.GET)
     public String findByName(@PathVariable String name,Model model) {
         model.addAttribute("songs", this.find(name));
+        return "song/list";
+    }
+
+    /**
+     * Find all songs that has same interpret as entered song
+     * @param id id of song
+     * @return
+     */
+    @RequestMapping(value = "/list/interpret/{id}", method = RequestMethod.GET)
+    public String findAllOfInterpret(@PathVariable Long id,Model model){
+        model.addAttribute("songs", findFromInterpret(id));
         return "song/list";
     }
     //
@@ -94,31 +119,6 @@ public class SongController {
         return "redirect:" + uriBuilder.path("/song/list").toUriString();
     }
 
-    private List<SongDTO> getSongs(){
-        AlbumDTO album = new AlbumDTO();
-        album.setName("album");
-        GenreDTO genre = new GenreDTO();
-        genre.setName("genre");
-        SongDTO song = new SongDTO();
-        song.setName("song1");
-        song.setDate(LocalDate.now());
-        song.setLength(LocalTime.of(0,3,0));
-        song.setAlbum(album);
-        song.setGenre(genre);
-
-        SongDTO song2 = new SongDTO();
-        song2.setName("song2");
-        song2.setDate(LocalDate.now());
-        song2.setLength(LocalTime.of(0,3,0));
-        song2.setAlbum(album);
-        song2.setGenre(genre);
-
-        List<SongDTO> songs = new ArrayList<>();
-        songs.add(song);
-        songs.add(song2);
-        return songs;
-    }
-
     private List<SongDTO> find(String name){
         List<SongDTO> allSongs = songFacade.getAllSongs();
         List<SongDTO> filtered = new ArrayList<>();
@@ -128,5 +128,17 @@ public class SongController {
             }
         }
         return filtered;
+    }
+
+    private List<SongDTO> findFromInterpret(Long id){
+        SongDTO song = songFacade.getSongWithID(id);
+        List<SongDTO> allSongs = songFacade.getAllSongs();
+        List<SongDTO> selected = new ArrayList<>();
+        for(SongDTO s : allSongs){
+            if(s.getAlbum().getPerformer().getId() == song.getAlbum().getPerformer().getId()){
+                selected.add(s);
+            }
+        }
+        return selected;
     }
 }

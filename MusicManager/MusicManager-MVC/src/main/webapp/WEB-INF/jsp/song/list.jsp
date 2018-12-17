@@ -5,6 +5,10 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+<!--
+* This class represents a template.tag object.
+* @author Lukáš Suchánek;433654
+*-->
 
 <my:template title="Songs">
 <jsp:attribute name="body">
@@ -45,6 +49,7 @@
                             <th scope="col">Length</th>
                             <th scope="col">Album</th>
                             <th scope="col">Genre</th>
+                            <th scope="col">Songs from same interpret</th>
                         </tr>
                         </thead>
                   <tbody>
@@ -63,6 +68,9 @@
                                     </td>
                                     <td>
                                         <c:out value="${song.genre.name}"/>
+                                    </td>
+                                    <td>
+                                        <a id="search-button" href="/pa165/song/list/interpret/${song.id}" class="btn btn-primary searchbutton" >Find</a>
                                     </td>
                                 </tr>
                           </c:forEach>
