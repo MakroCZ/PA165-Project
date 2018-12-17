@@ -23,14 +23,21 @@ Then build Java EE project with Maven:
 ```
 mvn clean install
 ```
-
+During the next step open server's directory:
+```
+cd MusicManager-MVC/
+```
+Finally, run Apache Tomcat server using command:
+```
+mvn
+```
 
 ## Authors
 
-* **Yehor Safonov** - *programming, wiki documentation, diagrams*
-* **Marek Bařinka** - *project structure, programming* 
-* **Lukáš Suchánek** - *programming, testing*
-* **Václav Stehlík** - *programming, testing*
+* **Yehor Safonov** - *programming, wiki documentation, diagrams, frontend*
+* **Marek Bařinka** - *project structure, programming, authentication, git management*
+* **Lukáš Suchánek** - *programming, testing, controllers, Apache Tomcat development*
+* **Václav Stehlík** - *programming, REST API, documentation, testing*
 
 
 ## License
