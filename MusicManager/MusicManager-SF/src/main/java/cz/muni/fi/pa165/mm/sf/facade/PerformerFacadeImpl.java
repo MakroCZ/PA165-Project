@@ -63,10 +63,4 @@ public class PerformerFacadeImpl implements PerformerFacade {
         performer.setId(id);
         performerService.remove(performer);
     }
-
-    @Override
-    public void addAlbum(Long performerId, Long AlbumId) {
-        performerService.addAlbum(performerService.findById(performerId),
-                albumService.retrieve(AlbumId));
-    }
 }

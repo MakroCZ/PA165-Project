@@ -44,9 +44,4 @@ public class PerformerServiceImpl implements PerformerService {
     public void remove(Performer p) {
         performerDao.remove(p);
     }
-
-    @Override
-    public void addAlbum(Performer p, Album a) {
-        p.addAlbum(a);
-    }
 }
