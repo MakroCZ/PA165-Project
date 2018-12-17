@@ -1,7 +1,9 @@
 package cz.muni.fi.pa165.mm.mvc.controllers;
 
+import cz.muni.fi.pa165.mm.api.dto.AlbumDTO;
 import cz.muni.fi.pa165.mm.api.dto.PerformerCreateDTO;
 import cz.muni.fi.pa165.mm.api.dto.PerformerDTO;
+import cz.muni.fi.pa165.mm.api.facade.AlbumFacade;
 import cz.muni.fi.pa165.mm.api.facade.PerformerFacade;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +36,8 @@ public class PerformerController {
     @Autowired
     private PerformerFacade performerFacade;
     
+    @Autowired
+    private AlbumFacade albumFacade;
     
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
@@ -62,8 +66,21 @@ public class PerformerController {
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
     public String detail(@PathVariable long id, Model model) {
         log.debug("detail({})", id);
-        model.addAttribute("performer", performerFacade.findById(id));
+        PerformerDTO p = performerFacade.findById(id);
+        model.addAttribute("performer", p);
+        model.addAttribute("albums", findAlbums(p));
         return "performer/detail";
+    }
+    
+    private List<AlbumDTO> findAlbums(PerformerDTO p) {
+        List<AlbumDTO> filtered = new ArrayList<>();
+        List<AlbumDTO> all = albumFacade.findAll();
+        for (AlbumDTO a : all) {
+            if (a.getPerformer().equals(p)) {
+                filtered.add(a);
+            }
+        }
+        return filtered;
     }
     
     @RequestMapping(value = "/new", method = RequestMethod.GET)

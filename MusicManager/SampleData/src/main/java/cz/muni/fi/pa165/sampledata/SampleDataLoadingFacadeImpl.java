@@ -76,7 +76,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         Song myMelancholyBlues = song("My Melancholy Blues", LocalTime.of(0, 3, 29), LocalDate.of(1977, Month.OCTOBER, 28), newsOfTheWorld, hardRock);
         
         
-        Performer acdc = performer("AC/DC", LocalDate.of(1937, Month.JANUARY, 1), "Australia");
+        Performer acdc = performer("AC/DC", LocalDate.of(1973, Month.JANUARY, 1), "Australia");
         
         Album highwayToHell = album("Highway to Hell", LocalDate.of(1979, Month.MARCH, 27), acdc);
         Song songHighwayToHell = song("Highway to Hell", LocalTime.of(0, 3, 29), LocalDate.of(1979, Month.MARCH, 27), highwayToHell, hardRock);
