@@ -2,6 +2,13 @@ package cz.muni.fi.pa165.mm.api.dto;
 
 
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import cz.muni.fi.pa165.mm.api.LocalDateDeserializer;
+import cz.muni.fi.pa165.mm.api.LocalDateSerializer;
+import cz.muni.fi.pa165.mm.api.LocalTimeDeserializer;
+import cz.muni.fi.pa165.mm.api.LocalTimeSerializer;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
@@ -16,8 +23,12 @@ public class SongCreateDTO {
     @Size(min = 2, max=50)
     private String name;
     @NotNull
+    @JsonDeserialize(using = LocalTimeDeserializer.class)
+    @JsonSerialize(using = LocalTimeSerializer.class)
     private LocalTime length;
     @NotNull
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate date;
     @NotNull
     private Long albumId;

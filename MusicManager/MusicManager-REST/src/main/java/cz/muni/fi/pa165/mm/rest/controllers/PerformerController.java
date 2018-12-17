@@ -4,8 +4,7 @@ import cz.muni.fi.pa165.mm.api.dto.PerformerCreateDTO;
 import cz.muni.fi.pa165.mm.api.dto.PerformerDTO;
 import cz.muni.fi.pa165.mm.api.facade.PerformerFacade;
 import cz.muni.fi.pa165.mm.rest.ApiUris;
-import cz.muni.fi.pa165.mm.rest.exceptions.ResourceAlreadyExistingException;
-import cz.muni.fi.pa165.mm.rest.exceptions.ResourceNotFoundException;
+import cz.muni.fi.pa165.mm.rest.exceptions.InternalException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +28,7 @@ public class PerformerController {
         try {
             return performerFacade.findById(id);
         } catch (Exception ex) {
-            throw new ResourceNotFoundException();
+            throw new InternalException();
         }
     }
 
@@ -44,7 +43,7 @@ public class PerformerController {
             long id = performerFacade.create(performer);
             return getPerformer(id);
         } catch (Exception ex) {
-            throw new ResourceAlreadyExistingException();
+            throw new InternalException();
         }
     }
 
@@ -54,7 +53,7 @@ public class PerformerController {
             performerFacade.update(performer);
             return new ResponseEntity(HttpStatus.OK);
         } catch (Exception ex) {
-            throw new ResourceNotFoundException();
+            throw new InternalException();
         }
     }
 
@@ -64,7 +63,7 @@ public class PerformerController {
             performerFacade.remove(id);
             return new ResponseEntity(HttpStatus.OK);
         } catch (Exception ex) {
-            throw new ResourceNotFoundException();
+            throw new InternalException();
         }
     }
 }
