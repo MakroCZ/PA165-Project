@@ -14,6 +14,9 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * @author Václav Stehlík; 487580
+ */
 @EnableWebMvc
 @Configuration
 @Import({ServiceConfiguration.class})
