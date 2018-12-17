@@ -64,7 +64,7 @@
                                 </form:select>
                                 <p class="help-block"><form:errors path="genreId" cssClass="error"/></p>
                             </div>
-                        <form:label path="length" cssClass="col-sm-2 control-label">Date</form:label>
+                        <form:label path="length" cssClass="col-sm-2 control-label">Length</form:label>
                             <div class="col-sm-10">
                                 <form:input class="inputdate" path="length" type="time" cssClass="form-control"/>
                                 <form:errors path="length" type="time" cssClass="help-block"/>
