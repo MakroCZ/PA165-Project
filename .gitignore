@@ -6,3 +6,6 @@
 /MusicManager/MusicManager-DAO/target/
 /MusicManager/MusicManager-API/target/
 /MusicManager/MusicManager-SF/target/
+/MusicManager/MusicManager-REST/target/
+/MusicManager/MusicManager-MVC/target/
+/MusicManager/SampleData/target/
