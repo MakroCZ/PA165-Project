@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "99486db1-e798-4c61-95cd-33cc9b260843",
+		"name": "Song",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetSong",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/songs/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"songs",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteSong",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/songs/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"songs",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateSong",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"1\",\n    \"name\": \"test-name\",\n    \"length\": \"20:00\",\n    \"date\": \"2019-01-31\",\n    \"album\": {\n        \"id\": 1,\n        \"name\": \"test-name\",\n        \"date\": \"2019-01-30\"\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/songs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"songs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSongs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/songs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"songs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateSong",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"test-name\",\n    \"length\": \"20:00\",\n    \"date\": \"2019-01-30\",\n    \"albumId\": \"1\",\n    \"genreId\": \"1\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/songs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"songs"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
