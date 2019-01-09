@@ -53,8 +53,8 @@ public class GenreFacadeImpl implements GenreFacade {
     }
 
     @Override
-    public List<GenreDTO> getAllGenres() {
-        return beanMappingService.mapTo(genreService.getAllGenres(), GenreDTO.class);
+    public List<GenreDTO> findAll() {
+        return beanMappingService.mapTo(genreService.findAll(), GenreDTO.class);
     }
 
     @Override

@@ -115,8 +115,8 @@ public class GenreServiceTest extends AbstractTransactionalTestNGSpringContextTe
     
     @Test
     public void getAll() {
-        Mockito.doReturn(Arrays.asList(testGenre1, testGenre2)).when(genreDao).getAllGenres();
-        List<Genre> g = genreService.getAllGenres();
+        Mockito.doReturn(Arrays.asList(testGenre1, testGenre2)).when(genreDao).findAll();
+        List<Genre> g = genreService.findAll();
         Assert.assertEquals(g.size(), 2);
         Assert.assertEquals(g.get(0), testGenre1);
         Assert.assertEquals(g.get(1), testGenre2);

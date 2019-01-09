@@ -46,7 +46,7 @@ public class GenreDaoImpl implements GenreDao {
     }
 
     @Override
-    public List<Genre> getAllGenres() {
+    public List<Genre> findAll() {
         TypedQuery<Genre> query = em.createQuery("select g from Genre g", Genre.class);
         return query.getResultList();
     }
