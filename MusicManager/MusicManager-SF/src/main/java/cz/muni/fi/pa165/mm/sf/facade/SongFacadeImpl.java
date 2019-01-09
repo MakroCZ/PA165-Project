@@ -1,7 +1,9 @@
 package cz.muni.fi.pa165.mm.sf.facade;
 
+import cz.muni.fi.pa165.mm.api.dto.AlbumDTO;
 import cz.muni.fi.pa165.mm.api.dto.SongCreateDTO;
 import cz.muni.fi.pa165.mm.api.dto.SongDTO;
+import cz.muni.fi.pa165.mm.api.facade.AlbumFacade;
 import cz.muni.fi.pa165.mm.api.facade.SongFacade;
 import cz.muni.fi.pa165.mm.daolayer.entity.Album;
 import cz.muni.fi.pa165.mm.daolayer.entity.Genre;
@@ -17,7 +19,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Lukas Suchanek; 433654
@@ -72,4 +76,15 @@ public class SongFacadeImpl implements SongFacade {
        return beanMappingService.mapTo(songService.findById(id), SongDTO.class);
     }
 
+    @Override
+    public List<SongDTO> findAllSongsFromSamePerformer(SongDTO s) {
+        List<SongDTO> allsongs = beanMappingService.mapTo(songService.findAll(), SongDTO.class);
+        List<SongDTO> selected = new ArrayList<>();
+        for (SongDTO song : allsongs){
+            if(song.getAlbum().getPerformer().equals(s.getAlbum().getPerformer())){
+                selected.add(song);
+            }
+        }
+       return selected;
+    }
 }

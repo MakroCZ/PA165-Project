@@ -97,23 +97,21 @@ public class Song {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Song song = (Song) o;
-
-        if (id != null ? !id.equals(song.id) : song.id != null) return false;
-        if (!name.equals(song.name)) return false;
-        if (!length.equals(song.length)) return false;
-        return date.equals(song.date);
+        if (this == o) {
+            return true;
+        }
+        if (this.getId() == null) {
+            return false;
+        }
+        if (!(o instanceof Song)) {
+            return false;
+        }
+        Song p = (Song) o;
+        return this.getId().equals(p.getId());
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + name.hashCode();
-        result = 31 * result + length.hashCode();
-        result = 31 * result + date.hashCode();
-        return result;
+        return id != null ? id.hashCode() : 0;
     }
 }
