@@ -119,9 +119,9 @@ public class GenreFacadeTest {
     }
     
     @Test
-    public void getAllGenres() {
-        Mockito.doReturn(Arrays.asList(g1, g2)).when(genreService).getAllGenres();
-        List<GenreDTO> gl = genreFacade.getAllGenres();
+    public void findAll() {
+        Mockito.doReturn(Arrays.asList(g1, g2)).when(genreService).findAll();
+        List<GenreDTO> gl = genreFacade.findAll();
         Assert.assertEquals(gl.size(), 2);
         Assert.assertEquals(gl.get(0), gDTO1);
         Assert.assertEquals(gl.get(1), gDTO2);

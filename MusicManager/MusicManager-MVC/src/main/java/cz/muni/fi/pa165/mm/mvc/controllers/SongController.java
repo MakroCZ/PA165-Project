@@ -98,7 +98,7 @@ public class SongController {
 
     @ModelAttribute("genres")
     public List<GenreDTO> genres(){
-        return genreFacade.getAllGenres();
+        return genreFacade.findAll();
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)

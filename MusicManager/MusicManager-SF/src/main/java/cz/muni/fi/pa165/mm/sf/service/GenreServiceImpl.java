@@ -39,8 +39,8 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    public List<Genre> getAllGenres(){
-        return genreDao.getAllGenres();
+    public List<Genre> findAll(){
+        return genreDao.findAll();
     }
 
     @Override

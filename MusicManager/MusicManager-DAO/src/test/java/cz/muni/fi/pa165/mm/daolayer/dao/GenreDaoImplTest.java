@@ -40,7 +40,7 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
         Genre g = new Genre();
         g.setName("Test");
         genreDao.create(g);
-        gs = genreDao.getAllGenres();
+        gs = genreDao.findAll();
         Assert.assertEquals(gs.size(), 1);
         Assert.assertEquals(gs.get(0), g);
     }
@@ -64,7 +64,7 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
         genreDao.create(g);
         genreDao.create(g);
         
-        List<Genre> gs = genreDao.getAllGenres();
+        List<Genre> gs = genreDao.findAll();
         Assert.assertEquals(gs.size(), 1);
         Assert.assertEquals(gs.get(0), g);
     }
@@ -78,7 +78,7 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
         genreDao.create(g1);
         genreDao.create(g2);
         
-        List<Genre> gs = genreDao.getAllGenres();
+        List<Genre> gs = genreDao.findAll();
         Assert.assertEquals(gs.size(), 2);
         
         Assert.assertTrue(gs.contains(g1));
@@ -206,13 +206,13 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
     }
     
     @Test
-    public void getAllGenresEmptyDBTest() {
-        List<Genre> gs = genreDao.getAllGenres();
+    public void findAllEmptyDBTest() {
+        List<Genre> gs = genreDao.findAll();
         Assert.assertTrue(gs.isEmpty());
     }
     
     @Test
-    public void getAllGenresTest() {
+    public void findAllTest() {
         Genre g1 = new Genre();
         Genre g2 = new Genre();
         Genre g3 = new Genre();
@@ -222,7 +222,7 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
         genreDao.create(g1);
         genreDao.create(g2);
         genreDao.create(g3);
-        List<Genre> gs = genreDao.getAllGenres();
+        List<Genre> gs = genreDao.findAll();
         Assert.assertEquals(gs.size(), 3);
         Assert.assertTrue(gs.contains(g1));
         Assert.assertTrue(gs.contains(g2));
