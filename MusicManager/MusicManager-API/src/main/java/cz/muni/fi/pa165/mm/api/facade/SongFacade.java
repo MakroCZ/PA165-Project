@@ -41,4 +41,6 @@ public interface SongFacade {
      * @return song
      */
     SongDTO getSongWithID(Long id);
+
+    List<SongDTO> findAllSongsFromSamePerformer(SongDTO s);
 }

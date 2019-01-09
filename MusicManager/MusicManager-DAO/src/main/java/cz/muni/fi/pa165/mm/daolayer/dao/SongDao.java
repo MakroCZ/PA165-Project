@@ -10,21 +10,21 @@ import java.util.List;
 public interface SongDao {
     /**
      *  adds song
-     *  throws IllegalArgumentException if something is null or even song is null
+     *  throws IllegalArgumentException if some attribute is null or even song is null
      * @param song
      */
     void create(Song song);
 
     /**
      * change song with same ID to this new
-     * throws IllegalArgumentException if something is null or even song to update is null
+     * throws IllegalArgumentException if some attribute is null or even song to update is null
      * @param song
      */
     void update(Song song);
 
     /**
      * deletes song
-     * throws IllegalArgumentException if song is null or does not exist
+     * throws IllegalArgumentException if some attribute is null or does not exist
      * @param song
      */
     void delete(Song song);

@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -23,7 +21,6 @@ import java.time.LocalTime;
 import java.time.Month;
 import java.util.List;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
-import org.testng.annotations.AfterClass;
 
 /**
  * @author Lukáš Suchánek; 433564
@@ -43,7 +40,7 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
     private Album updateAlbum;
     private Genre genre;
 
-    @BeforeClass
+    @BeforeMethod
     public void onlyOnce(){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -79,7 +76,7 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
         em.close();
     }
     
-    @AfterClass
+    @AfterMethod
     public void resetDB() {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -95,7 +92,7 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
         for (Performer p : ps) {
             em.remove(p);
         }
-        
+
         List<Genre> gs = em.createQuery("SELECT g FROM Genre g", Genre.class).getResultList();
         for (Genre g : gs) {
             em.remove(g);
@@ -116,9 +113,10 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
         performer.addAlbum(a);
 
         Album a2 = albumDao.retrieve(a.getId());
-        em.getTransaction().commit();
-        em.close();
+
         Assert.assertEquals(a, a2);
+
+//        em.getTransaction().rollback();
     }
 
     @Test(expectedExceptions=InvalidDataAccessApiUsageException.class)
@@ -137,8 +135,7 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
         performer.addAlbum(a);
         albumDao.create(a);
 
-        em.getTransaction().commit();
-        em.close();
+        em.getTransaction().rollback();
     }
 
 
@@ -153,19 +150,21 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
         performer.addAlbum(a);
         albumDao.create(a);
 
-        em.getTransaction().commit();
-        em.close();
+        em.getTransaction().rollback();
     }
 
     @Test
     public void updateTest(){
-
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
         Album a2 = albumDao.retrieve(updateAlbum.getId());
         a2.setDate(LocalDate.of(2017, Month.AUGUST,15));
         a2.setName("Update test album");
         albumDao.update(a2);
         Album a3 = albumDao.retrieve(updateAlbum.getId());
         Assert.assertEquals(a2, a3);
+
+        em.getTransaction().rollback();
     }
 
     @Test(expectedExceptions=InvalidDataAccessApiUsageException.class)
@@ -189,6 +188,8 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
         albumDao.delete(a);
         Album a2 = albumDao.retrieve(a.getId());
         Assert.assertEquals(null, a2);
+
+        em.getTransaction().rollback();
     }
 
     @Test(expectedExceptions=InvalidDataAccessApiUsageException.class)
@@ -198,14 +199,25 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void retrieveNonExistingId(){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
         Album a = albumDao.retrieve(1000L);
         Assert.assertEquals(a, null);
+
+        em.getTransaction().rollback();
     }
 
     @Test
     public void retrieveAllTest(){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
         List<Album> albumList = albumDao.retrieveAll();
-        Assert.assertEquals(albumList.size(),3);
+        Assert.assertEquals(albumList.size(),2);
+        Assert.assertEquals(albumList.get(0), album);
+        Assert.assertEquals(albumList.get(1), updateAlbum);
+
+
+        em.getTransaction().rollback();
     }
 
 
