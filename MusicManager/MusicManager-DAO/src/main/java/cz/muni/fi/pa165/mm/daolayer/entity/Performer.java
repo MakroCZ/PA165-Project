@@ -30,8 +30,10 @@ public class Performer {
     /**
      * Date when performer start creating songs
      */
+    @NotNull
     private LocalDate startDate;
     
+    @NotNull
     private String country;
     
     @OneToMany(mappedBy = "performer")
