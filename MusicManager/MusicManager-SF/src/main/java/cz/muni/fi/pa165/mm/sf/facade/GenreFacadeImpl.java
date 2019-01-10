@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.mm.sf.facade;
 
 import cz.muni.fi.pa165.mm.api.dto.GenreCreateDTO;
 import cz.muni.fi.pa165.mm.api.dto.GenreDTO;
+import cz.muni.fi.pa165.mm.api.dto.SongDTO;
 import cz.muni.fi.pa165.mm.api.facade.GenreFacade;
 import cz.muni.fi.pa165.mm.daolayer.entity.Genre;
 import cz.muni.fi.pa165.mm.sf.service.BeanMappingService;
@@ -12,21 +13,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
 import java.util.List;
 
 /**
  * This class represents a GenereFacade implementation.
  * @author Yehor Safonov; 487596
  */
-
 @Service
 @Transactional
 public class GenreFacadeImpl implements GenreFacade {
 
     final static Logger log = LoggerFactory.getLogger(GenreFacadeImpl.class);
 
-    @Inject
+    @Autowired
     private GenreService genreService;
 
     @Autowired
@@ -66,5 +65,11 @@ public class GenreFacadeImpl implements GenreFacade {
     @Override
     public List<GenreDTO> findWithName(String name) {
         return beanMappingService.mapTo(genreService.findByName(name), GenreDTO.class);
+    }
+
+    @Override
+    public List<SongDTO> findAllSongsWithSameGenre(Long id) {
+        Genre genre = genreService.findById(id);
+        return beanMappingService.mapTo(genreService.findAllSongsWithSameGenre(genre), SongDTO.class);
     }
 }

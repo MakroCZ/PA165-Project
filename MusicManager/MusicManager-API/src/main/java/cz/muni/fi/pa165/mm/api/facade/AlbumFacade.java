@@ -40,4 +40,11 @@ public interface AlbumFacade {
      * @return Album with specified id or null if the entity does not exist.
      */
     AlbumDTO findById(Long id);
+    
+    /**
+     * Finds albums produced by performers from specified country.
+     * @param country Performer's country.
+     * @return List containing all albums from the database or null if no album is stored.
+     */
+    List<AlbumDTO> findAlbumsFromCountry(String country);
 }
