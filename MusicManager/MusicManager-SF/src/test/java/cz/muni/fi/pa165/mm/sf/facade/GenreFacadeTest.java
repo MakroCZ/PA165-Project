@@ -9,13 +9,15 @@ import cz.muni.fi.pa165.mm.sf.service.GenreService;
 import cz.muni.fi.pa165.mm.sf.service.config.ServiceConfiguration;
 import java.util.Arrays;
 import java.util.List;
-import org.hibernate.service.spi.ServiceException;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import static org.mockito.Matchers.any;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -25,6 +27,7 @@ import org.testng.annotations.Test;
  * @author Marek Barinka; 456295
  */
 @ContextConfiguration(classes=ServiceConfiguration.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 public class GenreFacadeTest {
 
     @Mock
@@ -33,30 +36,9 @@ public class GenreFacadeTest {
     @Mock
     private BeanMappingService beanMappingService;
     
-    //@Autowired z nějakého důvodu nefunguje, proto vytváření instance
+    @Autowired
     @InjectMocks
-    private GenreFacade genreFacade = new GenreFacadeImpl();
-    
-    
-    @BeforeMethod
-    public void initMocks() throws ServiceException {
-        MockitoAnnotations.initMocks(this);
-        
-        Mockito.doReturn(g1).when(beanMappingService).mapTo(gDTO1, Genre.class);
-        Mockito.doReturn(g2).when(beanMappingService).mapTo(gDTO2, Genre.class);
-        
-        Mockito.doReturn(gDTO1).when(beanMappingService).mapTo(g1, GenreDTO.class);
-        Mockito.doReturn(gDTO2).when(beanMappingService).mapTo(g2, GenreDTO.class);
-        
-        Mockito.doReturn(Arrays.asList(g1, g2)).when(beanMappingService)
-                .mapTo(Arrays.asList(gDTO1, gDTO2), Genre.class);
-        
-        Mockito.doReturn(Arrays.asList(gDTO1, gDTO2)).when(beanMappingService)
-                .mapTo(Arrays.asList(g1, g2), GenreDTO.class);
-        
-        Mockito.doReturn(Arrays.asList(gDTO2)).when(beanMappingService)
-                .mapTo(Arrays.asList(g2), GenreDTO.class);
-    }
+    private GenreFacade genreFacade;
     
     private Genre g1;
     private Genre g2;
@@ -84,6 +66,23 @@ public class GenreFacadeTest {
         gDTO2.setId(2L);
         gDTO2.setName("Genre2");
         gDTO2.setDescription("Desc2");
+
+        MockitoAnnotations.initMocks(this);
+        
+        Mockito.doReturn(g1).when(beanMappingService).mapTo(gDTO1, Genre.class);
+        Mockito.doReturn(g2).when(beanMappingService).mapTo(gDTO2, Genre.class);
+        
+        Mockito.doReturn(gDTO1).when(beanMappingService).mapTo(g1, GenreDTO.class);
+        Mockito.doReturn(gDTO2).when(beanMappingService).mapTo(g2, GenreDTO.class);
+        
+        Mockito.doReturn(Arrays.asList(g1, g2)).when(beanMappingService)
+                .mapTo(Arrays.asList(gDTO1, gDTO2), Genre.class);
+        
+        Mockito.doReturn(Arrays.asList(gDTO1, gDTO2)).when(beanMappingService)
+                .mapTo(Arrays.asList(g1, g2), GenreDTO.class);
+        
+        Mockito.doReturn(Arrays.asList(gDTO2)).when(beanMappingService)
+                .mapTo(Arrays.asList(g2), GenreDTO.class);
     }
     
     @Test

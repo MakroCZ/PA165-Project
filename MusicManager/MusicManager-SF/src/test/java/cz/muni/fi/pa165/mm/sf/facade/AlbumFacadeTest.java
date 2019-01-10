@@ -4,7 +4,6 @@ import cz.muni.fi.pa165.mm.api.dto.*;
 import cz.muni.fi.pa165.mm.api.facade.AlbumFacade;
 import cz.muni.fi.pa165.mm.daolayer.entity.Album;
 import cz.muni.fi.pa165.mm.daolayer.entity.Performer;
-import cz.muni.fi.pa165.mm.sf.facade.AlbumFacadeImpl;
 import cz.muni.fi.pa165.mm.sf.service.AlbumService;
 import cz.muni.fi.pa165.mm.sf.service.BeanMappingService;
 import cz.muni.fi.pa165.mm.sf.service.PerformerService;
@@ -26,12 +25,15 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * @author Lukas Suchanek; 433654
  */
-
 @ContextConfiguration(classes = ServiceConfiguration.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 public class AlbumFacadeTest extends AbstractTransactionalTestNGSpringContextTests {
 
     @Mock
@@ -43,8 +45,9 @@ public class AlbumFacadeTest extends AbstractTransactionalTestNGSpringContextTes
     @Mock
     private PerformerService performerService;
 
+    @Autowired
     @InjectMocks
-    private AlbumFacade albumFacade = new AlbumFacadeImpl();
+    private AlbumFacade albumFacade;
 
     private AlbumDTO albumDTO = new AlbumDTO();
     private Album album = new Album();
@@ -75,9 +78,6 @@ public class AlbumFacadeTest extends AbstractTransactionalTestNGSpringContextTes
         albumDTO.setDate(LocalDate.now());
         albumDTO.setPerformer(performerDTO);
     }
-
-
-
 
     @Test
     void testAlbumCreate(){
@@ -117,6 +117,7 @@ public class AlbumFacadeTest extends AbstractTransactionalTestNGSpringContextTes
         Mockito.reset(albumService);
         Mockito.reset(beanMappingService);
     }
+    
     @Test
     void testFindAll(){
         List<AlbumDTO> listDTO = new ArrayList<>();

@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.mm.daolayer.dao;
 import cz.muni.fi.pa165.mm.daolayer.DAOLayerApplicationContext;
 import cz.muni.fi.pa165.mm.daolayer.entity.Album;
 import cz.muni.fi.pa165.mm.daolayer.entity.Genre;
+import cz.muni.fi.pa165.mm.daolayer.entity.Performer;
 import cz.muni.fi.pa165.mm.daolayer.entity.Song;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -39,6 +40,7 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
     @Autowired
     private SongDao songDao;
 
+    private Performer dummyPerformer;
     private Album albumLinkinkPark;
     private Genre genreRock;
     private Song song_InTheEnd;
@@ -65,6 +67,12 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 
         e.persist(genreRock);
 
+        dummyPerformer = new Performer();
+        dummyPerformer.setName("Dummy performer");
+        dummyPerformer.setCountry("Country");
+        dummyPerformer.setStartDate(LocalDate.of(1984, Month.MARCH, 15));
+        
+        e.persist(dummyPerformer);
 
          /*
              Creating an albumLinkinkPark and setting its parametrs
@@ -72,6 +80,7 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
         albumLinkinkPark = new Album();
         albumLinkinkPark.setReleaseDate(LocalDate.of(2015, Month.APRIL, 16));
         albumLinkinkPark.setName("Final masquerade");
+        albumLinkinkPark.setPerformer(dummyPerformer);
 
         e.persist(albumLinkinkPark);
 

@@ -5,7 +5,6 @@ import cz.muni.fi.pa165.mm.api.dto.PerformerDTO;
 import cz.muni.fi.pa165.mm.api.facade.PerformerFacade;
 import cz.muni.fi.pa165.mm.daolayer.entity.Album;
 import cz.muni.fi.pa165.mm.daolayer.entity.Performer;
-import cz.muni.fi.pa165.mm.sf.facade.PerformerFacadeImpl;
 import cz.muni.fi.pa165.mm.sf.service.AlbumService;
 import cz.muni.fi.pa165.mm.sf.service.BeanMappingService;
 import cz.muni.fi.pa165.mm.sf.service.PerformerService;
@@ -25,14 +24,18 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.runner.RunWith;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * @author Václav Stehlík; 487580
  */
 @ContextConfiguration(classes = ServiceConfiguration.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 public class PerformerFacadeTest extends AbstractTransactionalTestNGSpringContextTests {
     @Mock
     private PerformerService performerService;
@@ -43,8 +46,9 @@ public class PerformerFacadeTest extends AbstractTransactionalTestNGSpringContex
     @Mock
     private BeanMappingService bms;
 
+    @Autowired
     @InjectMocks
-    private PerformerFacade performerFacade = new PerformerFacadeImpl();
+    private PerformerFacade performerFacade;
 
     private Performer performer1;
     private Performer performer2;

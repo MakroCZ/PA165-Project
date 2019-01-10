@@ -3,9 +3,13 @@ package cz.muni.fi.pa165.mm.daolayer.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * @author Václav Stehlík; 487580
+ */
 @Entity
 public class Album {
     @Id
@@ -20,6 +24,7 @@ public class Album {
     @Column(nullable = false)
     private LocalDate releaseDate;
 
+    @NotNull
     @ManyToOne
     private Performer performer;
 
@@ -60,7 +65,7 @@ public class Album {
     }
 
     public Set<Song> getSongs() {
-        return songs;
+        return Collections.unmodifiableSet(songs);
     }
 
     public void setSongs(Set<Song> songs) {
