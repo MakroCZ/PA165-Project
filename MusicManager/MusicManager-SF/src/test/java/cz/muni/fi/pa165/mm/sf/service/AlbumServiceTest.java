@@ -28,6 +28,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @ContextConfiguration(classes = ServiceConfiguration.class)
 public class AlbumServiceTest extends AbstractTransactionalTestNGSpringContextTests {
@@ -37,8 +38,9 @@ public class AlbumServiceTest extends AbstractTransactionalTestNGSpringContextTe
     @Mock
     private PerformerService performerService;
 
+    @Autowired
     @InjectMocks
-    private AlbumService albumService = new AlbumServiceImpl();
+    private AlbumService albumService;
 
     @BeforeClass
     public void setup() throws ServiceException

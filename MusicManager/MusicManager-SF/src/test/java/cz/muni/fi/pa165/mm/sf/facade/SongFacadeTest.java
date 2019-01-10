@@ -8,8 +8,8 @@ import cz.muni.fi.pa165.mm.api.facade.SongFacade;
 import cz.muni.fi.pa165.mm.daolayer.entity.Album;
 import cz.muni.fi.pa165.mm.daolayer.entity.Genre;
 import cz.muni.fi.pa165.mm.daolayer.entity.Song;
-import cz.muni.fi.pa165.mm.sf.facade.SongFacadeImpl;
 import cz.muni.fi.pa165.mm.sf.service.*;
+import cz.muni.fi.pa165.mm.sf.service.config.ServiceConfiguration;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import static org.mockito.Mockito.*;
@@ -27,12 +27,17 @@ import java.time.LocalTime;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * This java class represents unit tests for the SongFacate layer
  * @author Yehor Safonov; 487596
  */
-
+@ContextConfiguration(classes = ServiceConfiguration.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 public class SongFacadeTest  {
 
     @Mock
@@ -47,9 +52,9 @@ public class SongFacadeTest  {
     @Mock
     private BeanMappingService beanMappingService;
 
-
+    @Autowired
     @InjectMocks
-    private SongFacade songFacade = new SongFacadeImpl();
+    private SongFacade songFacade;
 
     private SongDTO songDTO;
     private GenreDTO genreDTO;

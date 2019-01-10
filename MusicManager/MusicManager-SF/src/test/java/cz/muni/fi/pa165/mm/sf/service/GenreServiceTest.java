@@ -45,18 +45,13 @@ public class GenreServiceTest extends AbstractTransactionalTestNGSpringContextTe
     @InjectMocks
     private GenreService genreService;
     
-    
-    @BeforeMethod
-    public void setup() throws ServiceException {
-        MockitoAnnotations.initMocks(this);
-    }
-    
     private Genre testGenre1;
     private Genre testGenre2;
     
     @BeforeMethod
-    public void prepareTestGenre(){
-    	testGenre1 = new Genre();
+    public void setup() throws ServiceException {
+        MockitoAnnotations.initMocks(this);
+        testGenre1 = new Genre();
         testGenre1.setId(1L);
         testGenre1.setName("Testovací žánr 1");
         testGenre1.setDescription("desc");
@@ -66,7 +61,6 @@ public class GenreServiceTest extends AbstractTransactionalTestNGSpringContextTe
         testGenre2.setName("Testovací žánr 2");
         testGenre2.setDescription("desc");
     }
-    
     
     @Test
     public void createValid() {
