@@ -1,9 +1,7 @@
 package cz.muni.fi.pa165.mm.sf.facade;
 
-import cz.muni.fi.pa165.mm.api.dto.AlbumDTO;
 import cz.muni.fi.pa165.mm.api.dto.SongCreateDTO;
 import cz.muni.fi.pa165.mm.api.dto.SongDTO;
-import cz.muni.fi.pa165.mm.api.facade.AlbumFacade;
 import cz.muni.fi.pa165.mm.api.facade.SongFacade;
 import cz.muni.fi.pa165.mm.daolayer.entity.Album;
 import cz.muni.fi.pa165.mm.daolayer.entity.Genre;
@@ -18,10 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author Lukas Suchanek; 433654
@@ -30,13 +25,13 @@ import java.util.Set;
 @Transactional
 public class SongFacadeImpl implements SongFacade {
     final static Logger log = LoggerFactory.getLogger(SongFacadeImpl.class);
-    @Inject
+    @Autowired
     SongService songService;
 
-    @Inject
+    @Autowired
     GenreService genreService;
 
-    @Inject
+    @Autowired
     AlbumService albumService;
 
     @Autowired
@@ -78,13 +73,7 @@ public class SongFacadeImpl implements SongFacade {
 
     @Override
     public List<SongDTO> findAllSongsFromSamePerformer(SongDTO s) {
-        List<SongDTO> allsongs = beanMappingService.mapTo(songService.findAll(), SongDTO.class);
-        List<SongDTO> selected = new ArrayList<>();
-        for (SongDTO song : allsongs){
-            if(song.getAlbum().getPerformer().equals(s.getAlbum().getPerformer())){
-                selected.add(song);
-            }
-        }
-       return selected;
+        Song song = beanMappingService.mapTo(s, Song.class);
+        return beanMappingService.mapTo(songService.findAllSongsFromSamePerformer(song), SongDTO.class);
     }
 }

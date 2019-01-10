@@ -45,10 +45,6 @@ public class SongController {
     @Autowired
     private GenreFacade genreFacade;
 
-    @Autowired
-    private PerformerFacade performerFacade;
-    //
-
     /**
      * Return all songs
      * @return
@@ -77,7 +73,7 @@ public class SongController {
      * @return
      */
     @RequestMapping(value = "/list/interpret/{id}", method = RequestMethod.GET)
-    public String findAllOfInterpret(@PathVariable Long id,Model model){
+    public String findAllOfInterpret(@PathVariable Long id, Model model){
         model.addAttribute("songs", songFacade.findAllSongsFromSamePerformer(songFacade.findSongWithID(id)));
         return "song/listFromInterpret";
     }

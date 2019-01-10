@@ -78,15 +78,8 @@ public class GenreController {
      */
     @RequestMapping(value = "/songlist/{genre}", method = RequestMethod.GET)
     public String findAllSongsWithSameGenre(@PathVariable Long genre, Model model) {
-        GenreDTO genreObj = genreFacade.findWithId(genre);
-        List<SongDTO> songs = songFacade.findAll();
-        List<SongDTO> filteredSongs = new ArrayList<>();
-        for (SongDTO s : songs){
-            if(s.getGenre().equals(genreObj)){
-                filteredSongs.add(s);
-            }
-        }
-        model.addAttribute("songs", filteredSongs);
+        List<SongDTO> songs = genreFacade.findAllSongsWithSameGenre(genre);
+        model.addAttribute("songs", songs);
         return "song/list";
     }
 

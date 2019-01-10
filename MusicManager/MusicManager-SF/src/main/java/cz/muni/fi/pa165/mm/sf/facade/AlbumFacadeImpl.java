@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
 import java.util.List;
 
 /**
@@ -21,10 +20,10 @@ import java.util.List;
 @Service
 @Transactional
 public class AlbumFacadeImpl implements AlbumFacade {
-    @Inject
+    @Autowired
     AlbumService albumService;
 
-    @Inject
+    @Autowired
     PerformerService performerService;
 
     @Autowired
@@ -61,5 +60,10 @@ public class AlbumFacadeImpl implements AlbumFacade {
     public AlbumDTO findById(Long id) {
         Album album = albumService.find(id);
         return (album == null) ? null : beanMappingService.mapTo(album, AlbumDTO.class);
+    }
+
+    @Override
+    public List<AlbumDTO> findAlbumsFromCountry(String country) {
+        return beanMappingService.mapTo(albumService.findAlbumsFromCountry(country), AlbumDTO.class);
     }
 }

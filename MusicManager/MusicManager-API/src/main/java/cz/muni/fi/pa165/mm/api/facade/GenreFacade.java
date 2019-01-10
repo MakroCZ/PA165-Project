@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.mm.api.facade;
 
 import cz.muni.fi.pa165.mm.api.dto.GenreCreateDTO;
 import cz.muni.fi.pa165.mm.api.dto.GenreDTO;
+import cz.muni.fi.pa165.mm.api.dto.SongDTO;
 
 import java.util.List;
 
@@ -56,4 +57,13 @@ public interface GenreFacade {
      * @return list of genreDTO objects
      */
     List<GenreDTO> findWithName(String name);
+    
+    /**
+     * This method returns list of Songs witch have the same genre. This business function uses
+     * GenreDTO and SongDTO entities.
+     * returns empty list of Songs if there is no object presented in the database
+     * @param id id of genre
+     * @return list of songs
+     */
+    List<SongDTO> findAllSongsWithSameGenre(Long id);
 }

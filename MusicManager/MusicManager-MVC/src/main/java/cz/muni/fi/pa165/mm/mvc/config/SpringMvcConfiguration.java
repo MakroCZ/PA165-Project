@@ -39,7 +39,6 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
         registry.addViewController("/login").setViewName("login");
     }
 
-
     /**
      * Enables default Tomcat servlet that serves static files.
      */
@@ -60,7 +59,6 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
         viewResolver.setSuffix(".jsp");
         return viewResolver;
     }
-
 
     /**
      * Mapping static CSS and JS resources

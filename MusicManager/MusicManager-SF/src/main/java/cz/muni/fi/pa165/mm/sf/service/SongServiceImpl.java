@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import javax.inject.Inject;
 
@@ -45,11 +46,13 @@ public class SongServiceImpl implements SongService{
 
     @Override
     public List<Song> findAllSongsFromSamePerformer(Song song){
-        Set<Album> albums = song.getAlbum().getPerformer().getAlbums();
-        List<Song> songs = new ArrayList<>();
-        for(Album album:albums){
-            songs.addAll(album.getSongs());
+        List<Song> allSongs = songDao.findAll();
+        List<Song> filteredSongs = new ArrayList<>();
+        for(Song s : allSongs){
+            if (Objects.equals(s.getAlbum().getPerformer(), song.getAlbum().getPerformer())) {
+                filteredSongs.add(s);
+            }
         }
-        return songs;
+        return filteredSongs;
     }
 }

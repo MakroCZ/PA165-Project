@@ -182,6 +182,7 @@ public class SongServiceTest {
         Assert.assertEquals(song_is_BurnItDown, song_BurnItDown);
     }
 
+    
     @Test(expectedExceptions = NullPointerException.class)
     public void testFindAllNullSongsFromSamePerformer() {
         /*
@@ -190,7 +191,7 @@ public class SongServiceTest {
         songService.findAllSongsFromSamePerformer(null);
     }
 
-
+    
     @Test
     public void testFindAllSongsFromSamePerformerIfEmptySongs() {
         /*
@@ -249,7 +250,8 @@ public class SongServiceTest {
         */
         Performer performer = new Performer();
         performer.setName("Chester Bennington");
-        performer.addAlbum(albumLinkinkPark);
+        
+        albumMetallica.setPerformer(performer);
 
         /*
              Create a list of all songs
@@ -262,9 +264,9 @@ public class SongServiceTest {
 
         List<Song> songsOfThePerformer =  new ArrayList<>();
         Mockito.when(songDao.findAll()).thenReturn(allSongs);
-        songsOfThePerformer =  songService.findAllSongsFromSamePerformer(song_InTheEnd);
+        songsOfThePerformer = songService.findAllSongsFromSamePerformer(song_InTheEnd);
         Assert.assertNotEquals(songsOfThePerformer, allSongs);
-        songsOfThePerformer =  songService.findAllSongsFromSamePerformer(song_SomewhereIBelong);
+        songsOfThePerformer = songService.findAllSongsFromSamePerformer(song_SomewhereIBelong);
         Assert.assertNotEquals(songsOfThePerformer, allSongs);
     }
 }
