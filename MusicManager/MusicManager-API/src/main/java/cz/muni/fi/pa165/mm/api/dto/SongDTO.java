@@ -81,23 +81,11 @@ public class SongDTO {
 
         SongDTO that = (SongDTO) o;
 
-        if (!name.equals(that.name)) return false;
-        if (!length.equals(that.length)) return false;
-        return date.equals(that.date);
+        return id.equals(that.getId());
     }
 
     @Override
     public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + length.hashCode();
-        result = 31 * result + date.hashCode();
-        return result;
+        return id.hashCode();
     }
-
-    public String toString(){
-        return "SongDTO{" +
-                "name: " + name + ", length: " + length.toString() + ", date: " + date.toString();
-               // ", album: " + album + ", genre: " + genre +'}';
-    }
-
 }
