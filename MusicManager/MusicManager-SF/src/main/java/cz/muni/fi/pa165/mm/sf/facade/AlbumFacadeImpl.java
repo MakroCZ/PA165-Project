@@ -54,12 +54,12 @@ public class AlbumFacadeImpl implements AlbumFacade {
 
     @Override
     public List<AlbumDTO> findAll() {
-        return beanMappingService.mapTo(albumService.retrieveAll(), AlbumDTO.class);
+        return beanMappingService.mapTo(albumService.findAll(), AlbumDTO.class);
     }
 
     @Override
     public AlbumDTO findById(Long id) {
-        Album album = albumService.retrieve(id);
+        Album album = albumService.find(id);
         return (album == null) ? null : beanMappingService.mapTo(album, AlbumDTO.class);
     }
 }

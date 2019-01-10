@@ -33,14 +33,14 @@ public interface SongFacade {
      * List all songs
      * @return list of all songs
      */
-    List<SongDTO> getAllSongs();
+    List<SongDTO> findAll();
 
     /**
      * Find song with id
      * @param id of song to be found
      * @return song
      */
-    SongDTO getSongWithID(Long id);
+    SongDTO findSongWithID(Long id);
 
     List<SongDTO> findAllSongsFromSamePerformer(SongDTO s);
 }

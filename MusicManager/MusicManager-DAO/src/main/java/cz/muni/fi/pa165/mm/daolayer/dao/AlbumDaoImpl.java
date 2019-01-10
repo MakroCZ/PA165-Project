@@ -23,12 +23,12 @@ public class AlbumDaoImpl implements AlbumDao {
     }
 
     @Override
-    public Album retrieve(long id) {
+    public Album findById(long id) {
         return em.find(Album.class, id);
     }
 
     @Override
-    public List<Album> retrieveAll() {
+    public List<Album> findAll() {
         return em.createQuery("select album from Album album", Album.class).getResultList();
     }
 

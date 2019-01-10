@@ -58,13 +58,13 @@ public class GenreFacadeImpl implements GenreFacade {
     }
 
     @Override
-    public GenreDTO getWithId(Long id) {
+    public GenreDTO findWithId(Long id) {
         Genre genre = genreService.findById(id);
         return (genre==null) ? null : beanMappingService.mapTo(genre, GenreDTO.class);
     }
 
     @Override
-    public List<GenreDTO> getWithName(String name) {
+    public List<GenreDTO> findWithName(String name) {
         return beanMappingService.mapTo(genreService.findByName(name), GenreDTO.class);
     }
 }

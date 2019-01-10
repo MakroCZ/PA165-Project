@@ -20,13 +20,13 @@ public interface AlbumService {
      * @param id Identifier of the album to find.
      * @return Album with specified id or null if the entity does not exist.
      */
-    Album retrieve(long id);
+    Album find(long id);
 
     /**
      * Finds all albums in the database.
      * @return List containing all albums from the database or null if no album is stored.
      */
-    List<Album> retrieveAll();
+    List<Album> findAll();
 
     /**
      * Updates album.
@@ -45,5 +45,5 @@ public interface AlbumService {
      * @param country Performer's country.
      * @return List containing all albums from the database or null if no album is stored.
      */
-    List<Album> retrieveAlbumsFromCountry(String country);
+    List<Album> findAlbumsFromCountry(String country);
 }
