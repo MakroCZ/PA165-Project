@@ -4,8 +4,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Collections;
-import java.util.Set;
 
 /**
  * @author Lukáš Suchánek; 433564
@@ -22,11 +20,11 @@ public class Song {
 
     @NotNull
     @Column(nullable=false)
-    private LocalTime length;
+    private LocalTime songLength;
 
     @NotNull
     @Column(nullable=false)
-    private LocalDate date;
+    private LocalDate releaseDate;
 
     @ManyToOne(optional = false)
     private Album album;
@@ -36,8 +34,8 @@ public class Song {
 
     public Song(String name, LocalTime length, LocalDate date){
         this.setName(name);
-        this.setLength(length);
-        this.setDate(date);
+        this.setSongLength(length);
+        this.setReleaseDate(date);
     }
 
     public Song(){}
@@ -59,20 +57,20 @@ public class Song {
         this.name = name;
     }
 
-    public LocalTime getLength() {
-        return length;
+    public LocalTime getSongLength() {
+        return songLength;
     }
 
-    public void setLength(LocalTime length) {
-        this.length = length;
+    public void setSongLength(LocalTime songLength) {
+        this.songLength = songLength;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     public Album getAlbum() {
@@ -91,8 +89,9 @@ public class Song {
         this.genre = genre;
     }
 
+    @Override
     public String toString(){
-        return "ID: " +this.getId() + " Name: " + this.getName() + " Length: " + this.getLength() + " Publish Date: " + this.getDate().toString();
+        return "ID: " +this.getId() + " Name: " + this.getName() + " Length: " + this.getSongLength() + " Publish Date: " + this.getReleaseDate().toString();
     }
 
     @Override

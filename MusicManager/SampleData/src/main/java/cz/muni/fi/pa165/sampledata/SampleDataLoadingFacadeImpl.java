@@ -103,29 +103,29 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         userService.registerUser(u, passwd);
     }
     
-    private Performer performer(String name, LocalDate date, String country) {
+    private Performer performer(String name, LocalDate startDate, String country) {
         Performer p = new Performer();
         p.setName(name);
-        p.setStartDate(date);
+        p.setStartDate(startDate);
         p.setCountry(country);
         performerService.create(p);
         return p;
     }
     
-    private Album album(String name, LocalDate date, Performer p) {
+    private Album album(String name, LocalDate releaseDate, Performer p) {
         Album a = new Album();
         a.setName(name);
-        a.setDate(date);
+        a.setReleaseDate(releaseDate);
         a.setPerformer(p);
         albumService.create(a);
         return a;
     }
     
-    private Song song(String name, LocalTime lenght, LocalDate date, Album a, Genre g) {
+    private Song song(String name, LocalTime songLength, LocalDate releaseDate, Album a, Genre g) {
         Song s = new Song();
         s.setName(name);
-        s.setLength(lenght);
-        s.setDate(date);
+        s.setSongLength(songLength);
+        s.setReleaseDate(releaseDate);
         s.setAlbum(a);
         s.setGenre(g);
         songService.create(s);

@@ -1,8 +1,9 @@
 package cz.muni.fi.pa165.mm.daolayer.dao;
 
-import cz.muni.fi.pa165.mm.daolayer.dao.PerformerDao;
 import cz.muni.fi.pa165.mm.daolayer.DAOLayerApplicationContext;
 import cz.muni.fi.pa165.mm.daolayer.entity.Performer;
+import java.time.LocalDate;
+import java.time.Month;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -10,14 +11,11 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceUnit;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 
 /**
@@ -40,10 +38,14 @@ public class PerformerDaoImplTest extends AbstractTestNGSpringContextTests {
     public void init() {
         performer1 = new Performer();
         performer1.setName("TestName1");
+        performer1.setCountry("TestCountry1");
+        performer1.setStartDate(LocalDate.of(2012, Month.MARCH, 5));
         em.persist(performer1);
 
         performer2 = new Performer();
         performer2.setName("TestName2");
+        performer2.setCountry("TestCountry2");
+        performer2.setStartDate(LocalDate.of(2001, Month.JUNE, 18));
         em.persist(performer2);
     }
 
@@ -51,6 +53,8 @@ public class PerformerDaoImplTest extends AbstractTestNGSpringContextTests {
     public void testCreatePerformer() {
         Performer performer = new Performer();
         performer.setName("TestName3");
+        performer.setCountry("TestCountry3");
+        performer.setStartDate(LocalDate.of(1987, Month.AUGUST, 23));
         performerDao.create(performer);
         Assert.assertNotNull(performerDao.findById(performer.getId()));
         Assert.assertEquals(performerDao.findById(performer.getId()), performer);
@@ -107,6 +111,7 @@ public class PerformerDaoImplTest extends AbstractTestNGSpringContextTests {
     public void testUpdatePerformer() {
         Performer performerUpdate = performer1;
         performerUpdate.setName("TestNameUpdated");
+        em.detach(performer1);
         performerDao.update(performerUpdate);
         Assert.assertEquals(performerDao.findById(performerUpdate.getId()).getName(), "TestNameUpdated");
     }
