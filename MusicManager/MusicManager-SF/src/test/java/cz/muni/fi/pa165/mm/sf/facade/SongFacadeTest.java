@@ -1,4 +1,4 @@
-package cz.nubi.fi.pa165.mm.sf;
+package cz.muni.fi.pa165.mm.sf.facade;
 
 import cz.muni.fi.pa165.mm.api.dto.AlbumDTO;
 import cz.muni.fi.pa165.mm.api.dto.GenreDTO;
@@ -88,7 +88,7 @@ public class SongFacadeTest  {
 
         album = new Album();
         album.setId(albumDTO.getId());
-        album.setDate(albumDTO.getDate());
+        album.setReleaseDate(albumDTO.getDate());
         album.setName(albumDTO.getName());
 
         songDTO = new SongDTO();
@@ -126,15 +126,15 @@ public class SongFacadeTest  {
         song = new Song();
         song.setId(songDTO.getId());
         song.setName(songDTO.getName());
-        song.setDate(songDTO.getDate());
-        song.setLength(songDTO.getLength());
+        song.setReleaseDate(songDTO.getDate());
+        song.setSongLength(songDTO.getLength());
         song.setGenre(genre);
         song.setAlbum(album);
 
         Mockito.doReturn(songCreateDTO).when(beanMappingService).mapTo(song, SongCreateDTO.class);
         Mockito.doReturn(song).when(beanMappingService).mapTo(songCreateDTO, Song.class);
 
-        Mockito.doReturn(album).when(albumService).retrieve(any(Long.class));
+        Mockito.doReturn(album).when(albumService).find(any(Long.class));
         Mockito.doReturn(genre).when(genreService).findById(any(Long.class));
         Mockito.doReturn(song).when(songService).create(any());
 
@@ -157,8 +157,8 @@ public class SongFacadeTest  {
         song = new Song();
         song.setId(songDTO.getId());
         song.setName(songDTO.getName());
-        song.setLength(songDTO.getLength());
-        song.setDate(songDTO.getDate());
+        song.setSongLength(songDTO.getLength());
+        song.setReleaseDate(songDTO.getDate());
 
         Mockito.doNothing().when(songService).delete(any(Song.class));
         songFacade.deleteSong(songDTO.getId());
@@ -166,11 +166,11 @@ public class SongFacadeTest  {
     }
 
     @Test
-    public  void testGetAllSongs(){
+    public  void testFindAllSongs(){
         Song test_song = new Song();
         test_song.setName("Somewhere I belong");
-        test_song.setLength(LocalTime.of(0,3,45));
-        test_song.setDate(LocalDate.of(2015, Month.JANUARY, 12));
+        test_song.setSongLength(LocalTime.of(0,3,45));
+        test_song.setReleaseDate(LocalDate.of(2015, Month.JANUARY, 12));
 
         List<Song> songs = new ArrayList<>();
         songs.add(test_song);
@@ -180,7 +180,7 @@ public class SongFacadeTest  {
 
         Mockito.when( beanMappingService.mapTo(songs, SongDTO.class)).thenReturn(songsDTO);
         Mockito.when(songService.findAll()).thenReturn(songs);
-        List<SongDTO> foundSongsDTO = songFacade.getAllSongs();
+        List<SongDTO> foundSongsDTO = songFacade.findAll();
         Mockito.verify(songService).findAll();
         Assert.assertEquals(foundSongsDTO.size(), songs.size());
     }
@@ -189,13 +189,13 @@ public class SongFacadeTest  {
     public void testGetSongWithID(){
        Song test_song = new Song();
        test_song.setName("Somewhere I belong");
-       test_song.setLength(LocalTime.of(0,3,45));
-       test_song.setDate(LocalDate.of(2015, Month.JANUARY, 12));
+       test_song.setSongLength(LocalTime.of(0,3,45));
+       test_song.setReleaseDate(LocalDate.of(2015, Month.JANUARY, 12));
 
        Mockito.doReturn(test_song).when(songService).findById(4L);
        Mockito.doReturn(songDTO).when(beanMappingService).mapTo(test_song, SongDTO.class);
        Mockito.doReturn(songDTO).when(beanMappingService).mapTo(test_song, SongDTO.class);
-       SongDTO songDTO1 = songFacade.getSongWithID(4L);
+       SongDTO songDTO1 = songFacade.findSongWithID(4L);
        Assert.assertEquals(songDTO, songDTO1);
     }
 }

@@ -13,7 +13,7 @@ import java.util.List;
  * the {@link #update(Genre)} method, the {@link #delete(Genre)} method
  * and methods returning specific genre, there are {@link #findByName(String)},
  * {@link #findById(Long)} and {@link #findAll()} methods.
- * One business function is implemented {@link #getAllSongsWithSameGenre(Genre)}.
+ * One business function is implemented {@link #findAllSongsWithSameGenre(Genre)}.
  * @author Yehor Safonov; 487596
  */
 @Service
@@ -72,5 +72,5 @@ public interface GenreService {
      * @param genre
      * @return list of songs
      */
-    List<Song> getAllSongsWithSameGenre(Genre genre);
+    List<Song> findAllSongsWithSameGenre(Genre genre);
 }

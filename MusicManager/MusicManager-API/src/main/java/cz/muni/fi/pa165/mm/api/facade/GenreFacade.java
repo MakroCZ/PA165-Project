@@ -10,8 +10,8 @@ import java.util.List;
  * GenreFacade interface operates with following methods and
  * directly works with GenreDTO objects using genreService layer. The interface defines follow methods:
  * the {@link #createGenre(GenreCreateDTO)} method, the {@link #deleteGenre(Long)} method
- * and methods returning specific genre, there are {@link #getWithId(Long)}, {@link #findAll()},
- * {@link #getWithName(String)} methods.
+ * and methods returning specific genre, there are {@link #findWithId(Long)}, {@link #findAll()},
+ * {@link #findWithName(String)} methods.
  * @author Yehor Safonov; 487596
  */
 public interface GenreFacade {
@@ -47,7 +47,7 @@ public interface GenreFacade {
      * This method returns the GenreDTO object with required id
      * @return genreDTO object
      */
-    GenreDTO getWithId(Long id);
+    GenreDTO findWithId(Long id);
 
     /**
      * This method returns list of GenreDTO objects witch have required name.
@@ -55,5 +55,5 @@ public interface GenreFacade {
      * @param name
      * @return list of genreDTO objects
      */
-    List<GenreDTO> getWithName(String name);
+    List<GenreDTO> findWithName(String name);
 }

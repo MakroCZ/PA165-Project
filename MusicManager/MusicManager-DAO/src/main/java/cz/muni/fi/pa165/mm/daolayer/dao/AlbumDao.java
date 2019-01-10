@@ -20,13 +20,13 @@ public interface AlbumDao {
      * @throws IllegalArgumentException if the object is null.
      * @return the found Album instance or null if the entity does not exist
      */
-    Album retrieve(long id);
+    Album findById(long id);
 
     /**
      * Returns all instances of Album entity.
      * @return the found Album instances or null if the entity does not exist
      */
-    List<Album> retrieveAll();
+    List<Album> findAll();
 
     /**
      * Overwrites data of Album instance with data from given instance.

@@ -1,4 +1,4 @@
-package cz.nubi.fi.pa165.mm.sf;
+package cz.muni.fi.pa165.mm.sf.service;
 
 
 import cz.muni.fi.pa165.mm.daolayer.dao.SongDao;
@@ -67,7 +67,7 @@ public class SongServiceTest {
          */
         albumLinkinkPark = new Album();
         albumLinkinkPark.setId(4L);
-        albumLinkinkPark.setDate(LocalDate.of(2015, Month.APRIL, 16));
+        albumLinkinkPark.setReleaseDate(LocalDate.of(2015, Month.APRIL, 16));
         albumLinkinkPark.setName("Final masquerade");
 
         /*
@@ -79,24 +79,24 @@ public class SongServiceTest {
 
         song_InTheEnd.setId(1L);
         song_InTheEnd.setName("In the end");
-        song_InTheEnd.setDate(LocalDate.of(2014, Month.MAY, 10));
+        song_InTheEnd.setReleaseDate(LocalDate.of(2014, Month.MAY, 10));
         song_InTheEnd.setAlbum(albumLinkinkPark);
         song_InTheEnd.setGenre(genreRock);
-        song_InTheEnd.setLength(LocalTime.of(0,4,45));
+        song_InTheEnd.setSongLength(LocalTime.of(0,4,45));
 
         song_SomewhereIBelong.setId(2L);
         song_SomewhereIBelong.setName("Somewhere I belong");
-        song_SomewhereIBelong.setDate(LocalDate.of(2015, Month.JANUARY, 12));
+        song_SomewhereIBelong.setReleaseDate(LocalDate.of(2015, Month.JANUARY, 12));
         song_SomewhereIBelong.setAlbum(albumLinkinkPark);
         song_SomewhereIBelong.setGenre(genreRock);
-        song_SomewhereIBelong.setLength(LocalTime.of(0,3,45));
+        song_SomewhereIBelong.setSongLength(LocalTime.of(0,3,45));
 
         song_BurnItDown.setId(3L);
         song_BurnItDown.setName("Burn it down");
-        song_BurnItDown.setDate(LocalDate.of(2014, Month.SEPTEMBER, 25));
+        song_BurnItDown.setReleaseDate(LocalDate.of(2014, Month.SEPTEMBER, 25));
         song_BurnItDown.setAlbum(albumLinkinkPark);
         song_BurnItDown.setGenre(genreRock);
-        song_BurnItDown.setLength(LocalTime.of(0,2,56));
+        song_BurnItDown.setSongLength(LocalTime.of(0,2,56));
     }
 
     @Test
@@ -117,10 +117,10 @@ public class SongServiceTest {
         Song testSong = new Song();
         testSong.setId(6L);
         testSong.setName("In the end test");
-        testSong.setDate(LocalDate.of(2017, Month.MAY, 10));
+        testSong.setReleaseDate(LocalDate.of(2017, Month.MAY, 10));
         testSong.setAlbum(albumLinkinkPark);
         testSong.setGenre(genreRock);
-        testSong.setLength(LocalTime.of(0,2,45));
+        testSong.setSongLength(LocalTime.of(0,2,45));
 
          /*
              Try to create testSong and verfy if corresponding action is done
@@ -135,7 +135,7 @@ public class SongServiceTest {
              Try to update the song Castle of Glass information
         */
         song_InTheEnd.setName("New name");
-        song_InTheEnd.setDate(LocalDate.of(2012, Month.MARCH, 5));
+        song_InTheEnd.setReleaseDate(LocalDate.of(2012, Month.MARCH, 5));
 
          /*
              Try to update song_InTheEnd and verfy if corresponding action is done
@@ -230,7 +230,7 @@ public class SongServiceTest {
         */
         Album albumMetallica = new Album();
         albumMetallica.setId(5L);
-        albumMetallica.setDate(LocalDate.of(2016, Month.APRIL, 16));
+        albumMetallica.setReleaseDate(LocalDate.of(2016, Month.APRIL, 16));
         albumMetallica.setName("Final masquerade");
 
         /*
@@ -239,10 +239,10 @@ public class SongServiceTest {
         Song song_papercut =  new Song();
         song_papercut.setId(3L);
         song_papercut.setName("Papercut");
-        song_papercut.setDate(LocalDate.of(2014, Month.SEPTEMBER, 25));
+        song_papercut.setReleaseDate(LocalDate.of(2014, Month.SEPTEMBER, 25));
         song_papercut.setAlbum(albumMetallica);
         song_papercut.setGenre(genreRock);
-        song_papercut.setLength(LocalTime.of(0,2,56));
+        song_papercut.setSongLength(LocalTime.of(0,2,56));
 
         /*
              Create new performer

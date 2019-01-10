@@ -29,7 +29,7 @@ public class SongController {
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public final SongDTO getSong(@PathVariable("id") long id) {
         try {
-            return songFacade.getSongWithID(id);
+            return songFacade.findSongWithID(id);
         } catch (Exception ex) {
             throw new InternalException();
         }
@@ -37,7 +37,7 @@ public class SongController {
 
     @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public final List<SongDTO> getSongs() {
-        return songFacade.getAllSongs();
+        return songFacade.findAll();
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)

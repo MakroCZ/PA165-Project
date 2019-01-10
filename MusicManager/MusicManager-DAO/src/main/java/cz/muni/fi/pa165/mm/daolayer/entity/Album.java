@@ -18,7 +18,7 @@ public class Album {
 
     @NotNull
     @Column(nullable = false)
-    private LocalDate date;
+    private LocalDate releaseDate;
 
     @ManyToOne
     private Performer performer;
@@ -26,9 +26,9 @@ public class Album {
     @OneToMany(mappedBy = "album")
     private Set<Song> songs = new HashSet<>();
 
-    public Album(@NotNull String name, @NotNull LocalDate date, Set<Song> songs) {
+    public Album(@NotNull String name, @NotNull LocalDate releasDate, Set<Song> songs) {
         this.name = name;
-        this.date = date;
+        this.releaseDate = releasDate;
         this.songs = songs;
     }
 
@@ -51,12 +51,12 @@ public class Album {
         this.name = name;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     public Set<Song> getSongs() {
@@ -97,7 +97,7 @@ public class Album {
         }
 
         Album a = (Album) o;
-        return this.getName().equals(a.getName()) && this.getDate().equals(a.getDate()) && this.getPerformer().equals(a.getPerformer());
+        return this.getName().equals(a.getName()) && this.getReleaseDate().equals(a.getReleaseDate()) && this.getPerformer().equals(a.getPerformer());
     }
 
     @Override
@@ -105,7 +105,7 @@ public class Album {
         int result = 1;
         int prime = 31;
         result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((date == null) ? 0 : date.hashCode());
+        result = prime * result + ((releaseDate == null) ? 0 : releaseDate.hashCode());
         result = prime * result + ((performer == null) ? 0 : performer.hashCode());
         return result;
     }

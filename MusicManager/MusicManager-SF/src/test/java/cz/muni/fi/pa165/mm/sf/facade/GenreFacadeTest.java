@@ -1,10 +1,9 @@
-package cz.nubi.fi.pa165.mm.sf;
+package cz.muni.fi.pa165.mm.sf.facade;
 
 import cz.muni.fi.pa165.mm.api.dto.GenreCreateDTO;
 import cz.muni.fi.pa165.mm.api.dto.GenreDTO;
 import cz.muni.fi.pa165.mm.api.facade.GenreFacade;
 import cz.muni.fi.pa165.mm.daolayer.entity.Genre;
-import cz.muni.fi.pa165.mm.sf.facade.GenreFacadeImpl;
 import cz.muni.fi.pa165.mm.sf.service.BeanMappingService;
 import cz.muni.fi.pa165.mm.sf.service.GenreService;
 import cz.muni.fi.pa165.mm.sf.service.config.ServiceConfiguration;
@@ -16,7 +15,6 @@ import static org.mockito.Matchers.any;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -131,14 +129,14 @@ public class GenreFacadeTest {
     @Test
     public void getWithId() {
         Mockito.doReturn(g1).when(genreService).findById(1L);
-        GenreDTO gDTO = genreFacade.getWithId(1L);
+        GenreDTO gDTO = genreFacade.findWithId(1L);
         Assert.assertEquals(gDTO, gDTO1);
     }
     
     @Test
     public void getWithName() {
         Mockito.doReturn(Arrays.asList(g2)).when(genreService).findByName("Genre2");
-        List<GenreDTO> gDTO = genreFacade.getWithName("Genre2");
+        List<GenreDTO> gDTO = genreFacade.findWithName("Genre2");
         Assert.assertEquals(gDTO.size(), 1);
         Assert.assertEquals(gDTO.get(0), gDTO2);
     }

@@ -55,7 +55,7 @@ public class SongController {
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
-        model.addAttribute("songs", songFacade.getAllSongs());
+        model.addAttribute("songs", songFacade.findAll());
         return "song/list";
     }
 
@@ -78,7 +78,7 @@ public class SongController {
      */
     @RequestMapping(value = "/list/interpret/{id}", method = RequestMethod.GET)
     public String findAllOfInterpret(@PathVariable Long id,Model model){
-        model.addAttribute("songs", songFacade.findAllSongsFromSamePerformer(songFacade.getSongWithID(id)));
+        model.addAttribute("songs", songFacade.findAllSongsFromSamePerformer(songFacade.findSongWithID(id)));
         return "song/listFromInterpret";
     }
     //
@@ -125,7 +125,7 @@ public class SongController {
     }
 
     private List<SongDTO> find(String name){
-        List<SongDTO> allSongs = songFacade.getAllSongs();
+        List<SongDTO> allSongs = songFacade.findAll();
         List<SongDTO> filtered = new ArrayList<>();
         for(SongDTO song:allSongs){
             if(song.getName().toLowerCase().contains(name.toLowerCase())){
@@ -136,8 +136,8 @@ public class SongController {
     }
 
     private List<SongDTO> findFromInterpret(Long id){
-        SongDTO song = songFacade.getSongWithID(id);
-        List<SongDTO> allSongs = songFacade.getAllSongs();
+        SongDTO song = songFacade.findSongWithID(id);
+        List<SongDTO> allSongs = songFacade.findAll();
         List<SongDTO> selected = new ArrayList<>();
         for(SongDTO s : allSongs){
             if(s.getAlbum().getPerformer().getId() == song.getAlbum().getPerformer().getId()){

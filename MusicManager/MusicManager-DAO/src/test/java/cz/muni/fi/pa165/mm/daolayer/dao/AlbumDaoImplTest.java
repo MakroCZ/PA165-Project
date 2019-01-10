@@ -50,15 +50,15 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
         performer.setStartDate(LocalDate.of(1990, Month.APRIL, 15));
         song = new Song();
         song.setName("Song");
-        song.setDate(LocalDate.now());
-        song.setLength(LocalTime.of(0,1,30));
+        song.setReleaseDate(LocalDate.now());
+        song.setSongLength(LocalTime.of(0,1,30));
         album = new Album();
         album.setName("Album");
-        album.setDate(LocalDate.now());
+        album.setReleaseDate(LocalDate.now());
         album.setPerformer(performer);
         updateAlbum = new Album();
         updateAlbum.setName("Album update");
-        updateAlbum.setDate(LocalDate.now());
+        updateAlbum.setReleaseDate(LocalDate.now());
         updateAlbum.setPerformer(performer);
         genre = new Genre();
         genre.setName("Genre");
@@ -107,12 +107,12 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
         em.getTransaction().begin();
         Album a = new Album();
         a.setName("Test album");
-        a.setDate(LocalDate.now());
+        a.setReleaseDate(LocalDate.now());
         a.setPerformer(performer);
         albumDao.create(a);
         performer.addAlbum(a);
 
-        Album a2 = albumDao.retrieve(a.getId());
+        Album a2 = albumDao.findById(a.getId());
 
         Assert.assertEquals(a, a2);
 
@@ -130,7 +130,7 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
         em.getTransaction().begin();
         Album a = new Album();
         a.setName(null);
-        a.setDate(LocalDate.now());
+        a.setReleaseDate(LocalDate.now());
         a.setPerformer(performer);
         performer.addAlbum(a);
         albumDao.create(a);
@@ -145,7 +145,7 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
         em.getTransaction().begin();
         Album a = new Album();
         a.setName("Test");
-        a.setDate(null);
+        a.setReleaseDate(null);
         a.setPerformer(performer);
         performer.addAlbum(a);
         albumDao.create(a);
@@ -157,11 +157,11 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
     public void updateTest(){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Album a2 = albumDao.retrieve(updateAlbum.getId());
-        a2.setDate(LocalDate.of(2017, Month.AUGUST,15));
+        Album a2 = albumDao.findById(updateAlbum.getId());
+        a2.setReleaseDate(LocalDate.of(2017, Month.AUGUST,15));
         a2.setName("Update test album");
         albumDao.update(a2);
-        Album a3 = albumDao.retrieve(updateAlbum.getId());
+        Album a3 = albumDao.findById(updateAlbum.getId());
         Assert.assertEquals(a2, a3);
 
         em.getTransaction().rollback();
@@ -179,14 +179,14 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
         em.getTransaction().begin();
         Album a = new Album();
         a.setName("Test Delete album");
-        a.setDate(LocalDate.now());
+        a.setReleaseDate(LocalDate.now());
         a.setPerformer(performer);
         performer.addAlbum(a);
         albumDao.create(a);
 
-        Assert.assertEquals(a, albumDao.retrieve(a.getId()));
+        Assert.assertEquals(a, albumDao.findById(a.getId()));
         albumDao.delete(a);
-        Album a2 = albumDao.retrieve(a.getId());
+        Album a2 = albumDao.findById(a.getId());
         Assert.assertEquals(null, a2);
 
         em.getTransaction().rollback();
@@ -198,20 +198,20 @@ public class AlbumDaoImplTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void retrieveNonExistingId(){
+    public void findNonExistingId(){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Album a = albumDao.retrieve(1000L);
+        Album a = albumDao.findById(1000L);
         Assert.assertEquals(a, null);
 
         em.getTransaction().rollback();
     }
 
     @Test
-    public void retrieveAllTest(){
+    public void findAllTest(){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        List<Album> albumList = albumDao.retrieveAll();
+        List<Album> albumList = albumDao.findAll();
         Assert.assertEquals(albumList.size(),2);
         Assert.assertEquals(albumList.get(0), album);
         Assert.assertEquals(albumList.get(1), updateAlbum);

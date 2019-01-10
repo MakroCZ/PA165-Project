@@ -54,7 +54,7 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    public List<Song> getAllSongsWithSameGenre(Genre genre) {
+    public List<Song> findAllSongsWithSameGenre(Genre genre) {
         List<Song> allSongs = songService.findAll();
         List<Song> foundSongs = new ArrayList<>();
         for(Song song:allSongs){

@@ -26,13 +26,13 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
-    public Album retrieve(long id) {
-        return albumDao.retrieve(id);
+    public Album find(long id) {
+        return albumDao.findById(id);
     }
 
     @Override
-    public List<Album> retrieveAll() {
-        return albumDao.retrieveAll();
+    public List<Album> findAll() {
+        return albumDao.findAll();
     }
 
     @Override
@@ -46,7 +46,7 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
-    public List<Album> retrieveAlbumsFromCountry(String country) {
+    public List<Album> findAlbumsFromCountry(String country) {
         List<Performer> performers = performerService.findAll();
         List<Album> result = new ArrayList<>();
         for (Performer performer : performers) {

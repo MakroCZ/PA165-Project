@@ -29,7 +29,7 @@ public class GenreController {
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public final GenreDTO getGenre(@PathVariable("id") long id) {
         try {
-            return genreFacade.getWithId(id);
+            return genreFacade.findWithId(id);
         } catch (Exception ex) {
             throw new InternalException();
         }

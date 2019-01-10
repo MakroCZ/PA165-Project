@@ -70,7 +70,7 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
              Creating an albumLinkinkPark and setting its parametrs
          */
         albumLinkinkPark = new Album();
-        albumLinkinkPark.setDate(LocalDate.of(2015, Month.APRIL, 16));
+        albumLinkinkPark.setReleaseDate(LocalDate.of(2015, Month.APRIL, 16));
         albumLinkinkPark.setName("Final masquerade");
 
         e.persist(albumLinkinkPark);
@@ -84,45 +84,45 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
         song_BurnItDown = new Song();
 
         song_InTheEnd.setName("In the end");
-        song_InTheEnd.setDate(LocalDate.of(2014, Month.MAY, 10));
+        song_InTheEnd.setReleaseDate(LocalDate.of(2014, Month.MAY, 10));
         song_InTheEnd.setAlbum(albumLinkinkPark);
         song_InTheEnd.setGenre(genreRock);
-        song_InTheEnd.setLength(LocalTime.of(0,4,45));
+        song_InTheEnd.setSongLength(LocalTime.of(0,4,45));
 
         song_SomewhereIBelong.setName("Somewhere I belong");
-        song_SomewhereIBelong.setDate(LocalDate.of(2015, Month.JANUARY, 12));
+        song_SomewhereIBelong.setReleaseDate(LocalDate.of(2015, Month.JANUARY, 12));
         song_SomewhereIBelong.setAlbum(albumLinkinkPark);
         song_SomewhereIBelong.setGenre(genreRock);
-        song_SomewhereIBelong.setLength(LocalTime.of(0,3,45));
+        song_SomewhereIBelong.setSongLength(LocalTime.of(0,3,45));
 
         song_BurnItDown.setName("Burn it down");
-        song_BurnItDown.setDate(LocalDate.of(2014, Month.SEPTEMBER, 25));
+        song_BurnItDown.setReleaseDate(LocalDate.of(2014, Month.SEPTEMBER, 25));
         song_BurnItDown.setAlbum(albumLinkinkPark);
         song_BurnItDown.setGenre(genreRock);
-        song_BurnItDown.setLength(LocalTime.of(0,2,56));
+        song_BurnItDown.setSongLength(LocalTime.of(0,2,56));
 
         song_OneStepCloser = new Song();
         song_OneStepCloser.setName("One step closer");
-        song_OneStepCloser.setDate(LocalDate.of(2000, Month.APRIL, 19));
+        song_OneStepCloser.setReleaseDate(LocalDate.of(2000, Month.APRIL, 19));
         song_OneStepCloser.setAlbum(albumLinkinkPark);
         song_OneStepCloser.setGenre(genreRock);
-        song_OneStepCloser.setLength(LocalTime.of(0,2,55));
+        song_OneStepCloser.setSongLength(LocalTime.of(0,2,55));
 
 
         song_Crawling = new Song();
         song_Crawling.setName("Crawling");
-        song_Crawling.setDate(LocalDate.of(2003, Month.OCTOBER, 3));
+        song_Crawling.setReleaseDate(LocalDate.of(2003, Month.OCTOBER, 3));
         song_Crawling.setAlbum(albumLinkinkPark);
         song_Crawling.setGenre(genreRock);
-        song_Crawling.setLength(LocalTime.of(0,1,25));
+        song_Crawling.setSongLength(LocalTime.of(0,1,25));
 
 
         song_Heavy = new Song();
         song_Heavy.setName("Heavy");
-        song_Heavy.setDate(LocalDate.of(2017, Month.SEPTEMBER, 16));
+        song_Heavy.setReleaseDate(LocalDate.of(2017, Month.SEPTEMBER, 16));
         song_Heavy.setAlbum(albumLinkinkPark);
         song_Heavy.setGenre(genreRock);
-        song_Heavy.setLength(LocalTime.of(0,4,45));
+        song_Heavy.setSongLength(LocalTime.of(0,4,45));
 
         e.persist(song_InTheEnd);
         e.persist(song_SomewhereIBelong);
@@ -144,10 +144,10 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
         Song testSong = new Song();
 
         testSong.setName("TestSong");
-        testSong.setDate(LocalDate.of(2017, Month.MAY, 10));
+        testSong.setReleaseDate(LocalDate.of(2017, Month.MAY, 10));
         testSong.setAlbum(albumLinkinkPark);
         testSong.setGenre(genreRock);
-        testSong.setLength(LocalTime.of(0,2,45));
+        testSong.setSongLength(LocalTime.of(0,2,45));
         songDao.create(testSong);
 
         Assert.assertNotNull(songDao.findById(testSong.getId()));
@@ -179,7 +179,7 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
              Try to update the song Castle of Glass information
         */
         song_BurnItDown.setName("Castle of Glass");
-        song_BurnItDown.setDate(LocalDate.of(2012, Month.MARCH, 5));
+        song_BurnItDown.setReleaseDate(LocalDate.of(2012, Month.MARCH, 5));
         songDao.update(song_BurnItDown);
 
         /*
@@ -187,7 +187,7 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
         */
         Assert.assertEquals(songDao.findById(song_BurnItDown.getId()).getId(),song_BurnItDown.getId());
         Assert.assertEquals(songDao.findById(song_BurnItDown.getId()).getName(),"Castle of Glass");
-        Assert.assertEquals(songDao.findById(song_BurnItDown.getId()).getDate(),LocalDate.of(2012, Month.MARCH, 5));
+        Assert.assertEquals(songDao.findById(song_BurnItDown.getId()).getReleaseDate(),LocalDate.of(2012, Month.MARCH, 5));
     }
 
     @Test
