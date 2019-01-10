@@ -1,4 +1,4 @@
-package cz.nubi.fi.pa165.mm.sf;
+package cz.muni.fi.pa165.mm.sf.service;
 
 import cz.muni.fi.pa165.mm.daolayer.dao.PerformerDao;
 import cz.muni.fi.pa165.mm.daolayer.entity.Album;
@@ -68,12 +68,12 @@ public class PerformerServiceTest extends AbstractTransactionalTestNGSpringConte
 
         album1.setId(1L);
         album1.setName("Unit testing now or never.");
-        album1.setDate(LocalDate.of(2018, Month.NOVEMBER, 26));
+        album1.setReleaseDate(LocalDate.of(2018, Month.NOVEMBER, 26));
         album1.setPerformer(performer1);
 
         album2.setId(2L);
         album2.setName("Too late to start with unit testing.");
-        album2.setDate(LocalDate.of(2018, Month.NOVEMBER, 27));
+        album2.setReleaseDate(LocalDate.of(2018, Month.NOVEMBER, 27));
     }
 
     @Test

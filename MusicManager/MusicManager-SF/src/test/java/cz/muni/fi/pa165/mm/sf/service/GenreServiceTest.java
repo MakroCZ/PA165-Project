@@ -1,11 +1,8 @@
-package cz.nubi.fi.pa165.mm.sf;
-
+package cz.muni.fi.pa165.mm.sf.service;
 
 import cz.muni.fi.pa165.mm.daolayer.dao.GenreDao;
 import cz.muni.fi.pa165.mm.daolayer.entity.Genre;
 import cz.muni.fi.pa165.mm.daolayer.entity.Song;
-import cz.muni.fi.pa165.mm.sf.service.GenreService;
-import cz.muni.fi.pa165.mm.sf.service.SongService;
 import cz.muni.fi.pa165.mm.sf.service.config.ServiceConfiguration;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -114,7 +111,7 @@ public class GenreServiceTest extends AbstractTransactionalTestNGSpringContextTe
     }
     
     @Test
-    public void getAll() {
+    public void findAll() {
         Mockito.doReturn(Arrays.asList(testGenre1, testGenre2)).when(genreDao).findAll();
         List<Genre> g = genreService.findAll();
         Assert.assertEquals(g.size(), 2);
@@ -178,42 +175,42 @@ public class GenreServiceTest extends AbstractTransactionalTestNGSpringContextTe
     }
     
     @Test
-    public void getAllSongsWithSameGenreValid() {
+    public void findAllSongsWithSameGenreValid() {
         Song s1 = new Song();
         s1.setId(1L);
         s1.setName("Song 1");
-        s1.setDate(LocalDate.of(2000, Month.APRIL, 10));
-        s1.setLength(LocalTime.of(0, 3, 14));
+        s1.setReleaseDate(LocalDate.of(2000, Month.APRIL, 10));
+        s1.setSongLength(LocalTime.of(0, 3, 14));
         s1.setGenre(testGenre1);
         Song s2 = new Song();
         s2.setId(2L);
         s2.setName("Song 2");
-        s2.setDate(LocalDate.of(2000, Month.APRIL, 10));
-        s2.setLength(LocalTime.of(0, 3, 14));
+        s2.setReleaseDate(LocalDate.of(2000, Month.APRIL, 10));
+        s2.setSongLength(LocalTime.of(0, 3, 14));
         s2.setGenre(testGenre2);
         Song s3 = new Song();
         s3.setId(3L);
         s3.setName("Song 3");
-        s3.setDate(LocalDate.of(2000, Month.APRIL, 10));
-        s3.setLength(LocalTime.of(0, 3, 14));
+        s3.setReleaseDate(LocalDate.of(2000, Month.APRIL, 10));
+        s3.setSongLength(LocalTime.of(0, 3, 14));
         s3.setGenre(testGenre1);
         
         Mockito.doReturn(Arrays.asList(s1, s2, s3)).when(songService).findAll();
-        List<Song> s = genreService.getAllSongsWithSameGenre(testGenre1);
+        List<Song> s = genreService.findAllSongsWithSameGenre(testGenre1);
         Assert.assertEquals(s.size(), 2);
         Assert.assertEquals(s.get(0), s1);
         Assert.assertEquals(s.get(1), s3);
     }
     
     @Test
-    public void getAllSongsWithSameGenreNull() {
-        List<Song> s = genreService.getAllSongsWithSameGenre(null);
+    public void findAllSongsWithSameGenreNull() {
+        List<Song> s = genreService.findAllSongsWithSameGenre(null);
         Assert.assertEquals(s.size(), 0);
     }
     
     @Test
-    public void getAllSongsWithSameGenreInvalid() {
-        List<Song> s = genreService.getAllSongsWithSameGenre(null);
+    public void findAllSongsWithSameGenreInvalid() {
+        List<Song> s = genreService.findAllSongsWithSameGenre(null);
         Assert.assertEquals(s.size(), 0);
     }
 }

@@ -1,4 +1,4 @@
-package cz.nubi.fi.pa165.mm.sf;
+package cz.muni.fi.pa165.mm.sf.facade;
 
 import cz.muni.fi.pa165.mm.api.dto.*;
 import cz.muni.fi.pa165.mm.api.facade.AlbumFacade;
@@ -16,9 +16,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
 import org.testng.Assert;
-import org.testng.annotations.Test;
-
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -27,7 +24,6 @@ import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,7 +91,7 @@ public class AlbumFacadeTest extends AbstractTransactionalTestNGSpringContextTes
 //        Mockito.doNothing().when(albumService).create(any());
         Album a = new Album();
         a.setId(1L);
-        a.setDate(LocalDate.now());
+        a.setReleaseDate(LocalDate.now());
         a.setName("album");
         Mockito.doReturn(a).when(albumService).create(any());
         Long id = albumFacade.createAlbum(albumCreateDTO);
@@ -111,9 +107,9 @@ public class AlbumFacadeTest extends AbstractTransactionalTestNGSpringContextTes
     void testFindById(){
         Album a = new Album();
         a.setId(1L);
-        a.setDate(LocalDate.now());
+        a.setReleaseDate(LocalDate.now());
         a.setName("album");
-        doReturn(a).when(albumService).retrieve(1L);
+        doReturn(a).when(albumService).find(1L);
         doReturn(albumDTO).when(beanMappingService).mapTo(a, AlbumDTO.class);
         AlbumDTO album1 = albumFacade.findById(1L);
         Assert.assertEquals(album1, albumDTO);
@@ -128,7 +124,7 @@ public class AlbumFacadeTest extends AbstractTransactionalTestNGSpringContextTes
         List<Album> albums = new ArrayList<>();
         album.setId(1L);
         albums.add(album);
-        doReturn(albums).when(albumService).retrieveAll();
+        doReturn(albums).when(albumService).findAll();
         doReturn(listDTO).when(beanMappingService).mapTo(albums ,AlbumDTO.class );
 
         Assert.assertEquals(1, albumFacade.findAll().size());
@@ -151,7 +147,7 @@ public class AlbumFacadeTest extends AbstractTransactionalTestNGSpringContextTes
     void testDelete(){
         album.setId(1L);
         album.setName("name");
-        album.setDate(LocalDate.now());
+        album.setReleaseDate(LocalDate.now());
         Mockito.doNothing().when(albumService).delete(any(Album.class));
         albumFacade.deleteAlbum(1L);
         verify(albumService).delete(any(Album.class));

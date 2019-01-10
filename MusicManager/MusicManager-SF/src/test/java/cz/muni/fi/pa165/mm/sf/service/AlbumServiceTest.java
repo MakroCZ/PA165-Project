@@ -1,21 +1,16 @@
-package cz.nubi.fi.pa165.mm.sf;
+package cz.muni.fi.pa165.mm.sf.service;
 
 import cz.muni.fi.pa165.mm.daolayer.dao.*;
 import cz.muni.fi.pa165.mm.daolayer.entity.Album;
 import cz.muni.fi.pa165.mm.daolayer.entity.Genre;
 import cz.muni.fi.pa165.mm.daolayer.entity.Performer;
 import cz.muni.fi.pa165.mm.daolayer.entity.Song;
-import cz.muni.fi.pa165.mm.sf.service.AlbumService;
-import cz.muni.fi.pa165.mm.sf.service.AlbumServiceImpl;
-import cz.muni.fi.pa165.mm.sf.service.PerformerService;
-import cz.muni.fi.pa165.mm.sf.service.PerformerServiceImpl;
 import cz.muni.fi.pa165.mm.sf.service.config.ServiceConfiguration;
 import org.hibernate.service.spi.ServiceException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.test.context.ContextConfiguration;
@@ -32,7 +27,6 @@ import static org.mockito.Mockito.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @ContextConfiguration(classes = ServiceConfiguration.class)
@@ -64,13 +58,13 @@ public class AlbumServiceTest extends AbstractTransactionalTestNGSpringContextTe
         song = new Song();
         genre =new Genre();
         album.setName("Name");
-        album.setDate(LocalDate.now());
+        album.setReleaseDate(LocalDate.now());
         album.setPerformer(performer);
         genre.setName("genre");
         genre.setDescription("desc");
         song.setName("song");
-        song.setLength(LocalTime.of(0,5,0));
-        song.setDate(LocalDate.now());
+        song.setSongLength(LocalTime.of(0,5,0));
+        song.setReleaseDate(LocalDate.now());
         song.setAlbum(album);
         song.setGenre(genre);
         performer.addAlbum(album);
@@ -85,29 +79,29 @@ public class AlbumServiceTest extends AbstractTransactionalTestNGSpringContextTe
     }
 
     @Test
-    void testRetrieve(){
+    void testFind(){
         album.setId(1L);
-        Mockito.doReturn(album).when(albumDao).retrieve(1L);
-        Album a = albumDao.retrieve(1L);
+        Mockito.doReturn(album).when(albumDao).findById(1L);
+        Album a = albumDao.findById(1L);
         Assert.assertEquals(a, album);
-        Album album1 = albumService.retrieve(1L);
+        Album album1 = albumService.find(1L);
         Assert.assertEquals(album, album1);
     }
     @Test
-    void testRetrieveNonExisting(){
-        when(albumDao.retrieve(1L)).thenReturn(null);
-        Assert.assertEquals(albumService.retrieve(1L), null);
+    void testFindNonExisting(){
+        when(albumDao.findById(1L)).thenReturn(null);
+        Assert.assertEquals(albumService.find(1L), null);
     }
 
 
     @Test
-    void testRetrieveAll(){
+    void testFindAll(){
         album.setId(1L);
         List<Album> all = new ArrayList<>();
         all.add(album);
-        when(albumDao.retrieveAll()).thenReturn(all);
-        albumDao.retrieveAll();
-        verify(albumDao).retrieveAll();
+        when(albumDao.findAll()).thenReturn(all);
+        albumDao.findAll();
+        verify(albumDao).findAll();
     }
 
     @Test
@@ -127,7 +121,7 @@ public class AlbumServiceTest extends AbstractTransactionalTestNGSpringContextTe
     void testUpdate(){
         album.setId(1L);
         album.setName("NoName");
-        album.setDate(LocalDate.now());
+        album.setReleaseDate(LocalDate.now());
         doNothing().when(albumDao).update(any(Album.class));
         albumService.update(album);
         verify(albumDao).update(album);
@@ -140,12 +134,12 @@ public class AlbumServiceTest extends AbstractTransactionalTestNGSpringContextTe
     }
 
     @Test
-    void testRetrieveAlbumsFromCountry(){
+    void testFindAlbumsFromCountry(){
         album.setId(1L);
         album.setPerformer(performer);
         Album a = new Album();
         a.setId(2L);
-        a.setDate(LocalDate.now());
+        a.setReleaseDate(LocalDate.now());
         a.setPerformer(performer);
         a.setName("album");
         performer.addAlbum(a);
@@ -153,7 +147,7 @@ public class AlbumServiceTest extends AbstractTransactionalTestNGSpringContextTe
         List<Performer> performers = new ArrayList<>();
         performers.add(performer);
         doReturn(performers).when(performerService).findAll();
-        List<Album> albums = albumService.retrieveAlbumsFromCountry("CZ");
+        List<Album> albums = albumService.findAlbumsFromCountry("CZ");
         Assert.assertEquals(albums.size(), 2);
     }
 
@@ -163,7 +157,7 @@ public class AlbumServiceTest extends AbstractTransactionalTestNGSpringContextTe
         album.setPerformer(performer);
         Album a = new Album();
         a.setId(2L);
-        a.setDate(LocalDate.now());
+        a.setReleaseDate(LocalDate.now());
         a.setPerformer(performer);
         a.setName("album");
         performer.addAlbum(a);
@@ -171,7 +165,7 @@ public class AlbumServiceTest extends AbstractTransactionalTestNGSpringContextTe
         List<Performer> performers = new ArrayList<>();
         performers.add(performer);
         doReturn(performers).when(performerService).findAll();
-        List<Album> albums = albumService.retrieveAlbumsFromCountry("HG");
+        List<Album> albums = albumService.findAlbumsFromCountry("HG");
         Assert.assertEquals(albums.size(), 0);
     }
 
@@ -179,7 +173,7 @@ public class AlbumServiceTest extends AbstractTransactionalTestNGSpringContextTe
     void noPerformersAtAll(){
         List<Performer> performers = new ArrayList<>();
         doReturn(performers).when(performerService).findAll();
-        List<Album> albums = albumService.retrieveAlbumsFromCountry("HG");
+        List<Album> albums = albumService.findAlbumsFromCountry("HG");
         Assert.assertEquals(albums.size(), 0);
     }
 
