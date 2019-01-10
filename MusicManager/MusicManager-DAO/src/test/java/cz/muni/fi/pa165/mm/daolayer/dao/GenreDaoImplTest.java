@@ -70,22 +70,6 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
     }
     
     @Test
-    public void getAllTest() {
-        Genre g1 = new Genre();
-        Genre g2 = new Genre();
-        g1.setName("Genre 1");
-        g2.setName("Genre 2");
-        genreDao.create(g1);
-        genreDao.create(g2);
-        
-        List<Genre> gs = genreDao.findAll();
-        Assert.assertEquals(gs.size(), 2);
-        
-        Assert.assertTrue(gs.contains(g1));
-        Assert.assertTrue(gs.contains(g2));
-    }
-    
-    @Test
     public void updateNameTest() {
         Genre g = new Genre();
         g.setName("BeforeUpdate");
@@ -102,6 +86,7 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
         g.setName("BeforeUpdate");
         g.setDescription("DescBefore");
         genreDao.create(g);
+        em.detach(g);
         g.setName("AfterUpdate");
         g.setDescription("DescAfter");
         genreDao.update(g);
@@ -116,19 +101,20 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
      * into @NotNull attribute and save it into db.
      * I was not able to find further info.
      */
-    /** 
+    /**
     //@Test(expectedExceptions = ConstraintViolationException.class)
     public void updateNullNameTest() {
         Genre g = new Genre();
         g.setName("BeforeUpdate");
         genreDao.create(g);
+        em.detach(g);
         g.setName(null);
         genreDao.update(g);
         
         Genre test = genreDao.findById(g.getId()); //Just for debugging.
         System.out.println(); //Just for debugging.
-    }
-    */
+    }*/
+    
     @Test(expectedExceptions = InvalidDataAccessApiUsageException.class)
     public void updateNullTest() {
         genreDao.update(null);
@@ -228,5 +214,4 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
         Assert.assertTrue(gs.contains(g2));
         Assert.assertTrue(gs.contains(g3));
     }
-    
 }
