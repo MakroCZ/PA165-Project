@@ -78,7 +78,7 @@ public class SongController {
      */
     @RequestMapping(value = "/list/interpret/{id}", method = RequestMethod.GET)
     public String findAllOfInterpret(@PathVariable Long id,Model model){
-        model.addAttribute("songs", findFromInterpret(id));
+        model.addAttribute("songs", songFacade.findAllSongsFromSamePerformer(songFacade.getSongWithID(id)));
         return "song/listFromInterpret";
     }
     //
@@ -98,7 +98,7 @@ public class SongController {
 
     @ModelAttribute("genres")
     public List<GenreDTO> genres(){
-        return genreFacade.getAllGenres();
+        return genreFacade.findAll();
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)

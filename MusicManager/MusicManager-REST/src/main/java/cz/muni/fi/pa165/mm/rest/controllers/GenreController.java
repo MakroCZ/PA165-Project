@@ -37,7 +37,7 @@ public class GenreController {
 
     @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public final List<GenreDTO> getGenres() {
-        return genreFacade.getAllGenres();
+        return genreFacade.findAll();
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)

@@ -12,7 +12,7 @@ import java.util.List;
  * works with entities using GenreDTO. The interface defines follow methods: the {@link #create(Genre)} method,
  * the {@link #update(Genre)} method, the {@link #delete(Genre)} method
  * and methods returning specific genre, there are {@link #findByName(String)},
- * {@link #findById(Long)} and {@link #getAllGenres()} methods.
+ * {@link #findById(Long)} and {@link #findAll()} methods.
  * One business function is implemented {@link #getAllSongsWithSameGenre(Genre)}.
  * @author Yehor Safonov; 487596
  */
@@ -48,7 +48,7 @@ public interface GenreService {
      * In case there are no Genre items in the database, the method returns empty list.
      * @return list of genres
      */
-    List<Genre> getAllGenres();
+    List<Genre> findAll();
 
     /**
      * This method returns the Genre with required id
