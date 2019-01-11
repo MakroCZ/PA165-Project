@@ -47,6 +47,7 @@
                             <th scope="col">ID</th>
                             <th scope="col">Name</th>
                             <th scope="col">Length</th>
+                            <th scope="col">Release Date</th>
                             <th scope="col">Album</th>
                             <th scope="col">Genre</th>
                             <th scope="col">Interpret</th>
@@ -62,6 +63,9 @@
                                     </td>
                                     <td>
                                         <c:out value="${song.songLength}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${song.releaseDate}"/>
                                     </td>
                                     <td>
                                         <c:out value="${song.album.name}"/>

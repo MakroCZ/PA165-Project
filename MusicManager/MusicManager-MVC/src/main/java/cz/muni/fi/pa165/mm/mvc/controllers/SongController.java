@@ -24,10 +24,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author Lukáš Suchánek; 433654
@@ -118,6 +115,13 @@ public class SongController {
         //report success
         redirectAttributes.addFlashAttribute("alert_success", "Song " + id + " was created");
         return "redirect:" + uriBuilder.path("/song/list/").toUriString();
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+    public String delete(@PathVariable long id, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes){
+        songFacade.deleteSong(id);
+        redirectAttributes.addFlashAttribute("alert_success", "Song with id \"" + id + "\" was deleted.");
+        return "redirect:" + uriBuilder.path("/song/list").toUriString();
     }
 
     private List<SongDTO> find(String name){

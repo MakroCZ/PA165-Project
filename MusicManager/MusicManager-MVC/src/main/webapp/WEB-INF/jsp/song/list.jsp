@@ -47,9 +47,11 @@
                             <th scope="col">ID</th>
                             <th scope="col">Name</th>
                             <th scope="col">Length</th>
+                            <th scope="col">Release Date</th>
                             <th scope="col">Album</th>
                             <th scope="col">Genre</th>
                             <th scope="col">Songs from same interpret</th>
+                            <th scope="col">Delete song</th>
                         </tr>
                         </thead>
                   <tbody>
@@ -64,6 +66,9 @@
                                         <c:out value="${song.songLength}"/>
                                     </td>
                                     <td>
+                                        <c:out value="${song.releaseDate}"/>
+                                    </td>
+                                    <td>
                                         <c:out value="${song.album.name}"/>
                                     </td>
                                     <td>
@@ -71,6 +76,11 @@
                                     </td>
                                     <td>
                                         <a id="search-button" href="/pa165/song/list/interpret/${song.id}" class="btn btn-primary searchbutton" >Find</a>
+                                    </td>
+                                    <td>
+                                    <form method="post" action="${pageContext.request.contextPath}/song/delete/${song.id}">
+                                       <button type="submit" class="btn btn-primary">Delete</button>
+                                    </form>
                                     </td>
                                 </tr>
                           </c:forEach>
