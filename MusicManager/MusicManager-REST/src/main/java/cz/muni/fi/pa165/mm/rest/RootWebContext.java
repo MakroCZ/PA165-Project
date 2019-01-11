@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import cz.muni.fi.pa165.mm.sf.service.config.ServiceConfiguration;
+import cz.muni.fi.pa165.sampledata.MusicManagerWithSampleDataConfiguration;
 import org.springframework.context.annotation.*;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -19,7 +20,7 @@ import java.util.Locale;
  */
 @EnableWebMvc
 @Configuration
-@Import({ServiceConfiguration.class})
+@Import({ServiceConfiguration.class, MusicManagerWithSampleDataConfiguration.class})
 @ComponentScan("cz.muni.fi.pa165.mm.rest")
 public class RootWebContext extends WebMvcConfigurationSupport {
     @Bean
