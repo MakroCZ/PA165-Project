@@ -64,16 +64,16 @@
                                         </form:select>
                                         <p class="help-block"><form:errors path="genreId" cssClass="error"/></p>
                                     </div>
-                                    <form:label path="length" cssClass="col-sm-2 control-label">Length</form:label>
+                                    <form:label path="songLength" cssClass="col-sm-2 control-label">Length</form:label>
                                         <div class="col-sm-10">
-                                        <form:input class="inputdate" path="length" type="time" cssClass="form-control"/>
-                                        <form:errors path="length" type="time" cssClass="help-block"/>
+                                        <form:input class="inputdate" path="songLength" type="time" cssClass="form-control"/>
+                                        <form:errors path="songLength" type="time" cssClass="help-block"/>
                                     </div>
                                     <div>
-                                        <form:label path="date" cssClass="col-sm-2 control-label">Date</form:label>
+                                        <form:label path="releaseDate" cssClass="col-sm-2 control-label">Date</form:label>
                                             <div class="col-sm-10">
-                                            <form:input path="date" type="date" class="inputdate" cssClass="form-control"/>
-                                            <form:errors path="date" type="date" cssClass="help-block"/>
+                                            <form:input path="releaseDate" type="date" class="inputdate" cssClass="form-control"/>
+                                            <form:errors path="releaseDate" type="date" cssClass="help-block"/>
                                         </div>
                                     </div>
                                     <button class="btn btn-primary nt-2 ml-2" type="submit">Create song</button>

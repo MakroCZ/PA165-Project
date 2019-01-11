@@ -17,7 +17,7 @@ public class AlbumDTO {
 
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
-    private LocalDate date;
+    private LocalDate releaseDate;
 
     private PerformerDTO performer;
 
@@ -37,12 +37,12 @@ public class AlbumDTO {
         this.name = name;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     public PerformerDTO getPerformer() {
@@ -66,7 +66,7 @@ public class AlbumDTO {
         }
 
         AlbumDTO a = (AlbumDTO) o;
-        return this.getName().equals(a.getName()) && this.getDate().equals(a.getDate()) && this.getPerformer().equals(a.getPerformer());
+        return this.getName().equals(a.getName()) && this.getReleaseDate().equals(a.getReleaseDate()) && this.getPerformer().equals(a.getPerformer());
     }
 
     @Override
@@ -74,7 +74,7 @@ public class AlbumDTO {
         int result = 1;
         int prime = 31;
         result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((date == null) ? 0 : date.hashCode());
+        result = prime * result + ((releaseDate == null) ? 0 : releaseDate.hashCode());
         result = prime * result + ((performer == null) ? 0 : performer.hashCode());
         return result;
     }

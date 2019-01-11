@@ -65,8 +65,8 @@ public class AlbumFacadeTest extends AbstractTransactionalTestNGSpringContextTes
         performerDTO.setName("Performer");
 
         SongDTO songDTO = new SongDTO();
-        songDTO.setDate(LocalDate.now());
-        songDTO.setLength(LocalTime.of(0,1,30));
+        songDTO.setReleaseDate(LocalDate.now());
+        songDTO.setSongLength(LocalTime.of(0,1,30));
         songDTO.setName("song");
 
         performer.setId(1L);
@@ -74,17 +74,17 @@ public class AlbumFacadeTest extends AbstractTransactionalTestNGSpringContextTes
         performer.setCountry("X");
 
         albumDTO.setId(1L);
-        albumDTO.setDate(LocalDate.now());
-        albumDTO.setDate(LocalDate.now());
+        albumDTO.setReleaseDate(LocalDate.now());
+        albumDTO.setReleaseDate(LocalDate.now());
         albumDTO.setPerformer(performerDTO);
     }
 
     @Test
     void testAlbumCreate(){
         AlbumCreateDTO albumCreateDTO = new AlbumCreateDTO();
-        albumCreateDTO.setDate(LocalDate.now());
+        albumCreateDTO.setReleaseDate(LocalDate.now());
         albumCreateDTO.setName(albumDTO.getName());
-        albumCreateDTO.setDate(albumDTO.getDate());
+        albumCreateDTO.setReleaseDate(albumDTO.getReleaseDate());
 
         Mockito.doReturn(album).when(beanMappingService).mapTo(albumCreateDTO, Album.class);
         Mockito.doReturn(performer).when(performerService).findById(any());

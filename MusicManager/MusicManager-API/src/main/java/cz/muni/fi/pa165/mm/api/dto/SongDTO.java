@@ -19,10 +19,10 @@ public class SongDTO {
     private String name;
     @JsonDeserialize(using = LocalTimeDeserializer.class)
     @JsonSerialize(using = LocalTimeSerializer.class)
-    private LocalTime length;
+    private LocalTime songLength;
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
-    private LocalDate date;
+    private LocalDate releaseDate;
     private AlbumDTO album;
     private GenreDTO genre;
 
@@ -34,20 +34,20 @@ public class SongDTO {
         this.name = name;
     }
 
-    public LocalTime getLength() {
-        return length;
+    public LocalTime getSongLength() {
+        return songLength;
     }
 
-    public void setLength(LocalTime length) {
-        this.length = length;
+    public void setSongLength(LocalTime songLength) {
+        this.songLength = songLength;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     public AlbumDTO getAlbum() {
