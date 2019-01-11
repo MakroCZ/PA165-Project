@@ -26,12 +26,12 @@ public class SongCreateDTO {
     @NotNull
     @JsonDeserialize(using = LocalTimeDeserializer.class)
     @JsonSerialize(using = LocalTimeSerializer.class)
-    private LocalTime length;
+    private LocalTime songLength;
     @NotNull
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate date;
+    private LocalDate releaseDate;
     @NotNull
     private Long albumId;
     @NotNull
@@ -46,20 +46,20 @@ public class SongCreateDTO {
         this.name = name;
     }
 
-    public LocalTime getLength() {
-        return length;
+    public LocalTime getSongLength() {
+        return songLength;
     }
 
-    public void setLength(LocalTime length) {
-        this.length = length;
+    public void setSongLength(LocalTime songLength) {
+        this.songLength = songLength;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     public Long getAlbumId() {
@@ -92,8 +92,8 @@ public class SongCreateDTO {
     @Override
     public int hashCode() {
         int result = name.hashCode();
-        result = 31 * result + ((length == null) ? 0 : length.hashCode());
-        result = 31 * result + ((date == null) ? 0 : date.hashCode());
+        result = 31 * result + ((songLength == null) ? 0 : songLength.hashCode());
+        result = 31 * result + ((releaseDate == null) ? 0 : releaseDate.hashCode());
         return result;
     }
 }

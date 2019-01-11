@@ -22,7 +22,7 @@ public class AlbumCreateDTO {
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate date;
+    private LocalDate releaseDate;
 
     @NotNull
     private Long performerId;
@@ -35,12 +35,12 @@ public class AlbumCreateDTO {
         this.name = name;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     public Long getPerformerId() {
@@ -64,7 +64,7 @@ public class AlbumCreateDTO {
         }
 
         AlbumCreateDTO a = (AlbumCreateDTO) o;
-        return this.getName().equals(a.getName()) && this.getDate().equals(a.getDate()) && this.getPerformerId().equals(a.getPerformerId());
+        return this.getName().equals(a.getName()) && this.getReleaseDate().equals(a.getReleaseDate()) && this.getPerformerId().equals(a.getPerformerId());
     }
 
     @Override
@@ -72,7 +72,7 @@ public class AlbumCreateDTO {
         int result = 1;
         int prime = 31;
         result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((date == null) ? 0 : date.hashCode());
+        result = prime * result + ((releaseDate == null) ? 0 : releaseDate.hashCode());
         result = prime * result + ((performerId == null) ? 0 : performerId.hashCode());
         return result;
     }

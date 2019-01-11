@@ -61,7 +61,7 @@
                                         <c:out value="${song.name}"/>
                                     </td>
                                     <td>
-                                        <c:out value="${song.length}"/>
+                                        <c:out value="${song.songLength}"/>
                                     </td>
                                     <td>
                                         <c:out value="${song.album.name}"/>

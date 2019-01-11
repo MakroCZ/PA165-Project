@@ -47,7 +47,7 @@
                         <c:forEach items="${albums}" var="album">
                         <tr>
                             <td>${album.name}</td>
-                            <td>${album.date}</td>
+                            <td>${album.releaseDate}</td>
                             <td>${album.performer.name}</td>
                         </tr>
                         </c:forEach>

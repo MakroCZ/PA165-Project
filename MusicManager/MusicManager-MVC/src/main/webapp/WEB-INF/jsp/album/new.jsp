@@ -48,10 +48,10 @@
                               </div>
                           </div>
                               <div class="form-group ${date_error?'has-error':''}">
-                                    <form:label path="date" cssClass="col-sm-2 control-label">Date</form:label>
+                                    <form:label path="releaseDate" cssClass="col-sm-2 control-label">Date</form:label>
                                         <div class="col-sm-10">
-                                        <form:input path="date" type="date" class="inputdate" cssClass="form-control"/>
-                                        <form:errors path="date" type="date" cssClass="help-block"/>
+                                        <form:input path="releaseDate" type="date" class="inputdate" cssClass="form-control"/>
+                                        <form:errors path="releaseDate" type="date" cssClass="help-block"/>
                                     </div>
                                 </div>
                           <button class="btn btn-primary nt-2 ml-2" type="submit">Create album</button>

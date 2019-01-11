@@ -87,13 +87,13 @@ public class SongFacadeTest  {
 
         AlbumDTO albumDTO = new AlbumDTO();
         albumDTO.setId(2L);
-        albumDTO.setDate(LocalDate.of(2015, Month.APRIL, 16));
+        albumDTO.setReleaseDate(LocalDate.of(2015, Month.APRIL, 16));
         albumDTO.setName("Final masquerade");
 
 
         album = new Album();
         album.setId(albumDTO.getId());
-        album.setReleaseDate(albumDTO.getDate());
+        album.setReleaseDate(albumDTO.getReleaseDate());
         album.setName(albumDTO.getName());
 
         songDTO = new SongDTO();
@@ -101,8 +101,8 @@ public class SongFacadeTest  {
         songDTO.setName("In the end");
         songDTO.setAlbum(albumDTO);
         songDTO.setGenre(genreDTO);
-        songDTO.setLength(LocalTime.of(0,4,45));
-        songDTO.setDate(LocalDate.of(2014, Month.MAY, 10));
+        songDTO.setSongLength(LocalTime.of(0,4,45));
+        songDTO.setReleaseDate(LocalDate.of(2014, Month.MAY, 10));
     }
 
     @AfterMethod
@@ -117,8 +117,8 @@ public class SongFacadeTest  {
     public  void  testCreateSong(){
         SongCreateDTO songCreateDTO = new SongCreateDTO();
         songCreateDTO.setName(songDTO.getName());
-        songCreateDTO.setDate(songDTO.getDate());
-        songCreateDTO.setLength(songDTO.getLength());
+        songCreateDTO.setReleaseDate(songDTO.getReleaseDate());
+        songCreateDTO.setSongLength(songDTO.getSongLength());
         songCreateDTO.setAlbumId(album.getId());
         songCreateDTO.setGenreId(genreDTO.getId());
 
@@ -131,8 +131,8 @@ public class SongFacadeTest  {
         song = new Song();
         song.setId(songDTO.getId());
         song.setName(songDTO.getName());
-        song.setReleaseDate(songDTO.getDate());
-        song.setSongLength(songDTO.getLength());
+        song.setReleaseDate(songDTO.getReleaseDate());
+        song.setSongLength(songDTO.getSongLength());
         song.setGenre(genre);
         song.setAlbum(album);
 
@@ -162,8 +162,8 @@ public class SongFacadeTest  {
         song = new Song();
         song.setId(songDTO.getId());
         song.setName(songDTO.getName());
-        song.setSongLength(songDTO.getLength());
-        song.setReleaseDate(songDTO.getDate());
+        song.setSongLength(songDTO.getSongLength());
+        song.setReleaseDate(songDTO.getReleaseDate());
 
         Mockito.doNothing().when(songService).delete(any(Song.class));
         songFacade.deleteSong(songDTO.getId());
