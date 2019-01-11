@@ -85,18 +85,15 @@ public class AlbumController {
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String newAlbum(Model model) {
         log.debug("new()");
-        AlbumCreateDTO albumCreateDTO = new AlbumCreateDTO();
-        albumCreateDTO.setName("default");
-        model.addAttribute("albumCreate", albumCreateDTO);
+        model.addAttribute("albumCreate", new AlbumCreateDTO());
         return "album/new";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(
-            @Valid @ModelAttribute("albumCreate") AlbumCreateDTO formBean,
-            RedirectAttributes redirectAttributes,
+    public String create(@Valid @ModelAttribute("albumCreate") AlbumCreateDTO formBean,
             BindingResult bindingResult,
             Model model,
+            RedirectAttributes redirectAttributes,
             UriComponentsBuilder uriBuilder
             ) {
         log.debug("create(albumCreate={})", formBean);
