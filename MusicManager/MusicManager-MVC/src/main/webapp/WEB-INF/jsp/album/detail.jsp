@@ -64,7 +64,6 @@
                                 <tr>
                                     <th scope="col">Name</th>
                                     <th scope="col">Length</th>
-                                    <th scope="col">Album</th>
                                     <th scope="col">Genre</th>
                                 </tr>
                                 </thead>
@@ -76,9 +75,6 @@
                                     </td>
                                     <td>
                                         <c:out value="${song.songLength}"/>
-                                    </td>
-                                    <td>
-                                        <c:out value="${song.album.name}"/>
                                     </td>
                                     <td>
                                         <c:out value="${song.genre.name}"/>
