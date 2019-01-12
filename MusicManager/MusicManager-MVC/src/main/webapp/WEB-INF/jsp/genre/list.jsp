@@ -56,6 +56,8 @@
                                         <th>Name</th>
                                         <th>Description</th>
                                         <th class="buttontd">All songs</th>
+                                        <th class="buttontd">Update genre</th>
+                                        <th class="buttontd">Delete genre</th>
                                     </tr>
                                     </thead>
                                     <tbody>
