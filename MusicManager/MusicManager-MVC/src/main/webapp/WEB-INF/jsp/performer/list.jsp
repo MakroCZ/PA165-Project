@@ -42,6 +42,9 @@
                                         <th scope="col"><fmt:message key="entity.performer.name"/></th>
                                         <th scope="col"><fmt:message key="entity.performer.country"/></th>
                                         <th scope="col"><fmt:message key="entity.performer.startDate"/></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -58,11 +61,14 @@
                                                 <c:out value="${performer.startDate}"/>
                                             </td>
                                             <td>
-                                                <my:a href="/performer/detail/${performer.id}" class="btn btn-primary">Detail</my:a>
+                                                <my:a href="/performer/detail/${performer.id}" class="btn btn-primary"><fmt:message key="performer.list.detail"/></my:a>
+                                            </td>
+                                            <td>
+                                                <my:a href="/performer/edit/${performer.id}" class="btn btn-primary"><fmt:message key="performer.list.edit"/></my:a>
                                             </td>
                                             <td>
                                                 <form method="post" action="${pageContext.request.contextPath}/performer/delete/${performer.id}">
-                                                    <button type="submit" class="btn btn-primary">Delete</button>
+                                                    <button type="submit" class="btn btn-primary"><fmt:message key="performer.list.delete"/></button>
                                                 </form>
                                             </td>
                                         </tr>

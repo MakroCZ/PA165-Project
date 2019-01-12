@@ -50,19 +50,8 @@ public class PerformerController {
     
     @RequestMapping(value = "/list/{name}", method = RequestMethod.GET)
     public String find(@PathVariable String name, Model model) {
-        model.addAttribute("performers", findByName(name));
+        model.addAttribute("performers", performerFacade.findByName(name));
         return "performer/list";
-    }
-
-    private List<PerformerDTO> findByName(String name){
-        List<PerformerDTO> allPerformers = performerFacade.findAll();
-        List<PerformerDTO> filtered = new ArrayList<>();
-        for(PerformerDTO performer: allPerformers){
-            if(performer.getName().toLowerCase().contains(name.toLowerCase())){
-                filtered.add(performer);
-            }
-        }
-        return filtered;
     }
     
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
@@ -94,8 +83,9 @@ public class PerformerController {
     
     
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute("performerCreate") PerformerCreateDTO formBean, BindingResult bindingResult,
-                         Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
+    public String create(@Valid @ModelAttribute("performerCreate") PerformerCreateDTO formBean,
+            BindingResult bindingResult, Model model,
+            RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         log.debug("create(performerCreate={})", formBean);
         //in case of validation error forward back to the the form
         if (bindingResult.hasErrors()) {
@@ -115,6 +105,37 @@ public class PerformerController {
         return "redirect:" + uriBuilder.path("/performer/list").buildAndExpand(id).encode().toUriString();
     }
     
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String editPerformer(@PathVariable Long id, Model model) {
+        log.debug("editPerformer({id})");
+        model.addAttribute("performerEdit", performerFacade.findById(id));
+        return "performer/edit";
+    }
+    
+    @RequestMapping(value= "/save", method = RequestMethod.POST)
+    public String edit(@Valid @ModelAttribute("performerEdit") PerformerDTO formBean,
+            BindingResult bindingResult, Model model,
+            RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
+        log.debug("edit(performerEdit={}", formBean);
+        //in case of validation error forward back to the the form
+        if (bindingResult.hasErrors()) {
+            for (ObjectError ge : bindingResult.getGlobalErrors()) {
+                log.trace("ObjectError: {}", ge);
+            }
+            for (FieldError fe : bindingResult.getFieldErrors()) {
+                model.addAttribute(fe.getField() + "_error", true);
+                log.trace("FieldError: {}", fe);
+            }
+            return "performer/edit";
+        }
+        //update performer
+        performerFacade.update(formBean);
+        //report success
+        redirectAttributes.addFlashAttribute("alert_success",
+                "Modifications to performer: " + formBean.getName() + " was succesfully saved.");
+        return "redirect:" + uriBuilder.path("/performer/list").encode().toUriString();
+    }
+    
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public String delete(@PathVariable long id, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
         PerformerDTO performer = performerFacade.findById(id);
@@ -123,9 +144,10 @@ public class PerformerController {
             performerFacade.remove(id);
             redirectAttributes.addFlashAttribute("alert_success", "Performer \"" + performer.getName() + "\" was deleted.");
         } catch (Exception ex) {
-            log.error("Performer "+id+" cannot be deleted (it is included in an order)");
+            log.error("Performer "+id+" cannot be deleted (performer has some albums)");
             log.error(NestedExceptionUtils.getMostSpecificCause(ex).getMessage());
-            redirectAttributes.addFlashAttribute("alert_danger", "Performer \"" + performer.getName() + "\" cannot be deleted.");
+            redirectAttributes.addFlashAttribute("alert_danger", "Performer \"" + performer.getName() + "\" cannot be deleted. "
+                    + "You must first delete all performer's albums.");
         }
         return "redirect:" + uriBuilder.path("/performer/list").toUriString();
     }

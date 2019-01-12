@@ -9,6 +9,9 @@ import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -16,14 +19,21 @@ import java.util.Set;
  */
 public class PerformerDTO {
     
+    @NotNull
     private Long id;
     
+    @NotNull
+    @Size(min = 1, message = "Name must have at least one character")
     private String name;
 
+    @NotNull
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
     
+    @NotNull
+    @Size(min = 1, message = "Country must have at least one character")
     private String country;
     
     private Set<AlbumDTO> albums = new HashSet<>();

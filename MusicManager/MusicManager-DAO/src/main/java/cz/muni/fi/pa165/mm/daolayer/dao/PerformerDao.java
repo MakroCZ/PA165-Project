@@ -31,6 +31,14 @@ public interface PerformerDao {
     Performer findById(Long id);
     
     /**
+     * Finds all performers with specified name
+     * @param name Name of performers to find
+     * @return List of performers with specified name,
+     * empty list if there is no performer with name
+     */
+    List<Performer> findByName(String name);
+    
+    /**
      * Updates performer
      * @param p Performer to update
      */

@@ -33,6 +33,14 @@ public interface PerformerFacade {
     PerformerDTO findById(Long id);
     
     /**
+     * Finds list of performers with specified name
+     * @param name Name of perfomer to find
+     * @return List of performers with specified name,
+     * empty list if there is no performer with specified name
+     */
+    List<PerformerDTO> findByName(String name);
+    
+    /**
      * Updates performer
      * @param p Performer to update
      */
