@@ -36,6 +36,11 @@ public class PerformerServiceImpl implements PerformerService {
     }
 
     @Override
+    public List<Performer> findByName(String name) {
+        return performerDao.findByName(name);
+    }
+
+    @Override
     public void update(Performer p) {
         performerDao.update(p);
     }

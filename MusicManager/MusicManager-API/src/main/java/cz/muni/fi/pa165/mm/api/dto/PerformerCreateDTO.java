@@ -17,7 +17,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class PerformerCreateDTO {
 
     @NotNull
-    @Size(min = 1)
+    @Size(min = 1, message = "Name must have at least one character")
     private String name;
 
     @NotNull
@@ -27,7 +27,7 @@ public class PerformerCreateDTO {
     private LocalDate startDate;
     
     @NotNull
-    @Size(min = 3)
+    @Size(min = 1, message = "Country must have at least one character")
     private String country;
 
     public String getName() {

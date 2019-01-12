@@ -45,6 +45,11 @@ public class PerformerFacadeImpl implements PerformerFacade {
         }
         return beanMappingService.mapTo(performer, PerformerDTO.class);
     }
+    
+    @Override
+    public List<PerformerDTO> findByName(String name) {
+        return beanMappingService.mapTo(performerService.findByName(name), PerformerDTO.class);
+    }
 
     @Override
     public void update(PerformerDTO p) {

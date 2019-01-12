@@ -45,6 +45,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/performer/new").hasRole("ADMIN")
                 .antMatchers("/performer/create").hasRole("ADMIN")
                 .antMatchers("/performer/delete").hasRole("ADMIN")
+                .antMatchers("/performer/edit/*").hasRole("ADMIN")
+                .antMatchers("/performer/save").hasRole("ADMIN")
                 .antMatchers("/song/new").hasRole("ADMIN")
                 .antMatchers("/song/create").hasRole("ADMIN")
                 .antMatchers("/song/delete").hasRole("ADMIN")

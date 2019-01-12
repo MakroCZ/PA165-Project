@@ -32,6 +32,12 @@ public class PerformerDaoImpl implements PerformerDao {
     }
 
     @Override
+    public List<Performer> findByName(String name) {
+        return em.createQuery("select p from Performer p where p .name = :name", Performer.class)
+                .setParameter("name", name).getResultList();
+    }
+
+    @Override
     public void update(Performer p) {
         em.persist(em.merge(p));
     }
