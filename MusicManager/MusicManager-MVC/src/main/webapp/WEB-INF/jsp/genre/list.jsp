@@ -71,6 +71,16 @@
                                       <td class="buttontd">
                                           <a id="search-allsong-button" href="/pa165/genre/songlist/${genre.id}" class="btn btn-primary js-scroll-trigger searchbutton" >Find</a>
                                       </td>
+                                      <td>
+                                      <form method="get" action="${pageContext.request.contextPath}/genre/update/${genre.id}">
+                                         <button type="submit" class="btn btn-primary">Update</button>
+                                      </form>
+                                      </td>
+                                      <td>
+                                      <form method="post" action="${pageContext.request.contextPath}/genre/delete/${genre.id}">
+                                         <button type="submit" class="btn btn-primary">Delete</button>
+                                      </form>
+                                      </td>
                                   </tr>
                                </c:forEach>
                                     </tbody>
