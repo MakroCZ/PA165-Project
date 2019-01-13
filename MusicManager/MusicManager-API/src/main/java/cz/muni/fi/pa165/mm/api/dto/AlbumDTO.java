@@ -4,21 +4,30 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import cz.muni.fi.pa165.mm.api.LocalDateDeserializer;
 import cz.muni.fi.pa165.mm.api.LocalDateSerializer;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 /**
  * @author Václav Stehlík; 487580
  */
 public class AlbumDTO {
+    @NotNull
     private Long id;
 
+    @NotNull
+    @Size(min = 2, max = 50, message = "Name length must be between 2 to 50 characters.")
     private String name;
 
+    @NotNull
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate releaseDate;
 
+    @NotNull
     private PerformerDTO performer;
 
     public Long getId() {

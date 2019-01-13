@@ -53,6 +53,9 @@
                                 <my:a href="/album/detail/${album.id}" class="btn btn-primary">Detail</my:a>
                             </td>
                             <td>
+                                <my:a href="/album/edit/${album.id}" class="btn btn-primary">Edit</my:a>
+                            </td>
+                            <td>
                                 <form method="post" action="${pageContext.request.contextPath}/album/delete/${album.id}">
                                     <button type="submit" class="btn btn-primary">Delete</button>
                                 </form>
