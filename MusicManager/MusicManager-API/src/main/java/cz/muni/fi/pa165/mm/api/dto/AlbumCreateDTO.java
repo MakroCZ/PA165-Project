@@ -15,7 +15,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 public class AlbumCreateDTO {
     @NotNull
-    @Size(min = 2, max=50)
+    @Size(min = 2, max = 50, message = "Name length must be between 2 to 50 characters.")
     private String name;
 
     @NotNull

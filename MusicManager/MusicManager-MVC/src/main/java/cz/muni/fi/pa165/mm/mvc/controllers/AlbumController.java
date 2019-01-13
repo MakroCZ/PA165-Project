@@ -30,7 +30,6 @@ import java.util.List;
 /**
  * @author Václav Stehlík; 487580
  */
-
 @Controller
 @RequestMapping("/album")
 public class AlbumController {
@@ -91,11 +90,11 @@ public class AlbumController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("albumCreate") AlbumCreateDTO formBean,
-            BindingResult bindingResult,
-            Model model,
-            RedirectAttributes redirectAttributes,
-            UriComponentsBuilder uriBuilder
-            ) {
+                         BindingResult bindingResult,
+                         Model model,
+                         RedirectAttributes redirectAttributes,
+                         UriComponentsBuilder uriBuilder
+    ) {
         log.debug("create(albumCreate={})", formBean);
         if (bindingResult.hasErrors()) {
             for (ObjectError ge : bindingResult.getGlobalErrors()) {
@@ -133,10 +132,41 @@ public class AlbumController {
             albumFacade.deleteAlbum(id);
             redirectAttributes.addFlashAttribute("alert_success", "Album \"" + album.getName() + "\" was deleted.");
         } catch (Exception ex) {
-            log.error("Album "+id+" cannot be deleted.");
+            log.error("Album " + id + " cannot be deleted.");
             log.error(NestedExceptionUtils.getMostSpecificCause(ex).getMessage());
             redirectAttributes.addFlashAttribute("alert_danger", "Album \"" + album.getName() + "\" cannot be deleted because it is not empty.");
         }
         return "redirect:" + uriBuilder.path("/album/list").toUriString();
+    }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String editAlbum(@PathVariable Long id, Model model) {
+        log.debug("editAlbum({id})");
+        model.addAttribute("albumEdit", albumFacade.findById(id));
+        return "album/edit";
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String edit(@Valid @ModelAttribute("albumEdit") AlbumDTO formBean,
+                       BindingResult bindingResult,
+                       Model model,
+                       RedirectAttributes redirectAttributes,
+                       UriComponentsBuilder uriBuilder
+    ) {
+        log.debug("edit(albumEdit={}", formBean);
+
+        if (bindingResult.hasErrors()) {
+            for (ObjectError ge : bindingResult.getGlobalErrors()) {
+                log.trace("ObjectError: {}", ge);
+            }
+            for (FieldError fe : bindingResult.getFieldErrors()) {
+                model.addAttribute(fe.getField() + "_error", true);
+                log.trace("FieldError: {}", fe);
+            }
+            return "album/edit";
+        }
+        albumFacade.updateAlbum(formBean);
+        redirectAttributes.addFlashAttribute("alert_success", "Modifications to album \"" + formBean.getName() + "\" were succesfully saved.");
+        return "redirect:" + uriBuilder.path("/album/list").encode().toUriString();
     }
 }
